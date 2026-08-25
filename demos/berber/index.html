@@ -1,1 +1,1054 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>BlackCut Barber | Randevu Demo</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #090b0e;
+      color: #fff;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .demo-bar {
+      background: #06b6d4;
+      color: #041014;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 14px 5%;
+      background: rgba(9, 11, 14, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #242a30;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .logo {
+      width: 47px;
+      height: 47px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #06b6d4, #0891b2);
+      color: #001014;
+      font-size: 24px;
+    }
+
+    .brand h2 {
+      font-size: 18px;
+    }
+
+    .brand small {
+      color: #8b98a5;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      padding: 9px 13px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .hero {
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      padding: 65px 20px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top right, rgba(6,182,212,.22), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(14,116,144,.16), transparent 30%),
+        linear-gradient(135deg, #121820, #07090c);
+    }
+
+    .hero-content {
+      max-width: 820px;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid #0891b2;
+      color: #67e8f9;
+      background: rgba(6,182,212,.08);
+      padding: 8px 15px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 78px);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: #22d3ee;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #aeb9c5;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .hero-buttons {
+      margin-top: 28px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .primary,
+    .secondary {
+      padding: 14px 20px;
+      border-radius: 11px;
+      border: 0;
+      font-weight: bold;
+    }
+
+    .primary {
+      background: #06b6d4;
+      color: #031014;
+    }
+
+    .secondary {
+      background: #151a20;
+      color: white;
+      border: 1px solid #303944;
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 45px 18px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      font-size: 31px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #8f9ba7;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .service {
+      border: 1px solid #29313a;
+      background: #11161c;
+      border-radius: 17px;
+      padding: 22px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .service:hover {
+      transform: translateY(-3px);
+      border-color: #0891b2;
+    }
+
+    .service.selected {
+      border-color: #22d3ee;
+      background: rgba(6,182,212,.09);
+    }
+
+    .service .icon {
+      font-size: 33px;
+      margin-bottom: 13px;
+    }
+
+    .service h3 {
+      margin-bottom: 7px;
+    }
+
+    .service p {
+      color: #8f9ba7;
+      font-size: 14px;
+      min-height: 42px;
+      line-height: 1.5;
+    }
+
+    .service-price {
+      margin-top: 15px;
+      color: #67e8f9;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .barber-section {
+      margin-top: 55px;
+    }
+
+    .barbers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .barber {
+      text-align: center;
+      background: #11161c;
+      border: 1px solid #29313a;
+      border-radius: 17px;
+      padding: 24px 18px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .barber:hover {
+      transform: translateY(-3px);
+    }
+
+    .barber.selected {
+      border-color: #22d3ee;
+      background: rgba(6,182,212,.09);
+    }
+
+    .barber-avatar {
+      width: 80px;
+      height: 80px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: #202832;
+      font-size: 38px;
+    }
+
+    .barber p {
+      color: #8f9ba7;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .appointment {
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 20px;
+    }
+
+    .form-box,
+    .summary {
+      background: #11161c;
+      border: 1px solid #29313a;
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .form-box h2,
+    .summary h2 {
+      margin-bottom: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: #cbd5e1;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 11px;
+      border: 1px solid #343e49;
+      background: #0b0f13;
+      color: white;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #06b6d4;
+    }
+
+    .time-title {
+      margin: 22px 0 12px;
+      font-weight: bold;
+    }
+
+    .times {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+    }
+
+    .time {
+      padding: 11px 6px;
+      border-radius: 10px;
+      background: #171d24;
+      color: white;
+      border: 1px solid #323b45;
+    }
+
+    .time.selected {
+      background: #06b6d4;
+      color: #021014;
+      border-color: #06b6d4;
+      font-weight: bold;
+    }
+
+    .confirm-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      background: #06b6d4;
+      color: #031014;
+      padding: 15px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .summary-row {
+      padding: 13px 0;
+      border-bottom: 1px solid #29313a;
+    }
+
+    .summary-row small {
+      display: block;
+      color: #7f8b96;
+      margin-bottom: 5px;
+    }
+
+    .summary-row strong {
+      color: #e2e8f0;
+    }
+
+    .summary-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      font-size: 20px;
+    }
+
+    .summary-price strong {
+      color: #67e8f9;
+    }
+
+    .features {
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 23px 15px;
+      background: #11161c;
+      border: 1px solid #29313a;
+      border-radius: 16px;
+    }
+
+    .feature span {
+      display: block;
+      font-size: 31px;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: #8f9ba7;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    .sales-cta {
+      margin-top: 55px;
+      padding: 35px 20px;
+      text-align: center;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at top, rgba(6,182,212,.16), transparent 55%),
+        #10151a;
+      border: 1px solid #28515b;
+    }
+
+    .sales-cta h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .sales-cta p {
+      color: #9ba8b5;
+      max-width: 650px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+
+    .whatsapp {
+      display: inline-block;
+      text-decoration: none;
+      background: #22c55e;
+      color: #07130b;
+      padding: 14px 20px;
+      border-radius: 11px;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      color: #66727e;
+    }
+
+    footer strong {
+      color: #22d3ee;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 200;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 120px);
+      width: min(92%, 500px);
+      padding: 16px 18px;
+      text-align: center;
+      border-radius: 13px;
+      background: #0f2f36;
+      border: 1px solid #06b6d4;
+      color: white;
+      opacity: 0;
+      transition: .3s;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    @media (max-width: 900px) {
+      .services {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .appointment {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .services,
+      .barbers,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .times {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero {
+        min-height: 450px;
+      }
+
+      .brand small {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="demo-bar">
+  💈 CANLI BERBER / RANDEVU DEMOSU — Gerçek randevu oluşturmaz.
+</div>
+
+<header>
+
+  <div class="brand">
+    <div class="logo">✂️</div>
+
+    <div>
+      <h2>BlackCut Barber</h2>
+      <small>Online Randevu Sistemi</small>
+    </div>
+  </div>
+
+  <a
+    class="back-btn"
+    href="../../">
+    ← Demo Merkezi
+  </a>
+
+</header>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="badge">
+      💈 Berber • Kuaför • Randevu Sistemi
+    </div>
+
+    <h1>
+      Tarzını <span>Planla</span>
+    </h1>
+
+    <p>
+      Hizmetini seç, berberini belirle, uygun saatini ayarla.
+      İşletmeler için modern ve kolay online randevu deneyimini test et.
+    </p>
+
+    <div class="hero-buttons">
+
+      <button
+        class="primary"
+        onclick="document.getElementById('hizmetler').scrollIntoView()">
+        Randevu Oluştur
+      </button>
+
+      <button
+        class="secondary"
+        onclick="document.getElementById('ozellikler').scrollIntoView()">
+        Sistemi İncele
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<main>
+
+  <section id="hizmetler">
+
+    <div class="section-title">
+      <h2>Hizmetini Seç</h2>
+      <p>Randevu almak istediğiniz işlemi seçin.</p>
+    </div>
+
+    <div class="services">
+
+      <div
+        class="service"
+        data-name="Saç Kesimi"
+        data-price="400"
+        onclick="selectService(this)">
+
+        <div class="icon">✂️</div>
+        <h3>Saç Kesimi</h3>
+        <p>Modern veya klasik profesyonel saç kesimi.</p>
+        <div class="service-price">400 ₺</div>
+
+      </div>
+
+      <div
+        class="service"
+        data-name="Sakal Tıraşı"
+        data-price="250"
+        onclick="selectService(this)">
+
+        <div class="icon">🧔</div>
+        <h3>Sakal Tıraşı</h3>
+        <p>Sakal şekillendirme ve profesyonel bakım.</p>
+        <div class="service-price">250 ₺</div>
+
+      </div>
+
+      <div
+        class="service"
+        data-name="Saç + Sakal"
+        data-price="550"
+        onclick="selectService(this)">
+
+        <div class="icon">💈</div>
+        <h3>Saç + Sakal</h3>
+        <p>Tam bakım paketi ve kişiye özel stil.</p>
+        <div class="service-price">550 ₺</div>
+
+      </div>
+
+      <div
+        class="service"
+        data-name="Damat Bakımı"
+        data-price="1000"
+        onclick="selectService(this)">
+
+        <div class="icon">👑</div>
+        <h3>Damat Bakımı</h3>
+        <p>Özel günler için kapsamlı saç ve sakal bakımı.</p>
+        <div class="service-price">1.000 ₺</div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="barber-section">
+
+    <div class="section-title">
+      <h2>Berberini Seç</h2>
+      <p>Randevunuz için istediğiniz uzmanı belirleyin.</p>
+    </div>
+
+    <div class="barbers">
+
+      <div
+        class="barber"
+        data-name="Emre"
+        onclick="selectBarber(this)">
+
+        <div class="barber-avatar">👨🏻</div>
+        <h3>Emre</h3>
+        <p>Saç Kesimi & Stil Uzmanı</p>
+
+      </div>
+
+      <div
+        class="barber"
+        data-name="Mert"
+        onclick="selectBarber(this)">
+
+        <div class="barber-avatar">🧔🏻</div>
+        <h3>Mert</h3>
+        <p>Sakal & Klasik Tıraş Uzmanı</p>
+
+      </div>
+
+      <div
+        class="barber"
+        data-name="Can"
+        onclick="selectBarber(this)">
+
+        <div class="barber-avatar">👨🏽</div>
+        <h3>Can</h3>
+        <p>Modern Stil & Özel Bakım</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="appointment">
+
+    <div class="form-box">
+
+      <h2>📅 Randevu Bilgileri</h2>
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Ad Soyad</label>
+          <input
+            id="customerName"
+            type="text"
+            placeholder="Adınızı yazın">
+        </div>
+
+        <div class="field">
+          <label>Telefon</label>
+          <input
+            id="customerPhone"
+            type="tel"
+            placeholder="05xx xxx xx xx">
+        </div>
+
+        <div class="field full">
+          <label>Randevu Tarihi</label>
+          <input
+            id="appointmentDate"
+            type="date">
+        </div>
+
+      </div>
+
+      <div class="time-title">
+        Uygun Saat
+      </div>
+
+      <div class="times">
+
+        <button class="time" onclick="selectTime(this)">10:00</button>
+        <button class="time" onclick="selectTime(this)">11:00</button>
+        <button class="time" onclick="selectTime(this)">12:00</button>
+        <button class="time" onclick="selectTime(this)">13:30</button>
+        <button class="time" onclick="selectTime(this)">15:00</button>
+        <button class="time" onclick="selectTime(this)">16:30</button>
+        <button class="time" onclick="selectTime(this)">18:00</button>
+        <button class="time" onclick="selectTime(this)">19:30</button>
+
+      </div>
+
+      <button
+        class="confirm-btn"
+        onclick="createAppointment()">
+        ✅ Randevuyu Demo Olarak Oluştur
+      </button>
+
+    </div>
+
+    <aside class="summary">
+
+      <h2>Randevu Özeti</h2>
+
+      <div class="summary-row">
+        <small>Hizmet</small>
+        <strong id="summaryService">Henüz seçilmedi</strong>
+      </div>
+
+      <div class="summary-row">
+        <small>Berber</small>
+        <strong id="summaryBarber">Henüz seçilmedi</strong>
+      </div>
+
+      <div class="summary-row">
+        <small>Tarih</small>
+        <strong id="summaryDate">Henüz seçilmedi</strong>
+      </div>
+
+      <div class="summary-row">
+        <small>Saat</small>
+        <strong id="summaryTime">Henüz seçilmedi</strong>
+      </div>
+
+      <div class="summary-price">
+        <span>Toplam</span>
+        <strong id="summaryPrice">0 ₺</strong>
+      </div>
+
+    </aside>
+
+  </section>
+
+  <section
+    class="features"
+    id="ozellikler">
+
+    <div class="feature">
+      <span>📅</span>
+      <h3>Online Randevu</h3>
+      <p>Müşteri işletmeyi aramadan uygun tarih ve saatini seçebilir.</p>
+    </div>
+
+    <div class="feature">
+      <span>👤</span>
+      <h3>Personel Seçimi</h3>
+      <p>Müşteri çalışmak istediği personeli belirleyebilir.</p>
+    </div>
+
+    <div class="feature">
+      <span>⚙️</span>
+      <h3>Yönetim Paneli</h3>
+      <p>Randevular, hizmetler ve çalışma saatleri yönetilebilir.</p>
+    </div>
+
+    <div class="feature">
+      <span>📱</span>
+      <h3>Mobil Uyumlu</h3>
+      <p>Telefon, tablet ve bilgisayarda kolay kullanım sağlar.</p>
+    </div>
+
+  </section>
+
+  <section class="sales-cta">
+
+    <h2>Bu Sistemi İşletmenize Özel İster misiniz?</h2>
+
+    <p>
+      Berber, kuaför, güzellik salonu veya randevulu çalışan
+      işletmeniz için size özel sistem hazırlayabiliriz.
+    </p>
+
+    <a
+      class="whatsapp"
+      href="https://wa.me/905309112770?text=Merhaba%20Yusuf%2C%20randevu%20sistemi%20demosunu%20inceledim.%20Bilgi%20almak%20istiyorum."
+      target="_blank"
+      rel="noopener">
+      💬 WhatsApp'tan Bilgi Al
+    </a>
+
+  </section>
+
+</main>
+
+<footer>
+  <strong>Yusuf Dijital Çözümler</strong> • Demo Merkezi
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+
+let selectedService = null;
+let selectedPrice = 0;
+let selectedBarber = null;
+let selectedTimeValue = null;
+
+function selectService(element) {
+
+  document
+    .querySelectorAll(".service")
+    .forEach(item =>
+      item.classList.remove("selected")
+    );
+
+  element.classList.add("selected");
+
+  selectedService =
+    element.dataset.name;
+
+  selectedPrice =
+    Number(element.dataset.price);
+
+  document
+    .getElementById("summaryService")
+    .textContent =
+      selectedService;
+
+  document
+    .getElementById("summaryPrice")
+    .textContent =
+      `${selectedPrice.toLocaleString("tr-TR")} ₺`;
+}
+
+function selectBarber(element) {
+
+  document
+    .querySelectorAll(".barber")
+    .forEach(item =>
+      item.classList.remove("selected")
+    );
+
+  element.classList.add("selected");
+
+  selectedBarber =
+    element.dataset.name;
+
+  document
+    .getElementById("summaryBarber")
+    .textContent =
+      selectedBarber;
+}
+
+function selectTime(element) {
+
+  document
+    .querySelectorAll(".time")
+    .forEach(item =>
+      item.classList.remove("selected")
+    );
+
+  element.classList.add("selected");
+
+  selectedTimeValue =
+    element.textContent;
+
+  document
+    .getElementById("summaryTime")
+    .textContent =
+      selectedTimeValue;
+}
+
+const dateInput =
+  document.getElementById(
+    "appointmentDate"
+  );
+
+const today =
+  new Date();
+
+const year =
+  today.getFullYear();
+
+const month =
+  String(
+    today.getMonth() + 1
+  ).padStart(2, "0");
+
+const day =
+  String(
+    today.getDate()
+  ).padStart(2, "0");
+
+dateInput.min =
+  `${year}-${month}-${day}`;
+
+dateInput.addEventListener(
+  "change",
+  () => {
+
+    document
+      .getElementById("summaryDate")
+      .textContent =
+        dateInput.value ||
+        "Henüz seçilmedi";
+
+  }
+);
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+  setTimeout(
+    () => {
+      toast.classList.remove("show");
+    },
+    3500
+  );
+}
+
+function createAppointment() {
+
+  const customerName =
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
+
+  const customerPhone =
+    document
+      .getElementById("customerPhone")
+      .value
+      .trim();
+
+  const appointmentDate =
+    dateInput.value;
+
+  if (!selectedService) {
+    showToast(
+      "Önce bir hizmet seçin. ✂️"
+    );
+    return;
+  }
+
+  if (!selectedBarber) {
+    showToast(
+      "Lütfen bir berber seçin. 💈"
+    );
+    return;
+  }
+
+  if (!customerName) {
+    showToast(
+      "Adınızı yazmanız gerekiyor."
+    );
+    return;
+  }
+
+  if (!customerPhone) {
+    showToast(
+      "Telefon numaranızı yazmanız gerekiyor."
+    );
+    return;
+  }
+
+  if (!appointmentDate) {
+    showToast(
+      "Randevu tarihini seçin. 📅"
+    );
+    return;
+  }
+
+  if (!selectedTimeValue) {
+    showToast(
+      "Uygun bir saat seçin. ⏰"
+    );
+    return;
+  }
+
+  showToast(
+    "✅ Demo randevu başarıyla oluşturuldu! Gerçek kayıt yapılmadı."
+  );
+}
+
+</script>
+
+</body>
+</html>
