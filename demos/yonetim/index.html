@@ -1,1 +1,976 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>FlowPanel | İşletme Yönetim Demo</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #fff;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .demo-bar {
+      background: #7c3aed;
+      padding: 9px 15px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 16px 5%;
+      background: #11172a;
+      border-bottom: 1px solid #25304b;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .brand h2 {
+      font-size: 18px;
+    }
+
+    .brand small {
+      color: #94a3b8;
+    }
+
+    .back {
+      text-decoration: none;
+      color: #d7def0;
+      border: 1px solid #33405d;
+      padding: 9px 13px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .layout {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      grid-template-columns: 230px 1fr;
+    }
+
+    aside {
+      background: #0e1425;
+      border-right: 1px solid #26314d;
+      padding: 22px 14px;
+    }
+
+    .menu-title {
+      color: #64748b;
+      font-size: 12px;
+      margin: 8px 10px 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 12px 13px;
+      margin-bottom: 7px;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      color: #cbd5e1;
+    }
+
+    .nav-btn.active {
+      background: #7c3aed;
+      color: white;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .topline h1 {
+      font-size: 30px;
+    }
+
+    .topline p {
+      color: #94a3b8;
+      margin-top: 5px;
+    }
+
+    .new-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: #7c3aed;
+      color: white;
+      font-weight: bold;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .stat {
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid #293654;
+      background: #11182b;
+    }
+
+    .stat small {
+      display: block;
+      color: #8fa0b6;
+      margin-bottom: 7px;
+    }
+
+    .stat strong {
+      font-size: 27px;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #86efac;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+    }
+
+    .panel {
+      border: 1px solid #293654;
+      border-radius: 17px;
+      background: #11182b;
+      padding: 20px;
+    }
+
+    .panel h2 {
+      margin-bottom: 16px;
+      font-size: 20px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .toolbar input,
+    .toolbar select {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 9px;
+      border: 1px solid #33415f;
+      background: #0b1120;
+      color: white;
+      outline: none;
+    }
+
+    .customer-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .customer {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr .7fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid #283653;
+      border-radius: 12px;
+      background: #0d1424;
+    }
+
+    .customer small {
+      color: #8597ad;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .new {
+      background: rgba(59,130,246,.15);
+      color: #93c5fd;
+    }
+
+    .progress {
+      background: rgba(245,158,11,.15);
+      color: #fcd34d;
+    }
+
+    .done {
+      background: rgba(34,197,94,.15);
+      color: #86efac;
+    }
+
+    .small-btn {
+      border: 1px solid #3a4868;
+      background: #161f34;
+      color: white;
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+
+    .tasks {
+      display: grid;
+      gap: 10px;
+    }
+
+    .task {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 13px;
+      border-radius: 11px;
+      background: #0d1424;
+      border: 1px solid #283653;
+    }
+
+    .task input {
+      margin-top: 3px;
+    }
+
+    .task.done-task {
+      opacity: .55;
+    }
+
+    .task.done-task strong {
+      text-decoration: line-through;
+    }
+
+    .task small {
+      display: block;
+      margin-top: 5px;
+      color: #7f91a8;
+    }
+
+    .activity {
+      display: grid;
+      gap: 12px;
+    }
+
+    .activity-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #26324d;
+    }
+
+    .activity-item small {
+      display: block;
+      color: #7d90a7;
+      margin-top: 5px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0,0,0,.75);
+    }
+
+    .modal.show {
+      display: grid;
+    }
+
+    .modal-box {
+      width: min(100%, 470px);
+      padding: 22px;
+      border-radius: 17px;
+      border: 1px solid #33415f;
+      background: #131b30;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #3b4967;
+      background: #1c263d;
+      color: white;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+
+    .field label {
+      color: #aab7c9;
+      font-size: 13px;
+    }
+
+    .field input,
+    .field select {
+      padding: 12px;
+      border-radius: 9px;
+      border: 1px solid #354461;
+      background: #0b1120;
+      color: white;
+      outline: none;
+    }
+
+    .save-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 13px;
+      border: 0;
+      border-radius: 10px;
+      background: #7c3aed;
+      color: white;
+      font-weight: bold;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 150;
+      bottom: 25px;
+      left: 50%;
+      transform: translate(-50%, 100px);
+      opacity: 0;
+      transition: .3s;
+      padding: 15px 18px;
+      border-radius: 12px;
+      background: #241440;
+      border: 1px solid #8b5cf6;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        display: none;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .customer {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      main {
+        padding: 18px 12px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .topline {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="demo-bar">
+  ⚙️ CANLI İŞLETME YÖNETİM PANELİ DEMOSU
+</div>
+
+<header>
+
+  <div class="brand">
+    <div class="logo">F</div>
+
+    <div>
+      <h2>FlowPanel</h2>
+      <small>İşletme Yönetim Sistemi</small>
+    </div>
+  </div>
+
+  <a class="back" href="../../">
+    ← Demo Merkezi
+  </a>
+
+</header>
+
+<div class="layout">
+
+  <aside>
+
+    <div class="menu-title">Yönetim</div>
+
+    <button class="nav-btn active">
+      📊 Kontrol Paneli
+    </button>
+
+    <button class="nav-btn">
+      👥 Müşteriler
+    </button>
+
+    <button class="nav-btn">
+      📋 Talepler
+    </button>
+
+    <button class="nav-btn">
+      ✅ Görevler
+    </button>
+
+    <button class="nav-btn">
+      📈 Raporlar
+    </button>
+
+    <div class="menu-title">Sistem</div>
+
+    <button class="nav-btn">
+      ⚙️ Ayarlar
+    </button>
+
+  </aside>
+
+  <main>
+
+    <div class="topline">
+
+      <div>
+        <h1>Kontrol Paneli</h1>
+        <p>İşletmenizin günlük operasyonlarını tek ekrandan yönetin.</p>
+      </div>
+
+      <button class="new-btn" onclick="openModal()">
+        + Yeni Müşteri
+      </button>
+
+    </div>
+
+    <section class="stats">
+
+      <div class="stat">
+        <small>Toplam Müşteri</small>
+        <strong id="totalCustomer">24</strong>
+        <span>↑ Bu ay +4</span>
+      </div>
+
+      <div class="stat">
+        <small>Açık Talep</small>
+        <strong>7</strong>
+        <span>3 tanesi bugün</span>
+      </div>
+
+      <div class="stat">
+        <small>Tamamlanan İş</small>
+        <strong>41</strong>
+        <span>↑ %12 artış</span>
+      </div>
+
+      <div class="stat">
+        <small>Aktif Görev</small>
+        <strong id="activeTaskCount">4</strong>
+        <span>Bugün tamamlanacak</span>
+      </div>
+
+    </section>
+
+    <div class="grid">
+
+      <section class="panel">
+
+        <h2>👥 Son Müşteriler</h2>
+
+        <div class="toolbar">
+
+          <input
+            id="search"
+            type="search"
+            placeholder="Müşteri ara...">
+
+          <select id="statusFilter">
+            <option value="all">Tüm Durumlar</option>
+            <option value="new">Yeni</option>
+            <option value="progress">İşlemde</option>
+            <option value="done">Tamamlandı</option>
+          </select>
+
+        </div>
+
+        <div id="customerList" class="customer-list"></div>
+
+      </section>
+
+      <div>
+
+        <section class="panel">
+
+          <h2>✅ Bugünün Görevleri</h2>
+
+          <div class="tasks">
+
+            <label class="task">
+              <input type="checkbox" onchange="toggleTask(this)">
+              <div>
+                <strong>Ahmet Bey'i ara</strong>
+                <small>Teklif durumu hakkında dönüş yap</small>
+              </div>
+            </label>
+
+            <label class="task">
+              <input type="checkbox" onchange="toggleTask(this)">
+              <div>
+                <strong>Yeni teklif hazırla</strong>
+                <small>Özkan Teknik için fiyat teklifi</small>
+              </div>
+            </label>
+
+            <label class="task">
+              <input type="checkbox" onchange="toggleTask(this)">
+              <div>
+                <strong>Randevuyu doğrula</strong>
+                <small>Seda Hanım • 16:30</small>
+              </div>
+            </label>
+
+            <label class="task">
+              <input type="checkbox" onchange="toggleTask(this)">
+              <div>
+                <strong>Fatura kontrolü</strong>
+                <small>Haftalık ödeme kayıtları</small>
+              </div>
+            </label>
+
+          </div>
+
+        </section>
+
+        <section class="panel" style="margin-top:18px;">
+
+          <h2>🕒 Son Hareketler</h2>
+
+          <div class="activity">
+
+            <div class="activity-item">
+              <strong>Yeni müşteri eklendi</strong>
+              <small>Mehmet Kaya • 12 dakika önce</small>
+            </div>
+
+            <div class="activity-item">
+              <strong>Talep tamamlandı</strong>
+              <small>Nova Teknik • 34 dakika önce</small>
+            </div>
+
+            <div class="activity-item">
+              <strong>Yeni görev oluşturuldu</strong>
+              <small>1 saat önce</small>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<div id="customerModal" class="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>Yeni Müşteri</h2>
+
+      <button class="close" onclick="closeModal()">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="field">
+      <label>Ad Soyad</label>
+      <input id="newName" type="text" placeholder="Müşteri adı">
+    </div>
+
+    <div class="field">
+      <label>Telefon</label>
+      <input id="newPhone" type="tel" placeholder="05xx xxx xx xx">
+    </div>
+
+    <div class="field">
+      <label>İşletme / Firma</label>
+      <input id="newCompany" type="text" placeholder="Firma adı">
+    </div>
+
+    <div class="field">
+      <label>Durum</label>
+      <select id="newStatus">
+        <option value="new">Yeni</option>
+        <option value="progress">İşlemde</option>
+        <option value="done">Tamamlandı</option>
+      </select>
+    </div>
+
+    <button class="save-btn" onclick="addCustomer()">
+      Müşteriyi Demo Olarak Ekle
+    </button>
+
+  </div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+
+let customers = [
+  {
+    name: "Mehmet Kaya",
+    phone: "0532 111 22 33",
+    company: "Kaya Otomotiv",
+    status: "new"
+  },
+  {
+    name: "Ayşe Demir",
+    phone: "0541 222 33 44",
+    company: "Demir Mimarlık",
+    status: "progress"
+  },
+  {
+    name: "Serkan Yılmaz",
+    phone: "0506 333 44 55",
+    company: "Yılmaz Teknik",
+    status: "done"
+  },
+  {
+    name: "Zeynep Arslan",
+    phone: "0555 444 55 66",
+    company: "Arslan Beauty",
+    status: "progress"
+  }
+];
+
+function getStatusLabel(status) {
+
+  if (status === "new") {
+    return {
+      text: "Yeni",
+      className: "new"
+    };
+  }
+
+  if (status === "progress") {
+    return {
+      text: "İşlemde",
+      className: "progress"
+    };
+  }
+
+  return {
+    text: "Tamamlandı",
+    className: "done"
+  };
+}
+
+function renderCustomers() {
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .trim()
+      .toLocaleLowerCase("tr");
+
+  const status =
+    document
+      .getElementById("statusFilter")
+      .value;
+
+  const filtered =
+    customers.filter(customer => {
+
+      const textMatch =
+        customer.name
+          .toLocaleLowerCase("tr")
+          .includes(search) ||
+        customer.company
+          .toLocaleLowerCase("tr")
+          .includes(search);
+
+      const statusMatch =
+        status === "all" ||
+        customer.status === status;
+
+      return textMatch && statusMatch;
+    });
+
+  const list =
+    document.getElementById(
+      "customerList"
+    );
+
+  list.innerHTML =
+    filtered.map(customer => {
+
+      const badge =
+        getStatusLabel(customer.status);
+
+      return `
+        <div class="customer">
+
+          <div>
+            <strong>${customer.name}</strong>
+            <small>${customer.company}</small>
+          </div>
+
+          <div>
+            ${customer.phone}
+          </div>
+
+          <div>
+            <span class="badge ${badge.className}">
+              ${badge.text}
+            </span>
+          </div>
+
+          <button
+            class="small-btn"
+            onclick="showToast('Demo müşteri detayı açıldı.')">
+            Gör
+          </button>
+
+        </div>
+      `;
+
+    }).join("");
+
+  if (!filtered.length) {
+    list.innerHTML =
+      `<div style="color:#8293aa; padding:20px;">
+        Sonuç bulunamadı.
+      </div>`;
+  }
+}
+
+function openModal() {
+  document
+    .getElementById("customerModal")
+    .classList.add("show");
+}
+
+function closeModal() {
+  document
+    .getElementById("customerModal")
+    .classList.remove("show");
+}
+
+function addCustomer() {
+
+  const name =
+    document
+      .getElementById("newName")
+      .value
+      .trim();
+
+  const phone =
+    document
+      .getElementById("newPhone")
+      .value
+      .trim();
+
+  const company =
+    document
+      .getElementById("newCompany")
+      .value
+      .trim();
+
+  const status =
+    document
+      .getElementById("newStatus")
+      .value;
+
+  if (!name || !phone) {
+    showToast(
+      "Ad ve telefon alanlarını doldurun."
+    );
+    return;
+  }
+
+  customers.unshift({
+    name,
+    phone,
+    company: company || "Bireysel Müşteri",
+    status
+  });
+
+  document
+    .getElementById("totalCustomer")
+    .textContent =
+      Number(
+        document
+          .getElementById("totalCustomer")
+          .textContent
+      ) + 1;
+
+  renderCustomers();
+  closeModal();
+
+  showToast(
+    "✅ Demo müşteri başarıyla eklendi."
+  );
+}
+
+function toggleTask(input) {
+
+  const task =
+    input.closest(".task");
+
+  task.classList.toggle(
+    "done-task",
+    input.checked
+  );
+
+  const activeCount =
+    document
+      .querySelectorAll(
+        ".task input:not(:checked)"
+      ).length;
+
+  document
+    .getElementById(
+      "activeTaskCount"
+    )
+    .textContent =
+      activeCount;
+}
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+  setTimeout(
+    () => {
+      toast.classList.remove("show");
+    },
+    3000
+  );
+}
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    renderCustomers
+  );
+
+document
+  .getElementById("statusFilter")
+  .addEventListener(
+    "change",
+    renderCustomers
+  );
+
+document
+  .getElementById("customerModal")
+  .addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target.id ===
+        "customerModal"
+      ) {
+        closeModal();
+      }
+
+    }
+  );
+
+renderCustomers();
+
+</script>
+
+</body>
+</html>
