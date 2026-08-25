@@ -967,7 +967,91 @@ document
 
     }
   );
+document
+  .querySelectorAll(".nav-btn")
+  .forEach(button => {
 
+    button.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll(".nav-btn")
+          .forEach(item =>
+            item.classList.remove("active")
+          );
+
+        button.classList.add("active");
+
+        const text =
+          button.textContent.trim();
+
+        if (text.includes("Kontrol Paneli")) {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+          showToast(
+            "Kontrol paneli açıldı."
+          );
+        }
+
+        else if (text.includes("Müşteriler")) {
+          document
+            .querySelector(".customer-list")
+            ?.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+          showToast(
+            "Müşteri yönetimi açıldı."
+          );
+        }
+
+        else if (text.includes("Talepler")) {
+          showToast(
+            "Talep yönetimi demo ekranı açıldı."
+          );
+        }
+
+        else if (text.includes("Görevler")) {
+          document
+            .querySelector(".tasks")
+            ?.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+          showToast(
+            "Görev yönetimi açıldı."
+          );
+        }
+
+        else if (text.includes("Raporlar")) {
+          document
+            .querySelector(".stats")
+            ?.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+          showToast(
+            "Raporlama ekranı açıldı."
+          );
+        }
+
+        else if (text.includes("Ayarlar")) {
+          showToast(
+            "Sistem ayarları demo ekranı açıldı."
+          );
+        }
+
+      }
+    );
+
+  });
 renderCustomers();
 
 </script>
