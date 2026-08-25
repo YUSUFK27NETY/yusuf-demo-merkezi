@@ -1,1 +1,959 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Nova Group | Kurumsal Web Sitesi Demo</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #07111f;
+      color: #fff;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .demo-bar {
+      background: #2563eb;
+      padding: 9px 15px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 15px 6%;
+      background: rgba(7, 17, 31, .94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #1e3047;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .logo {
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .brand h2 {
+      font-size: 18px;
+    }
+
+    .brand small {
+      color: #8fa5bb;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #c4d1df;
+      font-size: 14px;
+    }
+
+    .back {
+      padding: 9px 12px;
+      border: 1px solid #304761;
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .hero {
+      min-height: 650px;
+      display: grid;
+      align-items: center;
+      padding: 70px 6%;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(37,99,235,.28), transparent 28%),
+        radial-gradient(circle at 10% 90%, rgba(6,182,212,.14), transparent 30%),
+        #07111f;
+    }
+
+    .hero-grid {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      margin-bottom: 20px;
+      border-radius: 999px;
+      border: 1px solid #2563eb;
+      color: #77aaff;
+      background: rgba(37,99,235,.08);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: 1.02;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #3b82f6;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #a7b7c8;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 21px;
+      border-radius: 11px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .secondary {
+      background: #101d2d;
+      border: 1px solid #304761;
+      color: white;
+    }
+
+    .hero-card {
+      padding: 28px;
+      border-radius: 22px;
+      border: 1px solid #23405c;
+      background:
+        linear-gradient(145deg, rgba(30,58,94,.55), rgba(10,22,37,.9));
+      box-shadow: 0 30px 80px rgba(0,0,0,.25);
+    }
+
+    .hero-card span {
+      font-size: 45px;
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    .hero-card h3 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card p {
+      font-size: 14px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .stat {
+      padding: 15px;
+      background: rgba(4,13,24,.55);
+      border-radius: 13px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      color: #60a5fa;
+      font-size: 23px;
+    }
+
+    .stat small {
+      color: #8fa5bb;
+    }
+
+    section {
+      padding: 75px 6%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .section-head h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: #8fa5bb;
+      line-height: 1.6;
+    }
+
+    .services {
+      background: #091523;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .service {
+      padding: 26px;
+      border-radius: 17px;
+      border: 1px solid #21354a;
+      background: #0d1b2b;
+      transition: .2s;
+    }
+
+    .service:hover {
+      transform: translateY(-4px);
+      border-color: #3b82f6;
+    }
+
+    .service span {
+      font-size: 35px;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .service h3 {
+      margin-bottom: 8px;
+    }
+
+    .service p {
+      color: #91a4b8;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .about-visual {
+      min-height: 380px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      font-size: 100px;
+      background:
+        radial-gradient(circle, #244a77, #0b1928 70%);
+      border: 1px solid #23405c;
+    }
+
+    .about h2 {
+      font-size: 38px;
+      margin-bottom: 16px;
+    }
+
+    .about p {
+      color: #98aabd;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .checks {
+      display: grid;
+      gap: 12px;
+    }
+
+    .check {
+      color: #d3dfeb;
+    }
+
+    .check b {
+      color: #60a5fa;
+      margin-right: 7px;
+    }
+
+    .projects {
+      background: #091523;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .project {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid #21354a;
+      background: #0c1928;
+    }
+
+    .project-image {
+      height: 190px;
+      display: grid;
+      place-items: center;
+      font-size: 70px;
+      background: linear-gradient(135deg, #142b45, #0a1623);
+    }
+
+    .project-body {
+      padding: 20px;
+    }
+
+    .project-body small {
+      color: #60a5fa;
+    }
+
+    .project-body h3 {
+      margin: 8px 0;
+    }
+
+    .project-body p {
+      color: #8fa5bb;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 25px;
+    }
+
+    .contact-info,
+    .contact-form {
+      border: 1px solid #21354a;
+      border-radius: 18px;
+      background: #0c1928;
+      padding: 25px;
+    }
+
+    .contact-info h2,
+    .contact-form h2 {
+      margin-bottom: 17px;
+    }
+
+    .contact-item {
+      margin-bottom: 18px;
+    }
+
+    .contact-item small {
+      display: block;
+      color: #7890a6;
+      margin-bottom: 4px;
+    }
+
+    .contact-item strong {
+      color: #dce7f1;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      color: #9db0c3;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 10px;
+      border: 1px solid #2a4056;
+      background: #07111f;
+      color: white;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #3b82f6;
+    }
+
+    .send {
+      margin-top: 15px;
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 11px;
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 55px 20px;
+      background:
+        radial-gradient(circle at center, rgba(37,99,235,.16), transparent 55%),
+        #081320;
+    }
+
+    .cta h2 {
+      font-size: 35px;
+      margin-bottom: 11px;
+    }
+
+    .cta p {
+      max-width: 650px;
+      margin: 0 auto 22px;
+      color: #91a4b8;
+      line-height: 1.6;
+    }
+
+    .whatsapp {
+      display: inline-block;
+      text-decoration: none;
+      background: #22c55e;
+      color: #07130b;
+      padding: 14px 21px;
+      border-radius: 11px;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 35px 20px;
+      text-align: center;
+      color: #6e8397;
+      border-top: 1px solid #172a3d;
+    }
+
+    footer strong {
+      color: #60a5fa;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 100;
+      bottom: 25px;
+      left: 50%;
+      transform: translate(-50%, 100px);
+      opacity: 0;
+      transition: .3s;
+      padding: 15px 20px;
+      border-radius: 12px;
+      background: #102c4c;
+      border: 1px solid #3b82f6;
+      color: white;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-grid,
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .service-grid,
+      .project-grid,
+      .stats,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .hero {
+        min-height: 540px;
+      }
+
+      .brand small {
+        display: none;
+      }
+
+      .about-visual {
+        min-height: 250px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="demo-bar">
+  🌐 CANLI KURUMSAL WEB SİTESİ DEMOSU
+</div>
+
+<header>
+
+  <div class="brand">
+    <div class="logo">N</div>
+
+    <div>
+      <h2>NOVA GROUP</h2>
+      <small>Kurumsal Çözümler</small>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#anasayfa">Anasayfa</a>
+    <a href="#hizmetler">Hizmetler</a>
+    <a href="#hakkimizda">Hakkımızda</a>
+    <a href="#projeler">Projeler</a>
+    <a href="#iletisim">İletişim</a>
+  </nav>
+
+  <a class="back" href="../../">
+    ← Demo Merkezi
+  </a>
+
+</header>
+
+<main>
+
+<section class="hero" id="anasayfa">
+
+  <div class="hero-grid">
+
+    <div>
+
+      <div class="badge">
+        🚀 İşletmenizi Geleceğe Taşıyoruz
+      </div>
+
+      <h1>
+        Profesyonel <span>Dijital Kimlik</span>
+        Güçlü İşletme
+      </h1>
+
+      <p>
+        Markanızın güven veren, modern ve profesyonel bir dijital
+        görünüme sahip olması için işletmenize özel web çözümleri sunuyoruz.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a class="btn primary" href="#iletisim">
+          Teklif Al
+        </a>
+
+        <a class="btn secondary" href="#hizmetler">
+          Hizmetleri İncele
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="hero-card">
+
+      <span>🏢</span>
+
+      <h3>Kurumsal Web Çözümü</h3>
+
+      <p>
+        Firmanızı dijital dünyada profesyonel şekilde temsil eden,
+        tüm cihazlarla uyumlu modern web sitesi.
+      </p>
+
+      <div class="stats">
+
+        <div class="stat">
+          <strong>%100</strong>
+          <small>Mobil Uyum</small>
+        </div>
+
+        <div class="stat">
+          <strong>7/24</strong>
+          <small>Dijital Vitrin</small>
+        </div>
+
+        <div class="stat">
+          <strong>Hızlı</strong>
+          <small>Yükleme</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="services" id="hizmetler">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Hizmetlerimiz</h2>
+      <p>
+        İşletmelerin dijital dünyada ihtiyaç duyabileceği temel çözümleri
+        tek bir profesyonel yapı altında sunuyoruz.
+      </p>
+    </div>
+
+    <div class="service-grid">
+
+      <div class="service">
+        <span>🌐</span>
+        <h3>Kurumsal Web Sitesi</h3>
+        <p>
+          Firmanızı, hizmetlerinizi ve iletişim bilgilerinizi
+          profesyonel şekilde tanıtan modern web sitesi.
+        </p>
+      </div>
+
+      <div class="service">
+        <span>📱</span>
+        <h3>Mobil Uyumluluk</h3>
+        <p>
+          Telefon, tablet ve masaüstünde kusursuz çalışan
+          responsive web tasarımı.
+        </p>
+      </div>
+
+      <div class="service">
+        <span>💬</span>
+        <h3>WhatsApp Entegrasyonu</h3>
+        <p>
+          Potansiyel müşterilerin işletmenize tek dokunuşla
+          ulaşmasını sağlayan iletişim çözümleri.
+        </p>
+      </div>
+
+      <div class="service">
+        <span>📋</span>
+        <h3>Teklif Formları</h3>
+        <p>
+          Müşterilerin hizmet veya fiyat teklifi istemesini
+          kolaylaştıran özel formlar.
+        </p>
+      </div>
+
+      <div class="service">
+        <span>📍</span>
+        <h3>Harita & İletişim</h3>
+        <p>
+          İşletme adresi, telefon ve konum bilgilerinin
+          ziyaretçiye kolayca sunulması.
+        </p>
+      </div>
+
+      <div class="service">
+        <span>⚙️</span>
+        <h3>Özel Sistemler</h3>
+        <p>
+          İhtiyaca göre yönetim paneli, randevu,
+          sipariş veya özel web uygulamaları.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="about" id="hakkimizda">
+
+  <div class="container about-grid">
+
+    <div class="about-visual">
+      🏗️
+    </div>
+
+    <div>
+
+      <h2>İşinizi Dijitalde Güçlendirin</h2>
+
+      <p>
+        Web siteniz yalnızca internette bulunan bir sayfa değildir.
+        Potansiyel müşterinizin işletmeniz hakkında edindiği
+        ilk izlenimlerden biridir.
+      </p>
+
+      <div class="checks">
+        <div class="check"><b>✓</b> Profesyonel marka görünümü</div>
+        <div class="check"><b>✓</b> Mobil uyumlu modern tasarım</div>
+        <div class="check"><b>✓</b> Hızlı iletişim ve teklif alma</div>
+        <div class="check"><b>✓</b> İşletmeye özel içerik ve yapı</div>
+        <div class="check"><b>✓</b> Yayın sonrası destek</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="projects" id="projeler">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Örnek Proje Alanları</h2>
+      <p>
+        Aynı altyapı farklı sektörlere özel olarak tasarlanabilir.
+      </p>
+    </div>
+
+    <div class="project-grid">
+
+      <article class="project">
+        <div class="project-image">🚗</div>
+        <div class="project-body">
+          <small>Otomotiv</small>
+          <h3>Oto Servis Sitesi</h3>
+          <p>Hizmet listesi, randevu ve fiyat teklifi alma sistemi.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-image">🏠</div>
+        <div class="project-body">
+          <small>Gayrimenkul</small>
+          <h3>Emlak Firma Sitesi</h3>
+          <p>İlan tanıtımı, portföy, iletişim ve teklif sistemi.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-image">🔧</div>
+        <div class="project-body">
+          <small>Teknik Hizmet</small>
+          <h3>Servis & Bakım Sitesi</h3>
+          <p>Hizmet bölgeleri, iletişim ve hızlı talep oluşturma.</p>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="iletisim">
+
+  <div class="container contact-grid">
+
+    <div class="contact-info">
+
+      <h2>İletişim</h2>
+
+      <div class="contact-item">
+        <small>Firma</small>
+        <strong>Nova Group</strong>
+      </div>
+
+      <div class="contact-item">
+        <small>Telefon</small>
+        <strong>0342 000 00 00</strong>
+      </div>
+
+      <div class="contact-item">
+        <small>E-posta</small>
+        <strong>info@novagroup.com</strong>
+      </div>
+
+      <div class="contact-item">
+        <small>Konum</small>
+        <strong>Gaziantep, Türkiye</strong>
+      </div>
+
+    </div>
+
+    <div class="contact-form">
+
+      <h2>Teklif Talebi</h2>
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Ad Soyad</label>
+          <input id="name" type="text" placeholder="Adınız">
+        </div>
+
+        <div class="field">
+          <label>Telefon</label>
+          <input id="phone" type="tel" placeholder="05xx xxx xx xx">
+        </div>
+
+        <div class="field full">
+          <label>İşletme / Firma</label>
+          <input id="company" type="text" placeholder="Firma adı">
+        </div>
+
+        <div class="field full">
+          <label>Talebiniz</label>
+          <textarea id="message" placeholder="İhtiyacınızı kısaca yazın..."></textarea>
+        </div>
+
+      </div>
+
+      <button class="send" onclick="sendDemoForm()">
+        Teklif Talebini Demo Olarak Gönder
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="cta">
+
+  <h2>İşletmeniz İçin Böyle Bir Site İster misiniz?</h2>
+
+  <p>
+    Markanıza, sektörünüze ve ihtiyacınıza uygun özel bir
+    web sitesi hazırlamak için iletişime geçebilirsiniz.
+  </p>
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/905309112770?text=Merhaba%20Yusuf%2C%20kurumsal%20web%20sitesi%20demosunu%20inceledim.%20Bilgi%20almak%20istiyorum."
+    target="_blank"
+    rel="noopener">
+    💬 WhatsApp'tan Bilgi Al
+  </a>
+
+</section>
+
+</main>
+
+<footer>
+  Bu sayfa <strong>Yusuf Dijital Çözümler</strong> Demo Merkezi için hazırlanmıştır.
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3500);
+}
+
+function sendDemoForm() {
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const phone =
+    document.getElementById("phone").value.trim();
+
+  if (!name) {
+    showToast("Adınızı yazmanız gerekiyor.");
+    return;
+  }
+
+  if (!phone) {
+    showToast("Telefon numaranızı yazmanız gerekiyor.");
+    return;
+  }
+
+  showToast(
+    "✅ Demo teklif talebi başarıyla oluşturuldu. Gerçek gönderim yapılmadı."
+  );
+}
+
+</script>
+
+</body>
+</html>
