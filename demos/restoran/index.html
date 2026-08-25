@@ -1,1 +1,943 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Antep Lezzet Evi | Restoran Demo</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0c0f;
+      color: #fff;
+      padding-bottom: 95px;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .demo-bar {
+      background: #2563eb;
+      color: white;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 14px 5%;
+      background: rgba(11, 12, 15, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #252831;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #fbbf24, #f97316);
+      font-size: 23px;
+    }
+
+    .brand h2 {
+      font-size: 17px;
+    }
+
+    .brand small {
+      color: #9ca3af;
+    }
+
+    .cart-top {
+      border: 1px solid #374151;
+      background: #17191f;
+      color: white;
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+
+    .hero {
+      min-height: 480px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 55px 20px;
+      background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.75)),
+        radial-gradient(circle at top right, #7c2d12, #111827 45%, #07080b 75%);
+    }
+
+    .hero-content {
+      max-width: 780px;
+    }
+
+    .restaurant-badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, .12);
+      border: 1px solid #f59e0b;
+      color: #fbbf24;
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 76px);
+      margin-bottom: 15px;
+      line-height: 1;
+    }
+
+    .hero h1 span {
+      color: #f59e0b;
+    }
+
+    .hero p {
+      color: #d1d5db;
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .restaurant-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #86efac;
+      font-weight: bold;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .primary,
+    .secondary {
+      padding: 14px 20px;
+      border-radius: 11px;
+      font-weight: bold;
+      border: 0;
+    }
+
+    .primary {
+      background: #f59e0b;
+      color: #111;
+    }
+
+    .secondary {
+      background: #17191f;
+      color: white;
+      border: 1px solid #374151;
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 35px 18px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #9ca3af;
+    }
+
+    .search {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 0 auto 18px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid #30343d;
+      outline: none;
+      background: #15171c;
+      color: white;
+    }
+
+    .categories {
+      display: flex;
+      gap: 9px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 22px;
+    }
+
+    .category {
+      white-space: nowrap;
+      padding: 10px 15px;
+      border-radius: 999px;
+      border: 1px solid #343842;
+      background: #15171c;
+      color: #d1d5db;
+    }
+
+    .category.active {
+      background: #f59e0b;
+      border-color: #f59e0b;
+      color: #111;
+      font-weight: bold;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      overflow: hidden;
+      border: 1px solid #292d35;
+      border-radius: 17px;
+      background: #14161b;
+      transition: .2s;
+    }
+
+    .product:hover {
+      transform: translateY(-3px);
+      border-color: #505661;
+    }
+
+    .product-image {
+      height: 180px;
+      display: grid;
+      place-items: center;
+      font-size: 72px;
+      background:
+        radial-gradient(circle at center, #3f2d13, #17191f 72%);
+    }
+
+    .product-body {
+      padding: 18px;
+    }
+
+    .product h3 {
+      margin-bottom: 7px;
+    }
+
+    .product p {
+      min-height: 42px;
+      color: #9ca3af;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 17px;
+    }
+
+    .price {
+      color: #fbbf24;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .add-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 13px;
+      background: #f59e0b;
+      color: #111;
+      font-weight: bold;
+    }
+
+    .why {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 25px 15px;
+      border-radius: 15px;
+      border: 1px solid #292d35;
+      background: #121419;
+    }
+
+    .feature span {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      margin-top: 6px;
+      color: #9ca3af;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .bottom-cart {
+      position: fixed;
+      z-index: 80;
+      left: 50%;
+      bottom: 15px;
+      transform: translateX(-50%);
+      width: min(94%, 650px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid #454a55;
+      border-radius: 16px;
+      background: rgba(18, 20, 25, .97);
+      box-shadow: 0 15px 50px rgba(0,0,0,.45);
+    }
+
+    .bottom-cart small {
+      color: #9ca3af;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .bottom-cart strong {
+      color: #fbbf24;
+      font-size: 18px;
+    }
+
+    .bottom-cart button {
+      border: 0;
+      border-radius: 11px;
+      padding: 12px 17px;
+      background: #f59e0b;
+      font-weight: bold;
+    }
+
+    .modal {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0,0,0,.78);
+    }
+
+    .modal.show {
+      display: grid;
+    }
+
+    .modal-box {
+      width: min(100%, 520px);
+      max-height: 85vh;
+      overflow-y: auto;
+      border: 1px solid #363b46;
+      border-radius: 18px;
+      padding: 22px;
+      background: #15171c;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .close {
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      border: 1px solid #3b404b;
+      background: #22252c;
+      color: white;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 14px 0;
+      border-bottom: 1px solid #292d35;
+    }
+
+    .cart-item small {
+      display: block;
+      margin-top: 4px;
+      color: #9ca3af;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .order-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .order-options button {
+      padding: 14px 8px;
+      border-radius: 11px;
+      border: 0;
+      background: #f59e0b;
+      font-weight: bold;
+    }
+
+    .empty {
+      color: #9ca3af;
+      padding: 25px 0;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px 120px;
+      color: #777f8d;
+    }
+
+    footer strong {
+      color: #fbbf24;
+    }
+
+    @media (max-width: 850px) {
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 430px;
+      }
+
+      .product-image {
+        height: 155px;
+      }
+
+      .bottom-cart {
+        bottom: 8px;
+      }
+
+      .brand small {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="demo-bar">
+  🧪 CANLI DEMO — Bu sayfa tanıtım amacıyla hazırlanmıştır.
+</div>
+
+<header>
+  <div class="brand">
+    <div class="logo">🔥</div>
+    <div>
+      <h2>Antep Lezzet Evi</h2>
+      <small>Restoran QR Menü Demosu</small>
+    </div>
+  </div>
+
+  <button class="cart-top" onclick="openCart()">
+    🛒 Sepet <span id="topCount">0</span>
+  </button>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+
+    <div class="restaurant-badge">
+      🍽️ Restoran & QR Menü Sistemi
+    </div>
+
+    <h1>
+      Gerçek <span>Antep Lezzeti</span>
+    </h1>
+
+    <p>
+      Menüye göz atın, ürünlerinizi sepete ekleyin ve
+      modern dijital sipariş deneyimini canlı olarak test edin.
+    </p>
+
+    <div class="restaurant-status">
+      ● Şu Anda Açık
+    </div>
+
+    <div class="hero-buttons">
+      <button class="primary"
+        onclick="document.getElementById('menu').scrollIntoView()">
+        Menüyü İncele
+      </button>
+
+      <button class="secondary" onclick="openCart()">
+        🛒 Sepetimi Aç
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<main id="menu">
+
+  <div class="section-title">
+    <h2>Menümüz</h2>
+    <p>Favori lezzetinizi seçin ve sepete ekleyin.</p>
+  </div>
+
+  <input
+    id="search"
+    class="search"
+    type="search"
+    placeholder="🔎 Menüde ara..."
+  >
+
+  <div class="categories">
+    <button class="category active" data-category="Tümü">Tümü</button>
+    <button class="category" data-category="Döner">Döner</button>
+    <button class="category" data-category="Kebap">Kebap</button>
+    <button class="category" data-category="İçecek">İçecek</button>
+    <button class="category" data-category="Tatlı">Tatlı</button>
+  </div>
+
+  <section id="menuGrid" class="menu-grid"></section>
+
+  <section class="why">
+
+    <div class="feature">
+      <span>📱</span>
+      <h3>QR Menü</h3>
+      <p>
+        Müşteriler telefonlarından hızlıca menüyü görüntüler.
+      </p>
+    </div>
+
+    <div class="feature">
+      <span>🛒</span>
+      <h3>Sepet & Sipariş</h3>
+      <p>
+        Ürünler sepete eklenir ve sipariş akışı kolayca tamamlanır.
+      </p>
+    </div>
+
+    <div class="feature">
+      <span>⚙️</span>
+      <h3>Yönetim Paneli</h3>
+      <p>
+        İşletme ürün, fiyat, sipariş ve restoran durumunu yönetebilir.
+      </p>
+    </div>
+
+  </section>
+
+</main>
+
+<div class="bottom-cart">
+
+  <div>
+    <small>
+      <span id="bottomCount">0</span> ürün sepette
+    </small>
+    <strong id="bottomTotal">0 ₺</strong>
+  </div>
+
+  <button onclick="openCart()">
+    Sepeti Gör →
+  </button>
+
+</div>
+
+<div id="cartModal" class="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h2>🛒 Sepetiniz</h2>
+      <button class="close" onclick="closeCart()">✕</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="total-row">
+      <span>Toplam</span>
+      <span id="modalTotal">0 ₺</span>
+    </div>
+
+    <div class="order-options">
+      <button onclick="demoOrder('Restoranda Sipariş')">
+        🍽️ Restoranda Sipariş
+      </button>
+
+      <button onclick="demoOrder('Paket Sipariş')">
+        🛵 Paket Sipariş
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  Bu sistem <strong>Yusuf Dijital Çözümler</strong> tarafından
+  demo amacıyla hazırlanmıştır.
+</footer>
+
+<script>
+
+const products = [
+  {
+    id: 1,
+    name: "Antep Döner",
+    category: "Döner",
+    description: "Özel baharatlı et döner, lavaş ve garnitür.",
+    price: 190,
+    emoji: "🌯"
+  },
+  {
+    id: 2,
+    name: "Porsiyon Döner",
+    category: "Döner",
+    description: "Pilav, közlenmiş biber ve domates eşliğinde.",
+    price: 240,
+    emoji: "🥙"
+  },
+  {
+    id: 3,
+    name: "Adana Kebap",
+    category: "Kebap",
+    description: "Közlenmiş sebzeler ve lavaş ile servis edilir.",
+    price: 280,
+    emoji: "🍢"
+  },
+  {
+    id: 4,
+    name: "Patlıcan Kebap",
+    category: "Kebap",
+    description: "Patlıcan ve kebabın geleneksel Antep buluşması.",
+    price: 310,
+    emoji: "🍆"
+  },
+  {
+    id: 5,
+    name: "Ayran",
+    category: "İçecek",
+    description: "Soğuk ve köpüklü ayran.",
+    price: 35,
+    emoji: "🥛"
+  },
+  {
+    id: 6,
+    name: "Kutu İçecek",
+    category: "İçecek",
+    description: "330 ml soğuk içecek.",
+    price: 55,
+    emoji: "🥤"
+  },
+  {
+    id: 7,
+    name: "Katmer",
+    category: "Tatlı",
+    description: "Antep fıstıklı sıcak katmer.",
+    price: 180,
+    emoji: "🥮"
+  },
+  {
+    id: 8,
+    name: "Baklava",
+    category: "Tatlı",
+    description: "Antep fıstıklı özel baklava porsiyonu.",
+    price: 170,
+    emoji: "🍰"
+  }
+];
+
+let cart = [];
+let activeCategory = "Tümü";
+
+const menuGrid = document.getElementById("menuGrid");
+const searchInput = document.getElementById("search");
+
+function renderProducts() {
+
+  const search =
+    searchInput.value
+      .trim()
+      .toLocaleLowerCase("tr");
+
+  const filtered =
+    products.filter(product => {
+
+      const categoryMatch =
+        activeCategory === "Tümü" ||
+        product.category === activeCategory;
+
+      const searchMatch =
+        product.name
+          .toLocaleLowerCase("tr")
+          .includes(search) ||
+        product.description
+          .toLocaleLowerCase("tr")
+          .includes(search);
+
+      return categoryMatch && searchMatch;
+    });
+
+  menuGrid.innerHTML =
+    filtered.map(product => `
+      <article class="product">
+
+        <div class="product-image">
+          ${product.emoji}
+        </div>
+
+        <div class="product-body">
+
+          <h3>${product.name}</h3>
+
+          <p>${product.description}</p>
+
+          <div class="product-bottom">
+
+            <span class="price">
+              ${product.price} ₺
+            </span>
+
+            <button
+              class="add-btn"
+              onclick="addToCart(${product.id})">
+              + Sepete Ekle
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+    `).join("");
+}
+
+function addToCart(id) {
+
+  const product =
+    products.find(item => item.id === id);
+
+  const existing =
+    cart.find(item => item.id === id);
+
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({
+      ...product,
+      quantity: 1
+    });
+  }
+
+  updateCart();
+}
+
+function updateCart() {
+
+  const count =
+    cart.reduce(
+      (sum, item) =>
+        sum + item.quantity,
+      0
+    );
+
+  const total =
+    cart.reduce(
+      (sum, item) =>
+        sum +
+        item.price *
+        item.quantity,
+      0
+    );
+
+  document.getElementById("topCount").textContent =
+    count;
+
+  document.getElementById("bottomCount").textContent =
+    count;
+
+  document.getElementById("bottomTotal").textContent =
+    `${total} ₺`;
+
+  document.getElementById("modalTotal").textContent =
+    `${total} ₺`;
+
+  const cartItems =
+    document.getElementById("cartItems");
+
+  if (!cart.length) {
+
+    cartItems.innerHTML =
+      `<div class="empty">
+        Sepetiniz henüz boş.
+      </div>`;
+
+    return;
+  }
+
+  cartItems.innerHTML =
+    cart.map(item => `
+
+      <div class="cart-item">
+
+        <div>
+          <strong>
+            ${item.emoji} ${item.name}
+          </strong>
+
+          <small>
+            ${item.quantity} adet ×
+            ${item.price} ₺
+          </small>
+        </div>
+
+        <div>
+          <strong>
+            ${item.price * item.quantity} ₺
+          </strong>
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+function openCart() {
+  document
+    .getElementById("cartModal")
+    .classList.add("show");
+}
+
+function closeCart() {
+  document
+    .getElementById("cartModal")
+    .classList.remove("show");
+}
+
+function demoOrder(type) {
+
+  if (!cart.length) {
+    alert(
+      "Önce sepete en az bir ürün ekleyin."
+    );
+    return;
+  }
+
+  alert(
+    `${type} akışı başarıyla test edildi!\n\n` +
+    `Bu bir demo sistemidir. Gerçek sipariş gönderilmedi.`
+  );
+}
+
+document
+  .querySelectorAll(".category")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll(".category")
+          .forEach(item =>
+            item.classList.remove("active")
+          );
+
+        button.classList.add("active");
+
+        activeCategory =
+          button.dataset.category;
+
+        renderProducts();
+      }
+    );
+  });
+
+searchInput.addEventListener(
+  "input",
+  renderProducts
+);
+
+document
+  .getElementById("cartModal")
+  .addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target.id ===
+        "cartModal"
+      ) {
+        closeCart();
+      }
+    }
+  );
+
+renderProducts();
+updateCart();
+
+</script>
+
+</body>
+</html>
