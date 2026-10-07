@@ -82,7 +82,7 @@
     .notSite{padding:40px 20px;border:1px solid #ffffff12;border-radius:30px;background:radial-gradient(circle at 50% 0,#567cff24,transparent 45%),linear-gradient(180deg,#101829,#080d15);text-align:center;box-shadow:var(--shadow)}.notSite h2{margin:0;font-size:clamp(42px,11vw,78px);letter-spacing:-.065em}.notSite p{max-width:720px;margin:12px auto 22px;color:#97a7ba;font-size:13px;line-height:1.6}.wordCloud{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;max-width:900px;margin:auto}.wordCloud span{padding:9px 11px;border:1px solid #ffffff11;border-radius:999px;background:#ffffff06;color:#c2cfdd;font-size:9px;font-weight:900}.wordCloud span:nth-child(3n){border-color:#6ee8ff28;color:#8deeff}.wordCloud span:nth-child(4n){border-color:#9d79ff27;color:#c3b0ff}
     .finalCta{padding:34px;border:1px solid #66e8ff28;border-radius:30px;background:radial-gradient(circle at 82% 12%,#4f7cff2e,transparent 32%),linear-gradient(145deg,#101b2d,#080d15);box-shadow:var(--shadow)}.finalCta h2{margin:0;font-size:clamp(40px,10vw,72px);letter-spacing:-.06em}.finalCta p{max-width:680px;color:#a2b0c2;font-size:14px;line-height:1.65}.finalActions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
     footer{padding:28px 0 calc(100px + env(safe-area-inset-bottom));color:#60738b;font-size:9px}.footerInner{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}.footerLinks{display:flex;gap:12px;flex-wrap:wrap}.footerLinks a:hover{color:white}
-    .bottomDock{position:fixed;z-index:130;left:11px;right:11px;bottom:calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:6px;border:1px solid #ffffff16;border-radius:20px;background:#080e17e8;backdrop-filter:blur(20px);box-shadow:0 20px 60px #000b}.bottomDock a{min-height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:6px;background:#ffffff05;color:#b8c5d4;font-size:9px;font-weight:950}.bottomDock .hot{background:linear-gradient(135deg,#24cb68,#4be78c);color:#07140b}
+    .bottomDock{position:fixed;z-index:130;left:11px;right:11px;bottom:calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:6px;border:1px solid #ffffff18;border-radius:20px;background:#080e17e8;backdrop-filter:blur(20px) saturate(145%);box-shadow:0 20px 60px #000b}.bottomDock a{position:relative;min-height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:9px;font-weight:950;border:1px solid transparent;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,filter .18s ease}.bottomDock a:active{transform:scale(.975)}.bottomDock a:after{content:"";position:absolute;left:22%;right:22%;bottom:4px;height:2px;border-radius:999px;opacity:0;transform:scaleX(.55);transition:.18s}.bottomDock .dockSolutions{background:linear-gradient(135deg,#10243a,#123b5e);border-color:#56cfff36;color:#8fe2ff;box-shadow:inset 0 1px #ffffff0c,0 8px 24px #008cff10}.bottomDock .dockSolutions:after{background:#63ddff;box-shadow:0 0 12px #54d8ff}.bottomDock .dockDemos{background:linear-gradient(135deg,#191a35,#302259);border-color:#9a7cff38;color:#c5b5ff;box-shadow:inset 0 1px #ffffff0c,0 8px 24px #744dff10}.bottomDock .dockDemos:after{background:#9d82ff;box-shadow:0 0 12px #8c6cff}.bottomDock .hot{background:linear-gradient(135deg,#22c96a,#4fe58c);border-color:#7dffad61;color:#07140b;box-shadow:inset 0 1px #ffffff55,0 10px 28px #20d76a26}.bottomDock .hot:after{background:#e8fff0;box-shadow:0 0 10px #baffcf}.bottomDock a.is-active{filter:brightness(1.1);transform:translateY(-1px)}.bottomDock a.is-active:after{opacity:1;transform:scaleX(1)}.bottomDock .dockSolutions.is-active{border-color:#66dcff6b;box-shadow:inset 0 1px #ffffff13,0 10px 30px #169cff23}.bottomDock .dockDemos.is-active{border-color:#a88cff70;box-shadow:inset 0 1px #ffffff13,0 10px 30px #7658ff25}
     .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}.reveal.in{opacity:1;transform:none}
     :focus-visible{outline:2px solid #73eaff;outline-offset:3px}
     @media(min-width:760px){
@@ -400,8 +400,8 @@
   </footer>
 
   <nav class="bottomDock" aria-label="Mobil hızlı erişim">
-    <a href="#cozumler">⌘ Çözümler</a>
-    <a href="#demolar">◉ Demolar</a>
+    <a class="dockSolutions" href="#cozumler">⌘ Çözümler</a>
+    <a class="dockDemos" href="#demolar">◉ Demolar</a>
     <a class="hot" href="https://wa.me/905309112770?text=Merhaba%2C%20Yusuf%20Dijital%20ile%20bir%20proje%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyorum." target="_blank" rel="noopener">💬 WhatsApp</a>
   </nav>
 
@@ -528,6 +528,26 @@
       const a=e.target.closest('a[href*="demos/"]');if(!a)return;
       try{localStorage.setItem("yd_last_demo",a.getAttribute("href")||"")}catch(_){}
     });
+
+    const dockSectionLinks=Array.from(document.querySelectorAll('.bottomDock a[href^="#"]'));
+    const dockTargets=dockSectionLinks.map(function(a){return document.querySelector(a.getAttribute("href"))}).filter(Boolean);
+    function setDockActive(id){
+      dockSectionLinks.forEach(function(a){
+        const active=a.getAttribute("href")==="#"+id;
+        a.classList.toggle("is-active",active);
+        if(active)a.setAttribute("aria-current","location");else a.removeAttribute("aria-current");
+      });
+    }
+    dockSectionLinks.forEach(function(a){
+      a.addEventListener("click",function(){setDockActive((a.getAttribute("href")||"").slice(1))});
+    });
+    if("IntersectionObserver" in window){
+      const dockObserver=new IntersectionObserver(function(entries){
+        const visible=entries.filter(function(entry){return entry.isIntersecting}).sort(function(a,b){return b.intersectionRatio-a.intersectionRatio})[0];
+        if(visible)setDockActive(visible.target.id);
+      },{rootMargin:"-35% 0px -52% 0px",threshold:[0,.15,.35,.6]});
+      dockTargets.forEach(function(section){dockObserver.observe(section)});
+    }
   </script>
 </body>
 </html>
