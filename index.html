@@ -55,22 +55,31 @@
     .heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.btn{min-height:54px;padding:0 17px;border-radius:15px;border:1px solid #ffffff18;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:10px;font-weight:1000;cursor:pointer;transition:transform .18s ease,border-color .18s ease,background .18s ease}
     .btn:hover{transform:translateY(-2px)}.btnPrimary{background:linear-gradient(135deg,#4f66ff,#54cfff);border-color:#7be9ff55;color:white;box-shadow:0 18px 45px #387eff38}
     .btnGhost{background:linear-gradient(135deg,#132238,#0e1a2c);color:#eef7ff;border-color:#79e9ff38;box-shadow:inset 0 1px #ffffff0b,0 12px 32px #0004}.heroActions .btnGhost:hover{background:linear-gradient(135deg,#18304d,#11243b);border-color:#7deaff66;box-shadow:0 14px 34px #1f7fff20}.visionLine{margin-top:20px;color:#8fa3bc;font-size:10px;letter-spacing:.04em}
-    .heroVisual{position:relative;min-height:520px;display:grid;place-items:center}.coreGlow{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,#567cff30,transparent 65%);filter:blur(10px);animation:coreBreath 5.4s ease-in-out infinite}
-    .systemCore{position:relative;width:min(360px,86vw);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1px solid #7ceaff1d;background:radial-gradient(circle,#111c31,#080d17 58%,transparent 59%);box-shadow:0 0 80px #427cff18;animation:coreHalo 7s ease-in-out infinite}
-    .systemCore:before,.systemCore:after{content:"";position:absolute;border-radius:50%;border:1px dashed #85ebff2b;will-change:transform}.systemCore:before{inset:12%;animation:ringSpin 28s linear infinite}.systemCore:after{inset:27%;animation:ringSpin 19s linear infinite reverse}
-    .coreBrand{position:relative;z-index:4;width:130px;height:130px;border-radius:34px;display:grid;place-items:center;text-align:center;background:linear-gradient(145deg,#101d31,#0a0f19);border:1px solid #76eaff38;box-shadow:0 22px 60px #000b,0 0 42px #557cff22;animation:coreFloat 5s ease-in-out infinite}
-    .coreBrand strong{font-size:28px;letter-spacing:-.05em}.coreBrand span{display:block;margin-top:5px;color:#72e7ff;font-size:7px;letter-spacing:.15em}
-    .orbitNode{position:absolute;z-index:5;min-width:94px;padding:10px 11px;border:1px solid #ffffff19;border-radius:14px;background:#0b1420e8;backdrop-filter:blur(10px);box-shadow:0 12px 35px #0007;text-align:center;font-size:9px;font-weight:950;animation:nodeGlow 5.8s ease-in-out infinite}
-    .orbitNode:nth-of-type(2){animation-delay:-1s}.orbitNode:nth-of-type(3){animation-delay:-2s}.orbitNode:nth-of-type(4){animation-delay:-3s}.orbitNode:nth-of-type(5){animation-delay:-4s}.orbitNode:nth-of-type(6){animation-delay:-5s}
-    .orbitNode small{display:block;margin-top:3px;color:#68809d;font-size:7px;font-weight:700}.n1{top:1%;left:50%;transform:translateX(-50%)}.n2{top:19%;right:-4%}.n3{bottom:18%;right:-3%}.n4{bottom:0;left:50%;transform:translateX(-50%)}.n5{bottom:18%;left:-3%}.n6{top:19%;left:-4%}
+    .heroVisual{position:relative;min-height:540px;display:grid;place-items:center}
+    .systemShowcase{position:relative;width:min(560px,100%);min-height:470px;padding:44px 10px 26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-content:center}
+    .systemShowcase:before{content:"";position:absolute;inset:9% 5%;border-radius:36px;background:radial-gradient(circle at 50% 48%,#4c7cff1d,transparent 58%);filter:blur(14px);pointer-events:none;animation:showcaseAura 7s ease-in-out infinite}
+    .visualDisclaimer{position:absolute;z-index:5;top:2px;left:50%;transform:translateX(-50%);max-width:92%;padding:7px 10px;border:1px solid #6be7ff22;border-radius:999px;background:#08131fdc;color:#7890aa;font-size:7px;font-weight:900;letter-spacing:.1em;white-space:nowrap}
+    .systemCard{position:relative;z-index:2;min-height:190px;padding:15px;border:1px solid #ffffff14;border-radius:20px;background:linear-gradient(145deg,#0e1826e8,#09101ae8);backdrop-filter:blur(16px) saturate(125%);box-shadow:0 18px 48px #0007,inset 0 1px #ffffff09;overflow:hidden;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+    .systemCard:before{content:"";position:absolute;width:120px;height:120px;right:-52px;top:-52px;border-radius:50%;background:radial-gradient(circle,var(--dashAccent,#69e7ff) 0,transparent 70%);opacity:.12;pointer-events:none}
+    .systemCard:hover{transform:translateY(-3px);border-color:#76e8ff32;box-shadow:0 22px 56px #0008,0 0 28px #5d7cff11,inset 0 1px #ffffff0c}
+    .cardProduction{--dashAccent:#69e7ff;transform:translateY(8px) rotate(-1.2deg);animation:dashFloatA 6.2s ease-in-out infinite}
+    .cardB2B{--dashAccent:#7c8cff;transform:translateY(-7px) rotate(1deg);animation:dashFloatB 7s ease-in-out infinite}
+    .cardCRM{--dashAccent:#a47dff;transform:translateY(2px) rotate(.7deg);animation:dashFloatB 6.6s ease-in-out infinite reverse}
+    .cardAI{--dashAccent:#59e2c7;transform:translateY(-10px) rotate(-.8deg);animation:dashFloatA 7.4s ease-in-out infinite reverse}
+    .systemCardHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}
+    .systemCardTitle{display:flex;align-items:center;gap:8px;min-width:0}.systemCardIcon{width:29px;height:29px;display:grid;place-items:center;border:1px solid #ffffff12;border-radius:9px;background:#ffffff06;font-size:13px}.systemCardTitle strong{font-size:9px;letter-spacing:.11em}.statusDot{width:7px;height:7px;border-radius:50%;background:#53e69a;box-shadow:0 0 13px #53e69a80}
+    .metricGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.metric{padding:8px 7px;border:1px solid #ffffff0d;border-radius:11px;background:#ffffff04}.metric b{display:block;color:#f5f9ff;font-size:16px;letter-spacing:-.04em}.metric span{display:block;margin-top:3px;color:#71849b;font-size:7px;line-height:1.25}
+    .dashViz{height:46px;margin-top:10px;padding:7px;border:1px solid #ffffff0d;border-radius:11px;background:#07101a99;display:flex;align-items:flex-end;gap:5px;overflow:hidden}.bar{flex:1;min-width:5px;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,var(--dashAccent),#4d6fff66);box-shadow:0 0 12px color-mix(in srgb,var(--dashAccent) 35%,transparent)}
+    .workflow{height:46px;margin-top:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;align-items:center}.workflow span{height:8px;border-radius:999px;background:#ffffff0c;border:1px solid #ffffff0e;position:relative}.workflow span.done{background:linear-gradient(90deg,#3ed891,#67e8ff);box-shadow:0 0 12px #59e2c72c}.workflow span.active{background:linear-gradient(90deg,#737fff,#a47dff);box-shadow:0 0 14px #8c78ff3d}
+    .pipeline{height:46px;margin-top:10px;display:flex;gap:5px;align-items:stretch}.pipeline span{flex:1;border-radius:9px;border:1px solid #ffffff0d;background:linear-gradient(180deg,#9b7cff2b,#ffffff04);position:relative}.pipeline span:after{content:"";position:absolute;left:5px;right:5px;bottom:5px;height:4px;border-radius:999px;background:#a47dff80}.pipeline span:nth-child(2):after{width:70%}.pipeline span:nth-child(3):after{width:45%}
+    .cardFoot{display:flex;justify-content:space-between;gap:8px;margin-top:9px;color:#61748b;font-size:6.5px;font-weight:850;letter-spacing:.04em}.cardFoot strong{color:#7fe8ff;font-weight:900}
+    .showcaseCore{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);min-width:138px;padding:10px 12px;border:1px solid #7ceaff2e;border-radius:14px;background:#091421ee;backdrop-filter:blur(16px);box-shadow:0 12px 34px #0008,0 0 28px #577cff18;text-align:center;pointer-events:none}.showcaseCore strong{display:block;font-size:10px;letter-spacing:.13em}.showcaseCore span{display:block;margin-top:4px;color:#6e829a;font-size:6px;letter-spacing:.08em}
     @keyframes heroAura{0%{opacity:.72;transform:scale(1) translate3d(0,0,0)}100%{opacity:1;transform:scale(1.08) translate3d(2%,-1%,0)}}
     @keyframes heroOrb{0%{transform:translate3d(0,0,0) scale(1);filter:blur(8px) hue-rotate(0deg)}100%{transform:translate3d(-70px,55px,0) scale(.9);filter:blur(13px) hue-rotate(35deg)}}
     @keyframes accentFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-    @keyframes coreBreath{0%,100%{transform:scale(.94);opacity:.65;filter:blur(12px) hue-rotate(0deg)}50%{transform:scale(1.12);opacity:1;filter:blur(17px) hue-rotate(40deg)}}
-    @keyframes coreHalo{0%,100%{box-shadow:0 0 70px #427cff16,0 0 0 1px #6ae8ff09 inset}50%{box-shadow:0 0 105px #517cff2c,0 0 48px #65e8ff12,0 0 0 1px #a67fff13 inset}}
-    @keyframes ringSpin{to{transform:rotate(360deg)}}
-    @keyframes coreFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-    @keyframes nodeGlow{0%,100%{border-color:#ffffff19;box-shadow:0 12px 35px #0007,0 0 0 #69e7ff00}50%{border-color:#78e9ff3f;box-shadow:0 12px 35px #0007,0 0 24px #69e7ff18}}
+    @keyframes showcaseAura{0%,100%{opacity:.65;transform:scale(.96)}50%{opacity:1;transform:scale(1.05)}}
+    @keyframes dashFloatA{0%,100%{translate:0 0}50%{translate:0 -5px}}
+    @keyframes dashFloatB{0%,100%{translate:0 0}50%{translate:0 5px}}
     .section{padding:92px 0;content-visibility:auto;contain-intrinsic-size:auto 900px}.sectionTone{background:linear-gradient(180deg,#ffffff02,#0b142012,#ffffff02);border-top:1px solid #ffffff06;border-bottom:1px solid #ffffff06}
     .sectionHead{display:grid;gap:14px;margin-bottom:30px}.kicker{color:#73eaff;font-size:9px;font-weight:1000;letter-spacing:.17em}.sectionTitle{font-size:clamp(34px,8vw,59px);line-height:.98;letter-spacing:-.055em;margin:0;max-width:780px}
     .sectionDesc{max-width:720px;margin:0;color:#93a3b8;font-size:14px;line-height:1.68}.sectionDesc strong{color:#eaf4ff}
@@ -107,11 +116,11 @@
     }
     @media(max-width:759px){
       .topbarInner{min-height:62px}.brandMark{width:42px;height:42px}.brandText strong{font-size:12px}.nav{display:none}.topWa{margin-left:auto}
-      .hero{padding-top:calc(108px + env(safe-area-inset-top));min-height:auto}.heroVisual{min-height:430px}.systemCore{width:min(310px,84vw)}.orbitNode{min-width:82px;padding:8px 9px;font-size:8px}.n2,.n3{right:-2%}.n5,.n6{left:-2%}
+      .hero{padding-top:calc(108px + env(safe-area-inset-top));min-height:auto}.heroVisual{min-height:510px}.systemShowcase{width:100%;min-height:470px;padding:42px 0 18px;gap:8px}.visualDisclaimer{font-size:6px;letter-spacing:.05em;padding:6px 8px}.systemCard{min-height:174px;padding:11px;border-radius:16px}.systemCardHead{margin-bottom:9px}.systemCardIcon{width:25px;height:25px;font-size:11px}.systemCardTitle strong{font-size:7px;letter-spacing:.07em}.metricGrid{gap:4px}.metric{padding:7px 5px}.metric b{font-size:14px}.metric span{font-size:6px}.dashViz,.workflow,.pipeline{height:38px;margin-top:8px}.showcaseCore{min-width:118px;padding:8px 9px}.showcaseCore strong{font-size:8px}.showcaseCore span{font-size:5px}.cardProduction{transform:translateY(5px) rotate(-.6deg)}.cardB2B{transform:translateY(-4px) rotate(.5deg)}.cardCRM{transform:translateY(3px) rotate(.4deg)}.cardAI{transform:translateY(-5px) rotate(-.4deg)}
       .section{padding:70px 0}.problemRow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);margin:auto}.solution{text-align:left;color:#79e8ff}.featuredCard{min-height:330px}.demoCard{grid-template-columns:82px 1fr auto}.demoCard img{width:82px;height:72px}
       .mapShell{min-height:500px}.mapShell:before{width:350px;height:350px}.mapShell:after{width:230px;height:230px}.mapNode{padding:8px 9px;font-size:8px}.mn2{right:3%}.mn3{right:2%}.mn4{right:4%}.mn6{left:4%}.mn7{left:2%}.mn8{left:3%}
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.heroFx{display:none}.hero:before,.hero:after,.heroAccent,.coreGlow,.systemCore,.systemCore:before,.systemCore:after,.coreBrand,.orbitNode{animation:none!important}.reveal{opacity:1;transform:none;transition:none}.btn,.solutionCard,.featuredCard,.demoCard{transition:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.heroFx{display:none}.hero:before,.hero:after,.heroAccent,.systemShowcase:before,.systemCard{animation:none!important}.reveal{opacity:1;transform:none;transition:none}.btn,.solutionCard,.featuredCard,.demoCard,.systemCard{transition:none}}
   </style>
 </head>
 <body>
@@ -147,16 +156,55 @@
           </div>
           <div class="visionLine">Bugün geliştirdiklerimiz, yarın çözebileceklerimizin sadece başlangıcı.</div>
         </div>
-        <div class="heroVisual" aria-label="Yusuf Dijital teknoloji haritası önizlemesi">
-          <div class="coreGlow"></div>
-          <div class="systemCore">
-            <div class="coreBrand"><div><strong>YD</strong><span>FİKİRDEN SİSTEME</span></div></div>
-            <div class="orbitNode n1">WEB<small>Dijital deneyim</small></div>
-            <div class="orbitNode n2">B2B<small>Portal & ticaret</small></div>
-            <div class="orbitNode n3">DATA<small>KPI & dashboard</small></div>
-            <div class="orbitNode n4">AI<small>Capability</small></div>
-            <div class="orbitNode n5">AUTOMATION<small>İş akışları</small></div>
-            <div class="orbitNode n6">INDUSTRY<small>Üretim sistemleri</small></div>
+        <div class="heroVisual" aria-label="Yusuf Dijital örnek sistem ekranları">
+          <div class="systemShowcase">
+            <div class="visualDisclaimer">ÖRNEK SİSTEM GÖSTERGELERİ • GERÇEK MÜŞTERİ VERİSİ DEĞİLDİR</div>
+
+            <article class="systemCard cardProduction">
+              <div class="systemCardHead"><div class="systemCardTitle"><span class="systemCardIcon">🏭</span><strong>ÜRETİM PANELİ</strong></div><span class="statusDot" aria-hidden="true"></span></div>
+              <div class="metricGrid">
+                <div class="metric"><b>42</b><span>Makine</span></div>
+                <div class="metric"><b>%87</b><span>Verim</span></div>
+                <div class="metric"><b>3</b><span>Uyarı</span></div>
+              </div>
+              <div class="dashViz" aria-hidden="true"><span class="bar" style="height:42%"></span><span class="bar" style="height:68%"></span><span class="bar" style="height:53%"></span><span class="bar" style="height:86%"></span><span class="bar" style="height:72%"></span><span class="bar" style="height:91%"></span><span class="bar" style="height:77%"></span></div>
+              <div class="cardFoot"><span>Capability demo</span><strong>Örnek veri</strong></div>
+            </article>
+
+            <article class="systemCard cardB2B">
+              <div class="systemCardHead"><div class="systemCardTitle"><span class="systemCardIcon">📦</span><strong>B2B PORTAL</strong></div><span class="statusDot" aria-hidden="true"></span></div>
+              <div class="metricGrid">
+                <div class="metric"><b>18</b><span>Sipariş</span></div>
+                <div class="metric"><b>6</b><span>Teklif</span></div>
+                <div class="metric"><b>4</b><span>Sevkiyat</span></div>
+              </div>
+              <div class="workflow" aria-hidden="true"><span class="done"></span><span class="done"></span><span class="active"></span><span></span></div>
+              <div class="cardFoot"><span>Capability demo</span><strong>Örnek veri</strong></div>
+            </article>
+
+            <article class="systemCard cardCRM">
+              <div class="systemCardHead"><div class="systemCardTitle"><span class="systemCardIcon">◫</span><strong>CRM & SATIŞ</strong></div><span class="statusDot" aria-hidden="true"></span></div>
+              <div class="metricGrid">
+                <div class="metric"><b>32</b><span>Lead</span></div>
+                <div class="metric"><b>11</b><span>Teklif</span></div>
+                <div class="metric"><b>5</b><span>Satış</span></div>
+              </div>
+              <div class="pipeline" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="cardFoot"><span>Capability demo</span><strong>Örnek veri</strong></div>
+            </article>
+
+            <article class="systemCard cardAI">
+              <div class="systemCardHead"><div class="systemCardTitle"><span class="systemCardIcon">✦</span><strong>AI & OTOMASYON</strong></div><span class="statusDot" aria-hidden="true"></span></div>
+              <div class="metricGrid">
+                <div class="metric"><b>127</b><span>Belge işlendi</span></div>
+                <div class="metric"><b>14 sa</b><span>Örnek kazanım</span></div>
+                <div class="metric"><b>4</b><span>Akış</span></div>
+              </div>
+              <div class="workflow" aria-hidden="true"><span class="done"></span><span class="active"></span><span class="done"></span><span class="done"></span></div>
+              <div class="cardFoot"><span>Capability demo</span><strong>Örnek veri</strong></div>
+            </article>
+
+            <div class="showcaseCore"><strong>YUSUF DİJİTAL</strong><span>WEB • SOFTWARE • AUTOMATION • INDUSTRY</span></div>
           </div>
         </div>
       </div>
