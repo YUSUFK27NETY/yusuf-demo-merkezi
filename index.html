@@ -1,369 +1,533 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#05060a">
-<meta name="description" content="Yusuf Dijital canlı demo merkezi: web sitesi, sipariş, randevu, katalog, teklif, yönetim paneli ve B2B sistemlerini canlı demolarla inceleyin.">
-<title>Yusuf Dijital | Premium Demo Merkezi</title>
-<style>
-:root{
-  --bg:#05060a;--bg2:#080b12;--panel:#0d1320;--panel2:#111a2a;--text:#f7fbff;--mut:#94a2b7;
-  --cyan:#68e9ff;--blue:#5a78ff;--violet:#a16fff;--green:#37df80;--line:#ffffff18;
-  --mx:50vw;--my:20vh;--scroll:0
-}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:
-radial-gradient(circle at 15% 0,#245fd23a,transparent 25%),
-radial-gradient(circle at 85% 8%,#8f5dff2a,transparent 22%),
-linear-gradient(180deg,#05060a 0%,#070b12 42%,#040609 100%);overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;z-index:-6;pointer-events:none;background:
-linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(#000,transparent 88%)}
-body:after{content:"";position:fixed;width:460px;height:460px;left:calc(var(--mx) - 230px);top:calc(var(--my) - 230px);z-index:-4;border-radius:50%;
-background:radial-gradient(circle,#65e7ff22,transparent 68%);filter:blur(20px);pointer-events:none;transition:left .08s linear,top .08s linear}
-a{color:inherit;text-decoration:none}button,input{font:inherit}.wrap{width:min(1220px,calc(100% - 28px));margin:auto}
-#particles{position:fixed;inset:0;width:100%;height:100%;z-index:-5;pointer-events:none;opacity:.72}.noise{position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
-.demoTransition{position:fixed;inset:0;z-index:900;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 46%,#366cff33,transparent 34%),#04070cf2;backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .24s ease,visibility .24s ease}.demoTransition.show{opacity:1;visibility:visible;pointer-events:auto}.transitionCore{width:min(330px,88vw);text-align:center;transform:translateY(12px) scale(.97);transition:transform .3s cubic-bezier(.2,.9,.25,1.15)}.demoTransition.show .transitionCore{transform:none}.transitionLogo{width:62px;height:62px;margin:0 auto 18px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(135deg,#7c72ff,#5feaff);color:#06121b;font-size:25px;font-weight:1000;box-shadow:0 20px 60px #4c88ff55,0 0 0 1px #fff6 inset;animation:transitionPulse 1.15s ease-in-out infinite}.transitionEyebrow{color:#75eaff;font-size:9px;font-weight:1000;letter-spacing:.18em}.transitionName{margin:8px 0 6px;font-size:24px;letter-spacing:-.04em}.transitionCopy{color:#7f90a6;font-size:11px}.transitionLine{height:3px;margin-top:18px;border-radius:99px;background:#ffffff0c;overflow:hidden}.transitionLine i{display:block;width:35%;height:100%;border-radius:99px;background:linear-gradient(90deg,#566cff,#64e9ff);box-shadow:0 0 20px #5de7ff;animation:transitionLoad .55s ease-in-out infinite}@keyframes transitionLoad{from{transform:translateX(-110%)}to{transform:translateX(330%)}}@keyframes transitionPulse{50%{transform:translateY(-4px) scale(1.04);box-shadow:0 26px 70px #4c88ff70,0 0 30px #5feaff30,0 0 0 1px #fff6 inset}}.progress{position:fixed;top:0;left:0;right:0;height:3px;background:#ffffff08;z-index:200}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--violet));box-shadow:0 0 24px var(--cyan)}
-.top{position:fixed;top:calc(8px + env(safe-area-inset-top));left:14px;right:14px;z-index:120}.nav{height:62px;display:flex;align-items:center;gap:12px;padding:8px 10px;border:1px solid #8be8ff35;border-radius:20px;background:linear-gradient(145deg,#111b2bed,#070a11e8);backdrop-filter:blur(24px) saturate(150%);box-shadow:0 20px 70px #000b,inset 0 0 0 1px #ffffff08;overflow:hidden;position:relative}
-.nav:before{content:"";position:absolute;inset:-120% -30%;background:linear-gradient(110deg,transparent 38%,#ffffff26 50%,transparent 62%);transform:translateX(-60%);animation:navshine 7s ease-in-out infinite}@keyframes navshine{55%,100%{transform:translateX(60%)}}
-.logo{display:flex;align-items:center;gap:10px;position:relative;z-index:2}.gem{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#7f76ff,#5ceaff);color:#05101a;font-weight:1000;box-shadow:0 12px 30px #4f8fff55,0 0 0 1px #fff7 inset;animation:gem 3.2s ease-in-out infinite}@keyframes gem{50%{transform:translateY(-2px) rotate(2deg);box-shadow:0 18px 40px #4f8fff75,0 0 24px #5ceaff32,0 0 0 1px #fff7 inset}}
-.logocopy{display:flex;flex-direction:column;line-height:1}.logocopy b{font-size:12px;letter-spacing:.13em}.logocopy b span{background:linear-gradient(90deg,#a0f2ff,#827bff);background-clip:text;color:transparent}.logocopy small{margin-top:5px;color:#78869b;font-size:6px;letter-spacing:.24em;font-weight:900}.live{margin-left:auto;position:relative;z-index:2;padding:7px 9px;border-radius:999px;border:1px solid #45e67d30;background:#07180dcc;color:#7bf0a5;font-size:8px;font-weight:1000;letter-spacing:.1em}
-.hero{position:relative;min-height:100svh;padding:calc(112px + env(safe-area-inset-top)) 0 66px;display:flex;align-items:center;overflow:hidden}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(18px);pointer-events:none}.hero:before{width:420px;height:420px;left:-220px;top:18%;background:radial-gradient(circle,#397dff35,transparent 66%);animation:orb1 9s ease-in-out infinite alternate}.hero:after{width:460px;height:460px;right:-260px;top:8%;background:radial-gradient(circle,#a16fff30,transparent 66%);animation:orb2 11s ease-in-out infinite alternate}@keyframes orb1{to{transform:translate(90px,-30px) scale(1.15)}}@keyframes orb2{to{transform:translate(-80px,70px) scale(.9)}}
-.heroGrid{display:grid;gap:44px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid #71e8ff3d;border-radius:999px;background:#071624d8;color:#8deeff;font-size:10px;font-weight:1000;letter-spacing:.16em;box-shadow:0 10px 30px #0005}.eyebrow i{width:7px;height:7px;border-radius:50%;background:#6deeff;box-shadow:0 0 16px #6deeff;animation:blink 1.8s infinite}@keyframes blink{50%{opacity:.3;transform:scale(.7)}}
-h1{font-size:clamp(51px,14vw,76px);line-height:.9;letter-spacing:-.06em;margin:20px 0 22px;max-width:780px}.grad{display:inline;background:linear-gradient(105deg,#fff,#8ef2ff 28%,#7084ff 61%,#bc8cff);background-size:220% 220%;background-clip:text;color:transparent;animation:flow 8s ease infinite}@keyframes flow{50%{background-position:100% 50%}}
-.sub{max-width:700px;color:#aab6c8;font-size:16.5px;line-height:1.74;margin:0}.heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:27px}.primary,.secondary{min-height:58px;padding:0 18px;border-radius:17px;border:0;font-weight:1000;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.primary{flex:1;background:linear-gradient(125deg,#4d68ff,#4db9ff 55%,#72ecff);color:white;box-shadow:0 18px 48px #397eff55,0 0 0 1px #fff2f inset}.primary:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,#fff35 48%,transparent 70%);transform:translateX(-140%);animation:sweep 4.2s ease-in-out infinite}@keyframes sweep{58%,100%{transform:translateX(145%)}}.secondary{border:1px solid #ffffff16;background:#ffffff08;color:#d8e2ef;min-width:128px}.primary:active,.secondary:active{transform:scale(.985)}
-.heroServices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:20px;max-width:720px}.heroService{min-height:48px;display:flex;align-items:center;gap:9px;padding:10px 11px;border:1px solid #73e7ff17;border-radius:15px;background:linear-gradient(145deg,#0b1625b8,#ffffff05);box-shadow:inset 0 1px #ffffff08,0 10px 25px #0003;color:#dce8f5;font-size:10px;font-weight:900;line-height:1.25}.heroService i{width:29px;height:29px;flex:0 0 auto;border-radius:10px;display:grid;place-items:center;background:linear-gradient(145deg,#173557,#172048);border:1px solid #71e8ff24;font-style:normal;font-size:15px;box-shadow:0 0 18px #52d9ff10}.heroService:last-child{grid-column:1/-1}.proof{display:flex;gap:8px;overflow:auto;margin-top:13px;padding:2px 1px 5px;scrollbar-width:none}.proof::-webkit-scrollbar{display:none}.proof span{flex:0 0 auto;padding:8px 10px;border:1px solid #ffffff0e;border-radius:999px;background:#ffffff05;color:#8392a8;font-size:10px}.proof b{color:var(--cyan)}
-.stage{height:620px;position:relative;perspective:1400px;touch-action:pan-y;user-select:none;--drag:0px;--hero-accent:#68e9ff}.stageGlow{position:absolute;inset:9% -6% 11%;border-radius:50%;background:radial-gradient(circle,var(--hero-accent),transparent 63%);filter:blur(62px);opacity:.2;transition:background .65s ease,opacity .65s ease;animation:stageglow 5s ease-in-out infinite}@keyframes stageglow{50%{opacity:.34;transform:scale(.92)}}.swipeHint{position:absolute;left:50%;top:4px;z-index:14;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid #ffffff1b;border-radius:999px;background:#07101ad9;backdrop-filter:blur(16px);color:#a8b6c8;font-size:9px;font-weight:1000;letter-spacing:.08em;white-space:nowrap;box-shadow:0 12px 35px #0007}.swipeHint b{color:var(--cyan);font-size:13px}.swipeViewport{position:absolute;inset:40px -14px 115px;overflow:hidden;border-radius:34px}.swipeCard{position:absolute;left:50%;top:50%;width:76%;height:88%;border-radius:30px;overflow:hidden;border:1px solid #ffffff24;background:#0b1018;box-shadow:0 35px 100px #000d,0 0 55px color-mix(in srgb,var(--hero-accent) 25%,transparent);transform-style:preserve-3d;will-change:transform,opacity;transition:transform .58s cubic-bezier(.18,.88,.28,1.16),opacity .42s ease,filter .42s ease,border-color .42s ease;cursor:grab}.swipeCard.dragging{transition:none;cursor:grabbing}.swipeCard.prev{transform:translate(calc(-50% - 73% + var(--drag)),-50%) scale(.78) rotateY(15deg) rotateZ(-2deg);opacity:.58;filter:saturate(.72) brightness(.7);z-index:2}.swipeCard.active{transform:translate(calc(-50% + var(--drag)),-50%) scale(1) rotateY(0deg);opacity:1;z-index:5;border-color:#ffffff35}.swipeCard.next{transform:translate(calc(-50% + 73% + var(--drag)),-50%) scale(.78) rotateY(-15deg) rotateZ(2deg);opacity:.58;filter:saturate(.72) brightness(.7);z-index:2}.swipeCard img,.swipeCard iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#0b1018}.swipeCard iframe{opacity:0;transition:opacity .34s ease}.swipeCard iframe.ready{opacity:1}.stage.is-idle .stageGlow,.stage.is-idle .swipeBurst{animation-play-state:paused}.swipeCard iframe{pointer-events:none}.swipeCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#04060908 36%,#0406097c 68%,#040609e9 100%);pointer-events:none}.swipeCard.active:after{background:linear-gradient(180deg,transparent 62%,#0406099b 100%)}.sideShade{position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,transparent 35%,#05070bdc 100%);pointer-events:none}.sideName{position:absolute;left:15px;right:15px;bottom:15px;z-index:4;font-weight:1000;font-size:13px;text-shadow:0 2px 15px #000}.livePill{position:absolute;right:12px;top:12px;z-index:8;padding:8px 10px;border:1px solid #4deb833e;border-radius:999px;background:#07180ddb;color:#7ef0a5;font-size:8px;font-weight:1000;letter-spacing:.08em;box-shadow:0 8px 25px #0006}.swipeMeta{position:absolute;left:0;right:0;bottom:0;z-index:10;padding:13px 14px;border:1px solid #ffffff18;border-radius:22px;background:linear-gradient(145deg,#0d1725ed,#070b12ed);backdrop-filter:blur(18px);box-shadow:0 20px 65px #000b}.swipeMetaTop{display:flex;align-items:center;gap:10px}.swipeIcon{width:44px;height:44px;flex:0 0 auto;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#ffffff14,#ffffff07);border:1px solid #ffffff18;font-size:22px}.swipeText{min-width:0;flex:1}.swipeText small{display:block;color:#7edff3;font-size:8px;font-weight:1000;letter-spacing:.12em}.swipeText h3{margin:4px 0 0;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.swipeCount{font-size:11px;color:#77879d;font-weight:900;white-space:nowrap}.swipeTags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;min-height:25px}.swipeTags span{padding:6px 8px;border:1px solid #ffffff15;border-radius:999px;background:#ffffff07;color:#bac8d8;font-size:8px;font-weight:950;letter-spacing:.02em;animation:tagPop .34s cubic-bezier(.2,.9,.25,1.3) both}.swipeTags span:nth-child(2){animation-delay:.05s}.swipeTags span:nth-child(3){animation-delay:.1s}@keyframes tagPop{from{opacity:0;transform:translateY(7px) scale(.9)}to{opacity:1;transform:none}}.swipeFlash{position:absolute;left:50%;top:45%;z-index:0;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,var(--hero-accent) 0,transparent 65%);transform:translate(-50%,-50%) scale(.2);opacity:0;pointer-events:none}.swipeFlash.fire{animation:flashBurst .5s ease-out}@keyframes flashBurst{0%{opacity:.45;transform:translate(-50%,-50%) scale(.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.9)}}.swipeActions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:11px}.swipeOpen{min-height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#3f68ff,#55ccff);color:white;font-size:11px;font-weight:1000;box-shadow:0 12px 32px #387eff3a}.swipeAll{min-height:44px;padding:0 13px;border:1px solid #ffffff14;border-radius:13px;background:#ffffff06;color:#b8c6d7;font-size:10px;font-weight:950}.swipeDots{display:flex;justify-content:center;gap:5px;margin-top:10px}.swipeDot{width:5px;height:5px;border-radius:999px;background:#ffffff1b;transition:width .3s ease,background .3s ease,box-shadow .3s ease}.swipeDot.active{width:22px;background:var(--hero-accent);box-shadow:0 0 16px var(--hero-accent)}.swipeArrow{position:absolute;top:48%;z-index:12;width:42px;height:42px;border:1px solid #ffffff1b;border-radius:50%;background:#07101ad9;color:#e9f4ff;backdrop-filter:blur(12px);font-size:18px;font-weight:1000;display:grid;place-items:center;box-shadow:0 12px 35px #0008;cursor:pointer}.swipeArrow.prevBtn{left:0}.swipeArrow.nextBtn{right:0}.swipeArrow:active{transform:scale(.94)}.swipeBurst{position:absolute;z-index:1;width:8px;height:8px;border-radius:50%;background:var(--hero-accent);box-shadow:0 0 24px var(--hero-accent);opacity:.45;animation:burst 3.5s ease-in-out infinite}.swipeBurst.b1{left:7%;top:24%}.swipeBurst.b2{right:8%;top:37%;animation-delay:-1.2s}.swipeBurst.b3{left:15%;bottom:23%;animation-delay:-2.2s}@keyframes burst{50%{transform:scale(2.2);opacity:.14}}
-.ticker{overflow:hidden;border-block:1px solid #ffffff0c;background:linear-gradient(90deg,#080b12,#0d1420,#080b12)}.track{display:flex;gap:9px;width:max-content;padding:13px 0;animation:mar 22s linear infinite;animation-play-state:paused}.ticker.is-visible .track{animation-play-state:running}.track span{padding:8px 11px;border:1px solid #ffffff0d;border-radius:999px;background:#ffffff04;color:#8595aa;font-size:9px;font-weight:900;white-space:nowrap}.track b{color:var(--cyan)}@keyframes mar{to{transform:translateX(-50%)}}
-.section{padding:96px 0;position:relative;content-visibility:auto;contain-intrinsic-size:auto 900px}.demoCard,.stat,.step{contain:paint}.hero:not(.is-visible):before,.hero:not(.is-visible):after{animation-play-state:paused}.kicker{color:#6feaff;font-size:10px;font-weight:1000;letter-spacing:.18em}.title{font-size:clamp(38px,11vw,56px);line-height:.98;letter-spacing:-.05em;margin:10px 0}.desc{color:#94a3b8;line-height:1.72;font-size:15px;max-width:650px}.sectionHead{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{position:relative;min-height:150px;padding:20px;border:1px solid #ffffff12;border-radius:24px;background:radial-gradient(circle at 100% 0,#5a85ff1d,transparent 40%),linear-gradient(155deg,#101827,#090d15);overflow:hidden;box-shadow:0 18px 55px #0004}.stat:before{content:"";position:absolute;width:120px;height:120px;right:-50px;top:-60px;border-radius:50%;background:radial-gradient(circle,#67eaff2e,transparent 70%)}.stat b{display:block;font-size:38px;line-height:1;color:#fff}.stat span{display:block;margin-top:10px;color:#91a0b5;font-size:12px;line-height:1.45}.stat i{position:absolute;right:15px;bottom:12px;font-style:normal;font-size:25px;filter:drop-shadow(0 0 16px #6ceaff55)}
-.demoShell{padding:12px;border:1px solid #73e7ff22;border-radius:30px;background:linear-gradient(180deg,#0b1422,#070b12);box-shadow:0 35px 100px #0008}.tools{display:grid;gap:10px;margin-bottom:8px}.search{position:relative}.search input{width:100%;height:54px;border:1px solid #ffffff14;border-radius:16px;background:#ffffff06;color:#fff;padding:0 45px 0 16px;outline:none}.search input:focus{border-color:#69eaff65;box-shadow:0 0 0 4px #5ddfff0c}.search span{position:absolute;right:16px;top:16px;color:#7f90a7}.matchBtn{height:54px;border:1px solid #7de7ff3d;border-radius:16px;background:linear-gradient(135deg,#142c48,#1b224a);color:#e9fbff;font-size:11px;font-weight:1000;letter-spacing:.02em;box-shadow:0 12px 30px #0005,0 0 25px #58dfff10;cursor:pointer}.matchBtn:active{transform:scale(.985)}.filters{display:flex;gap:8px;overflow:auto;scrollbar-width:none;padding-bottom:2px}.filters::-webkit-scrollbar{display:none}.filter{flex:0 0 auto;padding:10px 12px;border:1px solid #ffffff12;border-radius:999px;background:#ffffff05;color:#8f9db0;font-size:11px;font-weight:900;cursor:pointer}.filter.active{color:#eefdff;border-color:#6de8ff55;background:linear-gradient(135deg,#14304a,#141b36);box-shadow:0 8px 24px #3c8fff1d}
-.resultMeta{min-height:26px;display:flex;align-items:center;justify-content:space-between;padding:0 3px 8px;color:#74859b;font-size:10px;font-weight:850}.resultMeta b{color:#a8ebf7}.demoGrid{display:grid;gap:12px}.demoCard{position:relative;min-height:285px;border-radius:24px;overflow:hidden;border:1px solid #ffffff14;background:#0c1119;box-shadow:0 18px 55px #0004;transform-style:preserve-3d;transition:border-color .25s,box-shadow .25s}.demoCard:active{transform:scale(.99)}.demoCard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) brightness(.72);transition:transform .5s ease,filter .5s ease}.demoCard:hover img{transform:scale(1.05);filter:saturate(1) brightness(.78)}.demoCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#05070b15 15%,#05070b9e 60%,#05070bf5 100%)}.demoCard .inner{position:absolute;z-index:2;left:16px;right:16px;bottom:16px}.demoCard .icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#07101bcf;border:1px solid #ffffff1c;font-size:22px;backdrop-filter:blur(10px);box-shadow:0 12px 30px #0007}.demoCard h3{font-size:20px;margin:12px 0 6px}.demoCard p{color:#a7b3c4;font-size:12.5px;line-height:1.5;margin:0 0 11px}.miniTags{display:flex;gap:6px;flex-wrap:wrap}.miniTags span{padding:6px 7px;border-radius:999px;border:1px solid #ffffff16;background:#ffffff08;color:#c4d0df;font-size:8px;font-weight:900}.cardGo{position:absolute;right:14px;top:14px;z-index:3;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#07101bd9;border:1px solid #ffffff1c;color:#7fe8ff;font-weight:1000}
-.empty{display:none;padding:28px;border:1px dashed #ffffff18;border-radius:18px;color:#8290a5;text-align:center}.moreWrap{text-align:center}.more{margin-top:14px;min-height:52px;padding:0 20px;border:1px solid #6faaff45;border-radius:16px;background:linear-gradient(135deg,#0f1c30,#0b1423);color:#b6cbea;font-weight:950}
-.steps{display:grid;gap:12px}.step{position:relative;padding:24px;border:1px solid #ffffff12;border-radius:24px;background:linear-gradient(150deg,#101827,#090d15);overflow:hidden;min-height:190px}.step:before{content:attr(data-n);position:absolute;right:-4px;top:-26px;font-size:118px;line-height:1;color:#ffffff05;font-weight:1000;letter-spacing:-.08em}.step .stepIcon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#ffffff10,#ffffff05);border:1px solid #ffffff16;font-size:23px}.step h3{font-size:21px;margin:18px 0 8px}.step p{color:#96a4b8;font-size:13.5px;line-height:1.6;margin:0}
-.contact{padding:1px;border-radius:32px;background:linear-gradient(135deg,#65e9ff66,#526aff35 35%,#a16fff47 68%,#ffffff10);box-shadow:0 35px 110px #000a}.contactIn{border-radius:31px;padding:30px 18px;background:radial-gradient(circle at 88% 7%,#337cff35,transparent 32%),radial-gradient(circle at 5% 95%,#895dff23,transparent 30%),linear-gradient(150deg,#0f1a2c,#070a11 74%)}.contactPanel{margin-top:24px;padding:20px;border:1px solid #ffffff19;border-radius:22px;background:#ffffff08;backdrop-filter:blur(10px)}.contactBadge{display:inline-flex;padding:8px 11px;border:1px solid #6fe8ff40;border-radius:999px;color:#91edff;background:#071724;font-size:9px;font-weight:1000;letter-spacing:.12em}.contactPanel h3{font-size:27px;line-height:1.1;margin:15px 0 9px}.contactPanel p{color:#9ba9bb;font-size:13.5px;line-height:1.65}.wa{min-height:58px;padding:0 16px;border-radius:16px;background:linear-gradient(135deg,#3ce777,#24ca61);color:#07150b;font-weight:1000;display:flex;align-items:center;justify-content:space-between;box-shadow:0 18px 48px #24ca6140}.tel{display:block;margin-top:13px;color:#8190a4;font-size:12px}.tel strong{color:white}
-.finder[hidden]{display:none}.finder{position:fixed;inset:0;z-index:400;display:flex;align-items:flex-end;justify-content:center;padding:16px;background:#02050bc7;backdrop-filter:blur(14px)}.finderSheet{width:min(620px,100%);max-height:min(82svh,760px);overflow:auto;border:1px solid #75e6ff35;border-radius:28px;background:radial-gradient(circle at 90% 0,#5d5eff26,transparent 30%),linear-gradient(155deg,#111b2b,#070b12 70%);box-shadow:0 30px 120px #000;animation:sheetIn .38s cubic-bezier(.2,.85,.25,1)}@keyframes sheetIn{from{transform:translateY(34px) scale(.97);opacity:0}}.finderHead{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;padding:18px;border-bottom:1px solid #ffffff10;background:#0b111cdb;backdrop-filter:blur(18px)}.finderHead div{min-width:0;flex:1}.finderHead small{display:block;color:#6feaff;font-size:8px;font-weight:1000;letter-spacing:.15em}.finderHead h3{margin:5px 0 0;font-size:22px}.finderClose{width:42px;height:42px;border:1px solid #ffffff15;border-radius:13px;background:#ffffff08;color:white;font-size:20px}.finderBody{padding:18px}.finderLabel{margin:2px 0 9px;color:#9aa9bd;font-size:11px;font-weight:900}.finderChoices{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.finderChoice{padding:10px 12px;border:1px solid #ffffff13;border-radius:999px;background:#ffffff05;color:#aebccd;font-size:10px;font-weight:900}.finderChoice.active{border-color:#6fe8ff62;background:linear-gradient(135deg,#173754,#1d2550);color:white;box-shadow:0 8px 25px #3b8dff20}.finderSuggest{width:100%;min-height:54px;border:0;border-radius:16px;background:linear-gradient(135deg,#4f66ff,#58d8ff);color:white;font-weight:1000;box-shadow:0 15px 35px #397eff42}.finderSuggest:disabled{opacity:.45}.finderResults{display:grid;gap:9px;margin-top:14px}.finderResult{display:grid;grid-template-columns:52px 1fr auto;gap:11px;align-items:center;padding:10px;border:1px solid #ffffff12;border-radius:17px;background:#ffffff06}.finderResult img{width:52px;height:52px;border-radius:13px;object-fit:cover}.finderResult strong{display:block;font-size:12px}.finderResult small{display:block;margin-top:4px;color:#8292a7;font-size:9px}.finderResult span{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#ffffff08;color:#79e9ff;font-weight:1000}.finderNote{margin-top:10px;color:#65768c;font-size:9px;line-height:1.5}footer{padding:26px 0 calc(92px + env(safe-area-inset-bottom));text-align:center;color:#5f7088;font-size:10px}.mobilebar{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:130;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:7px;border:1px solid #7ee7ff2b;border-radius:22px;background:linear-gradient(145deg,#0c1421ed,#070a11f2);backdrop-filter:blur(24px) saturate(145%);box-shadow:0 22px 70px #000d,0 0 35px #4f8fff15,inset 0 0 0 1px #ffffff06}.mobilebar a,.mobilebar button{height:54px;min-width:0;border:1px solid #ffffff0e;border-radius:15px;background:linear-gradient(145deg,#ffffff0a,#ffffff04);color:#cbd8e7;font-weight:950;font-size:11px;display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;overflow:hidden;cursor:pointer;box-shadow:inset 0 1px #ffffff08;transition:transform .16s ease,border-color .16s ease,background .16s ease}.mobilebar a:active,.mobilebar button:active{transform:scale(.96)}.mobilebar .navIcon{font-size:16px;line-height:1;filter:drop-shadow(0 0 10px #6feaff35)}.mobilebar .demoHot{background:linear-gradient(135deg,#243867,#182849);border-color:#6d8dff42;color:#eef4ff}.mobilebar .hot{background:linear-gradient(135deg,#23cf68,#49e88b);border-color:#6ef1a05c;color:#07150b;box-shadow:0 10px 28px #23d46a36,inset 0 1px #ffffff42}.mobilebar .hot .navIcon{filter:none}
-.reveal{opacity:0;transform:translateY(28px) scale(.985);filter:blur(5px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1),filter .7s ease}.reveal.in{opacity:1;transform:none;filter:none}.cursorGlow{display:none;position:fixed;z-index:200;pointer-events:none;width:18px;height:18px;border-radius:50%;background:#9aefff;box-shadow:0 0 25px #62dcff,0 0 60px #566aff;mix-blend-mode:screen;transform:translate(-50%,-50%);opacity:.75}
-@media(min-width:760px){.wrap{width:min(1220px,calc(100% - 42px))}.top{left:50%;right:auto;width:min(760px,calc(100% - 40px));transform:translateX(-50%)}.nav{padding:8px 12px}.heroGrid{grid-template-columns:1.02fr .98fr;gap:70px}.hero{padding-top:120px}.heroActions{max-width:520px}.stage{height:690px}.swipeViewport{inset:44px -42px 118px}.swipeCard{width:67%;height:90%}.swipeMeta{left:7%;right:7%}.swipeArrow.prevBtn{left:2%}.swipeArrow.nextBtn{right:2%}.stats{grid-template-columns:repeat(4,1fr)}.sectionHead{flex-direction:row;align-items:end;justify-content:space-between}.sectionHead .desc{margin-bottom:5px;max-width:560px}.tools{grid-template-columns:minmax(280px,1fr) auto;align-items:center}.filters{grid-column:1/-1}.demoGrid{grid-template-columns:repeat(3,1fr);gap:15px}.steps{grid-template-columns:repeat(3,1fr)}.contactIn{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:58px}.contactPanel{margin:0;padding:28px}.mobilebar{display:none}footer{padding-bottom:34px}.cursorGlow{display:block}}
-@media(min-width:1100px){.demoGrid{grid-template-columns:repeat(4,1fr)}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;filter:none}.demoTransition{backdrop-filter:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Yusuf Dijital | Yazılım, Otomasyon ve Dijital Sistemler</title>
+  <meta name="description" content="Yusuf Dijital; işletmelere özel web, SaaS, B2B, yönetim paneli, otomasyon, veri, mobil ve entegrasyon çözümleri geliştirir. 37 canlı demoyu keşfedin.">
+  <meta name="theme-color" content="#060912">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Yusuf Dijital | Bir web sitesinden çok daha fazlası">
+  <meta property="og:description" content="İşletmelere özel yazılım, otomasyon ve dijital sistemler. Web, B2B, yönetim, sanayi, veri, mobil ve özel yazılım çözümleri.">
+  <meta property="og:url" content="https://yusufk27nety.github.io/yusuf-demo-merkezi/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://yusufk27nety.github.io/yusuf-demo-merkezi/">
+  <style>
+    :root{
+      --bg:#060912;--bg2:#09101b;--panel:#0d1522;--panel2:#101c2d;--text:#f6f9ff;--mut:#9aa8bc;
+      --cyan:#69e7ff;--blue:#5d7cff;--violet:#9a78ff;--green:#42e293;--gold:#f4c873;
+      --line:#ffffff14;--line2:#7de7ff24;--shadow:0 26px 80px #0008;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{margin:0;background:
+      radial-gradient(circle at 12% 8%,#214ea52d,transparent 28%),
+      radial-gradient(circle at 88% 16%,#713bd522,transparent 28%),
+      linear-gradient(180deg,#060912,#07101a 42%,#05080e);
+      color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      -webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.24;background-image:
+      linear-gradient(#ffffff06 1px,transparent 1px),linear-gradient(90deg,#ffffff06 1px,transparent 1px);
+      background-size:44px 44px;mask-image:linear-gradient(180deg,#000,transparent 72%)}
+    a{color:inherit;text-decoration:none}button,input{font:inherit}.wrap{width:min(1180px,calc(100% - 30px));margin:auto}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .topbar{position:fixed;top:10px;left:0;right:0;z-index:120;padding-top:env(safe-area-inset-top)}
+    .topbarInner{width:min(1180px,calc(100% - 24px));margin:auto;min-height:68px;display:flex;align-items:center;gap:18px;padding:10px 12px;
+      border:1px solid #ffffff17;border-radius:23px;background:#08111bd9;backdrop-filter:blur(20px) saturate(140%);box-shadow:0 20px 70px #0008}
+    .brand{display:flex;align-items:center;gap:11px;min-width:0}.brandMark{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;
+      background:linear-gradient(135deg,#6e76ff,#6aebff);color:#061018;font-weight:1000;font-size:19px;box-shadow:0 10px 30px #4c88ff42,inset 0 1px #fff7}
+    .brandText strong{display:block;font-size:13px;letter-spacing:.17em}.brandText small{display:block;margin-top:4px;color:#6f8198;font-size:7px;letter-spacing:.2em}
+    .nav{display:flex;align-items:center;gap:4px;margin-left:auto}.nav a{padding:9px 10px;border-radius:11px;color:#98a8bc;font-size:9px;font-weight:850;transition:.2s}
+    .nav a:hover,.nav a:focus-visible{background:#ffffff08;color:white;outline:none}.topWa{padding:10px 13px;border:1px solid #52ef9542;border-radius:12px;background:#12331fc7;color:#7bf0aa;font-size:9px;font-weight:950}
+    .hero{min-height:100svh;display:grid;align-items:center;padding:calc(126px + env(safe-area-inset-top)) 0 78px;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;width:620px;height:620px;right:-360px;top:6%;border-radius:50%;background:radial-gradient(circle,#6478ff2b,transparent 67%);filter:blur(8px);pointer-events:none}
+    .heroGrid{display:grid;gap:44px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid #65e7ff32;border-radius:999px;
+      background:#0a1723b8;color:#8feeff;font-size:9px;font-weight:1000;letter-spacing:.16em}.eyebrow i{width:7px;height:7px;border-radius:50%;background:#70e9ff;box-shadow:0 0 16px #70e9ff}
+    h1{font-size:clamp(48px,13vw,82px);line-height:.91;letter-spacing:-.065em;margin:22px 0 20px;max-width:820px}
+    .heroAccent{display:block;background:linear-gradient(105deg,#fff 2%,#84ecff 34%,#778bff 68%,#b986ff);background-clip:text;color:transparent}
+    .heroSub{max-width:760px;color:#a6b2c4;font-size:16px;line-height:1.7;margin:0}.heroStatement{margin-top:16px;color:#edf6ff;font-size:14px;font-weight:900}
+    .heroStatement b{color:var(--cyan)}
+    .heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.btn{min-height:54px;padding:0 17px;border-radius:15px;border:1px solid #ffffff18;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:10px;font-weight:1000;cursor:pointer;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+    .btn:hover{transform:translateY(-2px)}.btnPrimary{background:linear-gradient(135deg,#4f66ff,#54cfff);border-color:#7be9ff55;color:white;box-shadow:0 18px 45px #387eff38}
+    .btnGhost{background:linear-gradient(135deg,#132238,#0e1a2c);color:#eef7ff;border-color:#79e9ff38;box-shadow:inset 0 1px #ffffff0b,0 12px 32px #0004}.heroActions .btnGhost:hover{background:linear-gradient(135deg,#18304d,#11243b);border-color:#7deaff66;box-shadow:0 14px 34px #1f7fff20}.visionLine{margin-top:20px;color:#8fa3bc;font-size:10px;letter-spacing:.04em}
+    .heroVisual{position:relative;min-height:520px;display:grid;place-items:center}.coreGlow{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,#567cff30,transparent 65%);filter:blur(10px)}
+    .systemCore{position:relative;width:min(360px,86vw);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1px solid #7ceaff1d;background:radial-gradient(circle,#111c31,#080d17 58%,transparent 59%);box-shadow:0 0 80px #427cff18}
+    .systemCore:before,.systemCore:after{content:"";position:absolute;border-radius:50%;border:1px dashed #85ebff20}.systemCore:before{inset:12%}.systemCore:after{inset:27%}
+    .coreBrand{position:relative;z-index:4;width:130px;height:130px;border-radius:34px;display:grid;place-items:center;text-align:center;background:linear-gradient(145deg,#101d31,#0a0f19);border:1px solid #76eaff38;box-shadow:0 22px 60px #000b,0 0 42px #557cff22}
+    .coreBrand strong{font-size:28px;letter-spacing:-.05em}.coreBrand span{display:block;margin-top:5px;color:#72e7ff;font-size:7px;letter-spacing:.15em}
+    .orbitNode{position:absolute;z-index:5;min-width:94px;padding:10px 11px;border:1px solid #ffffff19;border-radius:14px;background:#0b1420e8;backdrop-filter:blur(10px);box-shadow:0 12px 35px #0007;text-align:center;font-size:9px;font-weight:950}
+    .orbitNode small{display:block;margin-top:3px;color:#68809d;font-size:7px;font-weight:700}.n1{top:1%;left:50%;transform:translateX(-50%)}.n2{top:19%;right:-4%}.n3{bottom:18%;right:-3%}.n4{bottom:0;left:50%;transform:translateX(-50%)}.n5{bottom:18%;left:-3%}.n6{top:19%;left:-4%}
+    .section{padding:92px 0;content-visibility:auto;contain-intrinsic-size:auto 900px}.sectionTone{background:linear-gradient(180deg,#ffffff02,#0b142012,#ffffff02);border-top:1px solid #ffffff06;border-bottom:1px solid #ffffff06}
+    .sectionHead{display:grid;gap:14px;margin-bottom:30px}.kicker{color:#73eaff;font-size:9px;font-weight:1000;letter-spacing:.17em}.sectionTitle{font-size:clamp(34px,8vw,59px);line-height:.98;letter-spacing:-.055em;margin:0;max-width:780px}
+    .sectionDesc{max-width:720px;margin:0;color:#93a3b8;font-size:14px;line-height:1.68}.sectionDesc strong{color:#eaf4ff}
+    .solutionGrid{display:grid;gap:12px}.solutionCard{position:relative;min-height:290px;padding:20px;border:1px solid #ffffff12;border-radius:25px;background:linear-gradient(145deg,#0d1624,#090e17);overflow:hidden;box-shadow:0 20px 65px #0004;transition:.22s}
+    .solutionCard:hover{transform:translateY(-3px);border-color:#74e8ff31}.solutionCard:before{content:"";position:absolute;width:150px;height:150px;right:-70px;top:-70px;border-radius:50%;background:radial-gradient(circle,var(--cardAccent,#67e7ff) 0,transparent 68%);opacity:.12}
+    .solutionTop{display:flex;align-items:center;justify-content:space-between;gap:10px}.solutionNo{color:#52667f;font-size:9px;font-weight:1000;letter-spacing:.15em}.solutionIcon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;border:1px solid #ffffff12;background:#ffffff08;font-size:19px}
+    .solutionCard h3{margin:18px 0 9px;font-size:21px;letter-spacing:-.025em}.solutionCard p{margin:0;color:#97a7ba;font-size:12px;line-height:1.6}.caps{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}.cap{padding:7px 8px;border:1px solid #ffffff0e;border-radius:999px;background:#ffffff05;color:#b3c0cf;font-size:8px;font-weight:850}
+    .related{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:17px}.relatedLabel{color:#586d86;font-size:8px;font-weight:900}.related a{padding:7px 9px;border-radius:10px;background:#102236;color:#84eaff;font-size:8px;font-weight:950}.capabilityFlag{display:inline-flex;margin-top:15px;padding:7px 9px;border:1px solid #f2c66e2d;border-radius:999px;background:#2a20100f;color:#efc97b;font-size:8px;font-weight:900}
+    .solutionCard.umbrella{--cardAccent:#9d7aff;background:linear-gradient(145deg,#15162a,#0c0f19);border-color:#9b78ff2c}.solutionCard.umbrella h3{font-size:28px}.umbrellaQuote{margin-top:18px;padding:15px;border-left:2px solid #9a78ff;background:#9a78ff0b;border-radius:0 14px 14px 0;color:#dcd5ff;font-size:12px;line-height:1.6}
+    .problemGrid{display:grid;gap:9px}.problemRow{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:14px;border:1px solid #ffffff10;border-radius:18px;background:#0a111bc7}.problem{color:#bac5d3;font-size:11px;line-height:1.45}.problem strong{display:block;color:#fff;margin-bottom:4px}.arrow{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#63e6ff0e;border:1px solid #68e7ff25;color:#6ce8ff;font-weight:1000}.solution{color:#81e9ff;font-size:11px;font-weight:900;text-align:right}
+    .featuredGrid{display:grid;gap:13px}.featuredCard{position:relative;min-height:350px;border:1px solid #ffffff13;border-radius:25px;overflow:hidden;background:#0b111a;box-shadow:var(--shadow);transition:.22s}.featuredCard:hover{transform:translateY(-3px);border-color:#75e8ff35}
+    .featuredCard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.86) contrast(1.04)}.featuredCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#03060a0a 24%,#05080ca8 64%,#05070bed 100%)}
+    .featuredBody{position:absolute;z-index:2;left:17px;right:17px;bottom:17px}.featuredMeta{display:flex;gap:6px;flex-wrap:wrap}.featuredMeta span{padding:6px 8px;border:1px solid #ffffff1b;border-radius:999px;background:#050a11c7;color:#d5e0ed;font-size:8px;font-weight:900}
+    .featuredBody h3{margin:10px 0 5px;font-size:22px}.featuredBody p{margin:0 0 12px;color:#a9b6c6;font-size:11px;line-height:1.5}.featuredLink{display:flex;align-items:center;justify-content:space-between;color:#7de9ff;font-size:10px;font-weight:1000}
+    .demoShell{padding:13px;border:1px solid #73e7ff1e;border-radius:29px;background:linear-gradient(180deg,#0b1422,#070b12);box-shadow:var(--shadow)}.demoTools{display:grid;gap:10px;margin-bottom:12px}
+    .search{position:relative}.search input{width:100%;height:54px;padding:0 48px 0 15px;border:1px solid #ffffff12;border-radius:15px;background:#ffffff06;color:white;outline:none}.search input:focus{border-color:#71e8ff4f;box-shadow:0 0 0 3px #64e7ff0b}.search span{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:#6ee9ff;font-size:18px}
+    .filters{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.filter{flex:0 0 auto;padding:9px 11px;border:1px solid #ffffff10;border-radius:999px;background:#ffffff05;color:#8fa0b5;font-size:8px;font-weight:900;cursor:pointer}.filter.active{background:linear-gradient(135deg,#263b66,#17364d);border-color:#70e8ff41;color:white}
+    .demoMeta{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#6f8197;font-size:9px;padding:2px 2px 10px}.demoMeta b{color:#a9eaf6}.demoGrid{display:grid;gap:11px}.demoCard{display:grid;grid-template-columns:96px 1fr auto;gap:12px;align-items:center;padding:10px;border:1px solid #ffffff10;border-radius:17px;background:#ffffff05;transition:.18s}.demoCard:hover{background:#ffffff08;border-color:#6fe8ff2f}.demoCard img{width:96px;height:78px;border-radius:12px;object-fit:cover}.demoCard h3{margin:0;font-size:12px}.demoCard p{margin:5px 0 7px;color:#8495aa;font-size:9px;line-height:1.4}.demoTags{display:flex;gap:4px;flex-wrap:wrap}.demoTags span{padding:4px 6px;border-radius:999px;background:#ffffff07;color:#8698ad;font-size:7px}.demoGo{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#122337;color:#75e8ff;font-weight:1000}.loadMore{display:flex;justify-content:center;margin-top:13px}.loadMore button{min-height:45px;padding:0 16px;border:1px solid #ffffff12;border-radius:13px;background:#ffffff06;color:#cad7e5;font-size:9px;font-weight:950;cursor:pointer}
+    .labs{position:relative;overflow:hidden}.labs:before{content:"LABS";position:absolute;right:-10px;top:-35px;font-size:160px;font-weight:1000;letter-spacing:-.09em;color:#9b7bff08;pointer-events:none}.labGrid{display:grid;gap:10px}.labCard{padding:16px;border:1px solid #9c7aff1d;border-radius:18px;background:linear-gradient(145deg,#121326,#0a0e17)}.labCard strong{font-size:13px}.labCard p{margin:6px 0 0;color:#8797aa;font-size:10px;line-height:1.5}.labNotice{margin-top:17px;padding:14px;border:1px solid #f1c56d28;border-radius:15px;background:#2c210b12;color:#cfb47b;font-size:10px;line-height:1.55}
+    .mapShell{position:relative;min-height:570px;display:grid;place-items:center;border:1px solid #ffffff0f;border-radius:30px;background:radial-gradient(circle at center,#14284a 0,#0a111c 35%,#070b12 68%);overflow:hidden}.mapShell:before,.mapShell:after{content:"";position:absolute;border:1px dashed #73e7ff1c;border-radius:50%}.mapShell:before{width:430px;height:430px}.mapShell:after{width:280px;height:280px}.mapCore{position:relative;z-index:4;width:150px;height:150px;border-radius:38px;display:grid;place-items:center;text-align:center;background:linear-gradient(145deg,#17233a,#0b111b);border:1px solid #76e8ff3b;box-shadow:0 25px 80px #000b,0 0 55px #5f7dff20}.mapCore b{font-size:24px}.mapCore span{display:block;margin-top:4px;color:#6be9ff;font-size:8px;letter-spacing:.13em}.mapNode{position:absolute;z-index:5;padding:10px 12px;border:1px solid #ffffff18;border-radius:13px;background:#0a121de8;color:#dfeafa;font-size:9px;font-weight:1000;box-shadow:0 12px 30px #0006}.mn1{top:8%;left:50%;transform:translateX(-50%)}.mn2{top:20%;right:8%}.mn3{top:46%;right:3%}.mn4{bottom:16%;right:10%}.mn5{bottom:7%;left:50%;transform:translateX(-50%)}.mn6{bottom:16%;left:10%}.mn7{top:46%;left:3%}.mn8{top:20%;left:8%}.mapTagline{position:absolute;bottom:24px;z-index:6;color:#7ce9ff;font-size:10px;font-weight:1000;letter-spacing:.12em}
+    .process{display:grid;gap:9px}.step{position:relative;padding:17px;border:1px solid #ffffff10;border-radius:17px;background:#ffffff05}.stepNo{color:#67e7ff;font-size:8px;font-weight:1000;letter-spacing:.14em}.step h3{margin:7px 0 4px;font-size:14px}.step p{margin:0;color:#7f90a5;font-size:10px;line-height:1.45}
+    .technicalPanel{display:grid;gap:22px;padding:23px;border:1px solid #ffffff12;border-radius:28px;background:linear-gradient(145deg,#101929,#080d15)}.technicalLead h3{margin:0;font-size:clamp(27px,6vw,42px);letter-spacing:-.04em}.technicalLead p{margin:10px 0 0;color:#8e9db1;font-size:12px;line-height:1.6}.technicalChips{display:flex;gap:7px;flex-wrap:wrap}.technicalChips span{padding:9px 10px;border:1px solid #ffffff10;border-radius:12px;background:#ffffff05;color:#b9c7d6;font-size:9px;font-weight:850}
+    .notSite{padding:40px 20px;border:1px solid #ffffff12;border-radius:30px;background:radial-gradient(circle at 50% 0,#567cff24,transparent 45%),linear-gradient(180deg,#101829,#080d15);text-align:center;box-shadow:var(--shadow)}.notSite h2{margin:0;font-size:clamp(42px,11vw,78px);letter-spacing:-.065em}.notSite p{max-width:720px;margin:12px auto 22px;color:#97a7ba;font-size:13px;line-height:1.6}.wordCloud{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;max-width:900px;margin:auto}.wordCloud span{padding:9px 11px;border:1px solid #ffffff11;border-radius:999px;background:#ffffff06;color:#c2cfdd;font-size:9px;font-weight:900}.wordCloud span:nth-child(3n){border-color:#6ee8ff28;color:#8deeff}.wordCloud span:nth-child(4n){border-color:#9d79ff27;color:#c3b0ff}
+    .finalCta{padding:34px;border:1px solid #66e8ff28;border-radius:30px;background:radial-gradient(circle at 82% 12%,#4f7cff2e,transparent 32%),linear-gradient(145deg,#101b2d,#080d15);box-shadow:var(--shadow)}.finalCta h2{margin:0;font-size:clamp(40px,10vw,72px);letter-spacing:-.06em}.finalCta p{max-width:680px;color:#a2b0c2;font-size:14px;line-height:1.65}.finalActions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+    footer{padding:28px 0 calc(100px + env(safe-area-inset-bottom));color:#60738b;font-size:9px}.footerInner{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}.footerLinks{display:flex;gap:12px;flex-wrap:wrap}.footerLinks a:hover{color:white}
+    .bottomDock{position:fixed;z-index:130;left:11px;right:11px;bottom:calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:6px;border:1px solid #ffffff16;border-radius:20px;background:#080e17e8;backdrop-filter:blur(20px);box-shadow:0 20px 60px #000b}.bottomDock a{min-height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:6px;background:#ffffff05;color:#b8c5d4;font-size:9px;font-weight:950}.bottomDock .hot{background:linear-gradient(135deg,#24cb68,#4be78c);color:#07140b}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}.reveal.in{opacity:1;transform:none}
+    :focus-visible{outline:2px solid #73eaff;outline-offset:3px}
+    @media(min-width:760px){
+      .heroGrid{grid-template-columns:1.08fr .92fr}.heroActions .btn{min-width:190px}.solutionGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.solutionCard.umbrella{grid-column:1/-1;min-height:230px}.featuredGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.demoTools{grid-template-columns:minmax(280px,1fr) 1.4fr;align-items:center}.demoGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.labGrid{grid-template-columns:repeat(3,minmax(0,1fr))}.process{grid-template-columns:repeat(4,minmax(0,1fr))}.technicalPanel{grid-template-columns:.8fr 1.2fr;align-items:center}.bottomDock{display:none}
+    }
+    @media(min-width:1100px){
+      .solutionGrid{grid-template-columns:repeat(3,minmax(0,1fr))}.solutionCard.umbrella{grid-column:span 3}.featuredGrid{grid-template-columns:repeat(4,minmax(0,1fr))}.demoGrid{grid-template-columns:repeat(3,minmax(0,1fr))}.process{grid-template-columns:repeat(7,minmax(0,1fr))}.nav a{font-size:10px}
+    }
+    @media(max-width:759px){
+      .topbarInner{min-height:62px}.brandMark{width:42px;height:42px}.brandText strong{font-size:12px}.nav{display:none}.topWa{margin-left:auto}
+      .hero{padding-top:calc(108px + env(safe-area-inset-top));min-height:auto}.heroVisual{min-height:430px}.systemCore{width:min(310px,84vw)}.orbitNode{min-width:82px;padding:8px 9px;font-size:8px}.n2,.n3{right:-2%}.n5,.n6{left:-2%}
+      .section{padding:70px 0}.problemRow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);margin:auto}.solution{text-align:left;color:#79e8ff}.featuredCard{min-height:330px}.demoCard{grid-template-columns:82px 1fr auto}.demoCard img{width:82px;height:72px}
+      .mapShell{min-height:500px}.mapShell:before{width:350px;height:350px}.mapShell:after{width:230px;height:230px}.mapNode{padding:8px 9px;font-size:8px}.mn2{right:3%}.mn3{right:2%}.mn4{right:4%}.mn6{left:4%}.mn7{left:2%}.mn8{left:3%}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.btn,.solutionCard,.featuredCard,.demoCard{transition:none}}
+  </style>
 </head>
 <body>
-<canvas id="particles"></canvas><div class="noise"></div><div class="cursorGlow" id="cursorGlow"></div>
-<div class="progress"><i id="progress"></i></div>
-<header class="top"><div class="nav"><a class="logo" href="#"><span class="gem">Y</span><span class="logocopy"><b>YUSUF <span>DİJİTAL</span></b><small>DIGITAL SYSTEMS</small></span></a><span class="live">● CANLI</span></div></header>
+  <header class="topbar">
+    <div class="topbarInner">
+      <a class="brand" href="#top" aria-label="Yusuf Dijital ana sayfa">
+        <span class="brandMark">Y</span>
+        <span class="brandText"><strong>YUSUF DİJİTAL</strong><small>SOFTWARE • AUTOMATION • DIGITAL SYSTEMS</small></span>
+      </a>
+      <nav class="nav" aria-label="Ana navigasyon">
+        <a href="#cozumler">Çözümler</a>
+        <a href="#sistemler">Sistemler</a>
+        <a href="#demolar">Demolar</a>
+        <a href="#labs">Yusuf Labs</a>
+        <a href="#surec">Süreç</a>
+      </nav>
+      <a class="topWa" href="https://wa.me/905309112770?text=Merhaba%2C%20Yusuf%20Dijital%20ile%20bir%20proje%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyorum." target="_blank" rel="noopener">WhatsApp ↗</a>
+    </div>
+  </header>
 
-<section class="hero">
-  <div class="wrap heroGrid">
-    <div class="reveal in">
-      <span class="eyebrow"><i></i> WEB SİTESİ • SİPARİŞ • RANDEVU • YÖNETİM</span>
-      <h1>İşletmenize özel <span class="grad">web sitesi ve dijital sistemler</span> geliştiriyoruz.</h1>
-      <p class="sub">Kurumsal web sitesinden QR menü ve sipariş sistemine, randevu sisteminden yönetim paneli ve B2B çözümlerine kadar işletmenizin ihtiyacına göre sistemler hazırlıyoruz. Restoran, kafe, berber, mağaza, otel, otomotiv, üretici ve birçok farklı sektör için canlı örneklerimizi inceleyebilirsiniz.</p>
-      <div class="heroServices" aria-label="Yusuf Dijital hizmetleri">
-        <div class="heroService"><i>🌐</i><span>Kurumsal Web Sitesi</span></div>
-        <div class="heroService"><i>🍽️</i><span>QR Menü & Sipariş</span></div>
-        <div class="heroService"><i>📅</i><span>Randevu & Rezervasyon</span></div>
-        <div class="heroService"><i>📊</i><span>Yönetim Paneli</span></div>
-        <div class="heroService"><i>👥</i><span>Müşteri / Sipariş Takibi</span></div>
-        <div class="heroService"><i>🏢</i><span>B2B / Bayi / Teklif Sistemleri</span></div>
-        <div class="heroService"><i>⚙️</i><span>Özel Yazılım & Otomasyon</span></div>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap heroGrid">
+        <div>
+          <span class="eyebrow"><i></i> YUSUF DİJİTAL • ÇÖZÜMLER & TEKNOLOJİ</span>
+          <h1>İşletmeler için <span class="heroAccent">yazılım, otomasyon ve dijital sistemler</span> geliştiriyoruz.</h1>
+          <p class="heroSub">Web sitelerinden yönetim panellerine, B2B portallardan üretim sistemlerine, otomasyondan yapay zekâ çözümlerine kadar fikirleri çalışan sistemlere dönüştürüyoruz.</p>
+          <div class="heroStatement"><b>Bir web sitesinden çok daha fazlası.</b></div>
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="#cozumler">Çözümlerimizi Keşfet →</a>
+            <a class="btn btnGhost" href="#demolar">Canlı Demoları Gör</a>
+          </div>
+          <div class="visionLine">Bugün geliştirdiklerimiz, yarın çözebileceklerimizin sadece başlangıcı.</div>
+        </div>
+        <div class="heroVisual" aria-label="Yusuf Dijital teknoloji haritası önizlemesi">
+          <div class="coreGlow"></div>
+          <div class="systemCore">
+            <div class="coreBrand"><div><strong>YD</strong><span>FİKİRDEN SİSTEME</span></div></div>
+            <div class="orbitNode n1">WEB<small>Dijital deneyim</small></div>
+            <div class="orbitNode n2">B2B<small>Portal & ticaret</small></div>
+            <div class="orbitNode n3">DATA<small>KPI & dashboard</small></div>
+            <div class="orbitNode n4">AI<small>Capability</small></div>
+            <div class="orbitNode n5">AUTOMATION<small>İş akışları</small></div>
+            <div class="orbitNode n6">INDUSTRY<small>Üretim sistemleri</small></div>
+          </div>
+        </div>
       </div>
-      <div class="proof"><span><b>✓</b> Mobil Uyumlu</span><span><b>✓</b> İşletmeye Özel</span><span><b>✓</b> Yönetilebilir Sistemler</span><span><b>✓</b> Teknik Destek</span></div>
-    </div>
-    <div class="stage reveal in" id="heroSwipe" aria-label="Canlı demo kartlarını sağa veya sola kaydırın">
-      <div class="stageGlow"></div><span class="swipeFlash" id="swipeFlash"></span><span class="swipeBurst b1"></span><span class="swipeBurst b2"></span><span class="swipeBurst b3"></span>
-      <div class="swipeHint"><b>↔</b> Canlı sistemleri incelemek için kaydır →</div>
-      <button class="swipeArrow prevBtn" id="swipePrev" type="button" aria-label="Önceki demo">‹</button>
-      <button class="swipeArrow nextBtn" id="swipeNext" type="button" aria-label="Sonraki demo">›</button>
-      <div class="swipeViewport" id="swipeViewport"></div>
-      <div class="swipeMeta">
-        <div class="swipeMetaTop"><span class="swipeIcon" id="swipeIcon">🍽️</span><div class="swipeText"><small id="swipeCat">YEME-İÇME • CANLI ÖNİZLEME</small><h3 id="swipeName">QR Menü & Sipariş</h3></div><span class="swipeCount" id="swipeCount">01 / 37</span></div>
-        <div class="swipeTags" id="swipeTags"></div>
-        <div class="swipeActions"><a class="swipeOpen" id="swipeOpen" href="demos/restoran/">Canlı Demoyu Aç ↗</a><button class="swipeAll" type="button" data-scroll="demos">Tümü</button></div>
-        <div class="swipeDots" id="swipeDots" aria-hidden="true"></div>
+    </section>
+
+    <section class="section sectionTone" id="cozumler">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div class="kicker">BİZ NELER YAPIYORUZ?</div>
+          <h2 class="sectionTitle">İşletmenin ihtiyacına göre parçaları birleştiriyoruz.</h2>
+          <p class="sectionDesc">Hazır bir kalıba uymak zorunda değilsiniz. <strong>Müşteri deneyiminden operasyon yönetimine, veriden otomasyona kadar</strong> farklı ihtiyaçları tek sistemde buluşturabiliriz.</p>
+        </div>
+        <div class="solutionGrid">
+          <article class="solutionCard reveal" style="--cardAccent:#61e8ff">
+            <div class="solutionTop"><span class="solutionNo">01 — DİJİTAL DENEYİM</span><span class="solutionIcon">🌐</span></div>
+            <h3>Web & Dijital Deneyim</h3>
+            <p>Markanızı sadece internete taşımıyoruz; müşterinin işlem yapabileceği çalışan dijital deneyimler oluşturuyoruz.</p>
+            <div class="caps"><span class="cap">Kurumsal web</span><span class="cap">Katalog</span><span class="cap">Landing</span><span class="cap">Rezervasyon</span><span class="cap">Çok dilli</span></div>
+            <div class="related"><span class="relatedLabel">CANLI ÖRNEK</span><a href="demos/kurumsal/">Kurumsal Web ↗</a><a href="demos/otel/">Otel & Rezervasyon ↗</a></div>
+          </article>
+
+          <article class="solutionCard reveal" style="--cardAccent:#7d8cff">
+            <div class="solutionTop"><span class="solutionNo">02 — OPERASYON</span><span class="solutionIcon">📊</span></div>
+            <h3>İşletme Yönetim Sistemleri</h3>
+            <p>Müşteri, teklif, sipariş, görev, iş emri, rezervasyon ve servis süreçlerini tek merkezden yönetilebilir hale getiriyoruz.</p>
+            <div class="caps"><span class="cap">CRM</span><span class="cap">Sipariş</span><span class="cap">Görev</span><span class="cap">İş emri</span><span class="cap">Servis</span></div>
+            <div class="related"><span class="relatedLabel">CANLI ÖRNEK</span><a href="demos/yonetim/">İşletme Yönetimi ↗</a></div>
+          </article>
+
+          <article class="solutionCard reveal" style="--cardAccent:#9a78ff">
+            <div class="solutionTop"><span class="solutionNo">03 — TİCARET</span><span class="solutionIcon">🏢</span></div>
+            <h3>B2B, Bayi & Ticaret Sistemleri</h3>
+            <p>Bayi, toptancı ve kurumsal müşterilerin sipariş, fiyat, RFQ, geçmiş ve hesap süreçlerini dijital portala taşıyoruz.</p>
+            <div class="caps"><span class="cap">Bayi portalı</span><span class="cap">Özel fiyat</span><span class="cap">RFQ</span><span class="cap">İhracat</span><span class="cap">Hesap erişimi</span></div>
+            <div class="related"><span class="relatedLabel">CANLI ÖRNEK</span><a href="demos/toptanci-bayi/">Toptancı & Bayi ↗</a><a href="demos/ihracat-portali/">İhracat Portalı ↗</a></div>
+          </article>
+
+          <article class="solutionCard reveal" style="--cardAccent:#f1c66e">
+            <div class="solutionTop"><span class="solutionNo">04 — SANAYİ</span><span class="solutionIcon">🏭</span></div>
+            <h3>Fabrika & Endüstri Yazılımları</h3>
+            <p>Üretim, vardiya, kalite, fire, OEE, bakım ve iş emri verilerini yönetimin anlayabileceği kontrol ekranlarına dönüştürebiliriz.</p>
+            <div class="caps"><span class="cap">Üretim dashboard</span><span class="cap">OEE</span><span class="cap">Fire analizi</span><span class="cap">Kalite</span><span class="cap">Bakım</span></div>
+            <div class="capabilityFlag">Capability örneği • müşteri referansı değildir</div>
+            <div class="related"><span class="relatedLabel">İLGİLİ DEMO</span><a href="demos/fabrika-b2b/">Fabrika B2B ↗</a></div>
+          </article>
+
+          <article class="solutionCard reveal" style="--cardAccent:#52df94">
+            <div class="solutionTop"><span class="solutionNo">05 — İZLENEBİLİRLİK</span><span class="solutionIcon">▦</span></div>
+            <h3>Stok, Barkod & İzlenebilirlik</h3>
+            <p>Depodan üretime, raftan sevkiyata kadar ürün hareketlerini barkod, QR, lot, seri ve lokasyon mantığıyla takip edilebilir hale getirebiliriz.</p>
+            <div class="caps"><span class="cap">Depo</span><span class="cap">Barkod / QR</span><span class="cap">Lot / seri</span><span class="cap">Raf</span><span class="cap">Stok alarmı</span></div>
+            <div class="related"><span class="relatedLabel">İLGİLİ DEMO</span><a href="demos/market/">Market & Stok ↗</a><a href="demos/toptanci-bayi/">Bayi Sistemi ↗</a></div>
+          </article>
+
+          <article class="solutionCard reveal" style="--cardAccent:#b987ff">
+            <div class="solutionTop"><span class="solutionNo">06 — CAPABILITY</span><span class="solutionIcon">✦</span></div>
+            <h3>AI & Otomasyon</h3>
+            <p>Belge okuma, özel şirket asistanı, veri işleme, otomatik rapor ve tekrarlayan masaüstü işlerinin otomasyonu gibi alanlarda proje bazlı çözümler tasarlayabiliriz.</p>
+            <div class="caps"><span class="cap">AI belge okuma</span><span class="cap">OCR</span><span class="cap">Asistan</span><span class="cap">Workflow</span><span class="cap">Otomatik rapor</span></div>
+            <div class="capabilityFlag">Capability / proje bazlı geliştirme alanı</div>
+          </article>
+
+          <article class="solutionCard reveal" style="--cardAccent:#62d9ff">
+            <div class="solutionTop"><span class="solutionNo">07 — VERİ</span><span class="solutionIcon">◫</span></div>
+            <h3>Veri & Yönetici Zekâsı</h3>
+            <p>ERP, Excel, CSV, API ve farklı kaynaklardaki veriyi KPI, dashboard, alarm ve raporlara dönüştürüyoruz.</p>
+            <div class="caps"><span class="cap">ERP verisi</span><span class="cap">Excel / CSV</span><span class="cap">KPI</span><span class="cap">Trend</span><span class="cap">Raporlama</span></div>
+            <div class="related"><span class="relatedLabel">CANLI ÖRNEK</span><a href="demos/yonetim/">Yönetim Paneli ↗</a><a href="demos/fabrika-b2b/">Fabrika B2B ↗</a></div>
+          </article>
+
+          <article class="solutionCard reveal" style="--cardAccent:#59e2c7">
+            <div class="solutionTop"><span class="solutionNo">08 — SAHA</span><span class="solutionIcon">📱</span></div>
+            <h3>Mobil & Saha Sistemleri</h3>
+            <p>PWA, saha satış, teknik servis, görev, fotoğraf, teslimat, müşteri imzası ve mobil portal akışlarını telefona taşıyabiliriz.</p>
+            <div class="caps"><span class="cap">PWA</span><span class="cap">Saha satış</span><span class="cap">Teknik servis</span><span class="cap">Teslimat</span><span class="cap">Mobil portal</span></div>
+            <div class="related"><span class="relatedLabel">İLGİLİ DEMO</span><a href="demos/gsm-telefon/">Servis Takibi ↗</a></div>
+          </article>
+
+          <article class="solutionCard reveal" style="--cardAccent:#ff9d69">
+            <div class="solutionTop"><span class="solutionNo">09 — ENTEGRASYON</span><span class="solutionIcon">↔</span></div>
+            <h3>Entegrasyon & Modernizasyon</h3>
+            <p><strong style="color:#eef7ff">Sıfırdan geliştirmek zorunda değiliz.</strong> Mevcut sisteminizi geliştirir, eksik modülleri ekler, farklı yazılımları birbirine bağlar ve manuel süreçleri otomatikleştiririz.</p>
+            <div class="caps"><span class="cap">ERP</span><span class="cap">Muhasebe</span><span class="cap">Ödeme</span><span class="cap">Kargo</span><span class="cap">API</span><span class="cap">WhatsApp</span></div>
+            <div class="capabilityFlag">Mevcut altyapıya özel entegrasyon yaklaşımı</div>
+          </article>
+
+          <article class="solutionCard umbrella reveal">
+            <div class="solutionTop"><span class="solutionNo">10 — ŞEMSİYE ÇÖZÜM</span><span class="solutionIcon">⌘</span></div>
+            <h3>Özel Yazılım</h3>
+            <p>Burada gördüğünüz kategoriler sınırımız değil. İşletmenizin problemi farklıysa, çözümü de size özel geliştiririz.</p>
+            <div class="umbrellaQuote">“Hazır bir ürüne uymak yerine; ihtiyaç, süreç ve kullanıcılarınıza göre çalışan bir sistem tasarlayabiliriz.”</div>
+            <div class="related"><span class="relatedLabel">ÖRNEKLER</span><a href="demos/yonetim/">Yönetim Sistemi ↗</a><a href="demos/fabrika-b2b/">B2B / Sanayi ↗</a><a href="#final">Projeyi Konuşalım →</a></div>
+          </article>
+        </div>
       </div>
+    </section>
+
+    <section class="section" id="sistemler">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div class="kicker">PROBLEM → ÇALIŞAN SİSTEM</div>
+          <h2 class="sectionTitle">Sorununuzu anlatın. Sistemi birlikte tasarlayalım.</h2>
+          <p class="sectionDesc">Excel, WhatsApp, kağıt, defter veya birbirinden kopuk programlarla yürüttüğünüz süreçleri <strong>tek ve kontrollü bir sisteme</strong> dönüştürüyoruz.</p>
+        </div>
+        <div class="problemGrid">
+          <div class="problemRow reveal"><div class="problem"><strong>“Teklifleri Excel’den hazırlıyoruz.”</strong>Dosya, versiyon ve müşteri takibi dağınık.</div><span class="arrow">→</span><div class="solution">CRM + teklif sistemi</div></div>
+          <div class="problemRow reveal"><div class="problem"><strong>“Bayiler WhatsApp’tan sipariş gönderiyor.”</strong>Sipariş, fiyat ve cari akışı manuel ilerliyor.</div><span class="arrow">→</span><div class="solution">Bayi / B2B sipariş portalı</div></div>
+          <div class="problemRow reveal"><div class="problem"><strong>“Fabrikada veri var ama yönetim göremiyor.”</strong>Veri var; karar ekranı yok.</div><span class="arrow">→</span><div class="solution">Production Intelligence / yönetici dashboard</div></div>
+          <div class="problemRow reveal"><div class="problem"><strong>“Personel her gün aynı verileri elle giriyor.”</strong>Tekrarlayan işler zaman kaybettiriyor.</div><span class="arrow">→</span><div class="solution">İş akışı otomasyonu</div></div>
+          <div class="problemRow reveal"><div class="problem"><strong>“Servis ekibinin nerede ne yaptığını takip edemiyoruz.”</strong>Saha bilgisi merkezden görünmüyor.</div><span class="arrow">→</span><div class="solution">Saha servis sistemi</div></div>
+          <div class="problemRow reveal"><div class="problem"><strong>“Programlarımız birbirleriyle konuşmuyor.”</strong>Aynı bilgi farklı sistemlere tekrar giriliyor.</div><span class="arrow">→</span><div class="solution">API / entegrasyon katmanı</div></div>
+          <div class="problemRow reveal"><div class="problem"><strong>“ERP ihtiyacımızı tamamen karşılamıyor.”</strong>Sistemi değiştirmek istemiyoruz.</div><span class="arrow">→</span><div class="solution">ERP’yi değiştirmeden özel modül / üst katman</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section sectionTone" id="featured">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div class="kicker">ÇALIŞAN PROJELER & CANLI DEMOLAR</div>
+          <h2 class="sectionTitle">Öne çıkan sistemler.</h2>
+          <p class="sectionDesc">Önce daha kapsamlı sistemleri görün. Ardından 37 canlı demonun tamamını sektör ve ihtiyaca göre keşfedin.</p>
+        </div>
+        <div class="featuredGrid" id="featuredGrid"></div>
+        <div class="loadMore"><a class="btn btnGhost" href="#demolar">Tüm 37 Demoyu Keşfet ↓</a></div>
+      </div>
+    </section>
+
+    <section class="section" id="demolar">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div class="kicker">DEMO KEŞİF ALANI</div>
+          <h2 class="sectionTitle">Sektörünü veya sistemi bul.</h2>
+          <p class="sectionDesc">Mevcut 37 demo korunuyor. Arama yapın, kategori seçin ve canlı sistemi açın.</p>
+        </div>
+        <div class="demoShell reveal">
+          <div class="demoTools">
+            <label class="search"><span class="sr-only">Demo veya sektör ara</span><input id="search" type="search" autocomplete="off" placeholder="Demo veya sektör ara…" aria-label="Demo veya sektör ara"><span aria-hidden="true">⌕</span></label>
+            <div class="filters" id="filters" aria-label="Demo kategorileri"></div>
+          </div>
+          <div class="demoMeta"><b id="resultCount">37 demo</b><span id="activeFilter">Tümü</span></div>
+          <div class="demoGrid" id="demoGrid"></div>
+          <div class="loadMore"><button id="loadMore" type="button">Tüm 37 Demoyu Göster ↓</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section sectionTone labs" id="labs">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div class="kicker">YUSUF LABS • AR-GE & CAPABILITY</div>
+          <h2 class="sectionTitle">Bugünün projeleriyle yetinmiyoruz.</h2>
+          <p class="sectionDesc">Yeni nesil teknolojilerin işletmelerde nasıl kullanılabileceğini araştırıyoruz. Aşağıdaki başlıklar <strong>müşteri referansı değil; geliştirebileceğimiz, araştırdığımız ve proje bazlı ele alabileceğimiz alanlardır.</strong></p>
+        </div>
+        <div class="labGrid">
+          <div class="labCard reveal"><strong>Yapay Zekâ</strong><p>Özel asistanlar, belge işleme, destek akışları ve iş süreçlerine AI katmanı.</p></div>
+          <div class="labCard reveal"><strong>Computer Vision</strong><p>Görüntü üzerinden tespit, sayım, sınıflandırma ve kalite kontrol senaryoları.</p></div>
+          <div class="labCard reveal"><strong>AI Kalite Kontrol</strong><p>Üretim ve kalite süreçlerinde görsel veya veri tabanlı kontrol yaklaşımları.</p></div>
+          <div class="labCard reveal"><strong>IoT & Akıllı Fabrika</strong><p>Sensör, makine ve saha verisini merkezi sistemlere taşıma senaryoları.</p></div>
+          <div class="labCard reveal"><strong>Dijital İkiz</strong><p>Süreç ve varlıkların dijital modelleme / simülasyon kullanım alanları.</p></div>
+          <div class="labCard reveal"><strong>Veri Analitiği</strong><p>Tahminleme, optimizasyon, trend, anomali ve karar destek modelleri.</p></div>
+          <div class="labCard reveal"><strong>Robotik / AGV Simülasyonu</strong><p>Akış, rota ve kapasite senaryolarının simülasyon seviyesinde değerlendirilmesi.</p></div>
+          <div class="labCard reveal"><strong>İş Süreci Otomasyonu</strong><p>Tekrarlayan görevleri sistemler arası otomatik akışlara dönüştürme.</p></div>
+          <div class="labCard reveal"><strong>Özel Algoritmalar</strong><p>İşletmeye özgü puanlama, optimizasyon, planlama ve hesaplama mantıkları.</p></div>
+        </div>
+        <div class="labNotice reveal">YUSUF LABS içeriği Ar-Ge ve capability alanlarını gösterir. Bu başlıklar tamamlanmış müşteri projesi veya referans iddiası değildir.</div>
+      </div>
+    </section>
+
+    <section class="section" id="teknoloji">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div class="kicker">TEKNOLOJİ HARİTASI</div>
+          <h2 class="sectionTitle">Fikirden çalışan sisteme.</h2>
+          <p class="sectionDesc">Web, mobil, SaaS, B2B, otomasyon, veri, AI, IoT ve endüstriyel ihtiyaçlar birbirinden bağımsız değil. Doğru projede aynı mimarinin parçaları olabilir.</p>
+        </div>
+        <div class="mapShell reveal" aria-label="Yusuf Dijital teknoloji haritası">
+          <div class="mapCore"><div><b>YUSUF<br>DİJİTAL</b><span>SYSTEMS</span></div></div>
+          <span class="mapNode mn1">WEB</span><span class="mapNode mn2">MOBİL</span><span class="mapNode mn3">SAAS</span><span class="mapNode mn4">B2B</span>
+          <span class="mapNode mn5">OTOMASYON</span><span class="mapNode mn6">VERİ</span><span class="mapNode mn7">AI / IOT</span><span class="mapNode mn8">ENDÜSTRİ</span>
+          <div class="mapTagline">FİKİRDEN ÇALIŞAN SİSTEME</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section sectionTone" id="surec">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div class="kicker">ÇALIŞMA ŞEKLİMİZ</div>
+          <h2 class="sectionTitle">Karmaşık süreci sade bir akışa çeviriyoruz.</h2>
+        </div>
+        <div class="process">
+          <div class="step reveal"><span class="stepNo">01</span><h3>İhtiyacı Dinle</h3><p>Problemi ve hedefi netleştiririz.</p></div>
+          <div class="step reveal"><span class="stepNo">02</span><h3>Süreci Analiz Et</h3><p>Bugünkü akışı ve darboğazları çıkarırız.</p></div>
+          <div class="step reveal"><span class="stepNo">03</span><h3>Demo / Prototip</h3><p>Çözümün nasıl çalışacağını görünür hale getiririz.</p></div>
+          <div class="step reveal"><span class="stepNo">04</span><h3>Geliştirme</h3><p>Onaylanan sistemi adım adım geliştiririz.</p></div>
+          <div class="step reveal"><span class="stepNo">05</span><h3>Test</h3><p>Kritik akışları ve cihaz uyumunu kontrol ederiz.</p></div>
+          <div class="step reveal"><span class="stepNo">06</span><h3>Kurulum</h3><p>Sistemi gerçek kullanıma hazırlarız.</p></div>
+          <div class="step reveal"><span class="stepNo">07</span><h3>Destek & Geliştirme</h3><p>İhtiyaç büyüdükçe sistemi geliştirebiliriz.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="teknik">
+      <div class="wrap">
+        <div class="technicalPanel reveal">
+          <div class="technicalLead">
+            <div class="kicker">GERÇEK TEKNİK YETENEKLER</div>
+            <h3>Güvenli, ölçeklenebilir ve yönetilebilir sistemler.</h3>
+            <p>Altyapı jargonunu size yüklemek yerine; kullanıcıları, veriyi, yetkileri, entegrasyonları ve operasyonu güvenli şekilde yöneten sistemler tasarlıyoruz.</p>
+          </div>
+          <div class="technicalChips" aria-label="Teknik yetenekler">
+            <span>Multi-tenant SaaS</span><span>Rol & yetki yönetimi</span><span>Yönetim panelleri</span><span>Audit log</span><span>Güvenli authentication</span>
+            <span>API entegrasyonları</span><span>Ödeme entegrasyonu</span><span>Veri izolasyonu</span><span>Cloud deployment</span><span>Backup</span>
+            <span>Responsive web apps</span><span>Near-real-time dashboard</span><span>Raporlama</span><span>Otomasyon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section sectionTone">
+      <div class="wrap">
+        <div class="notSite reveal">
+          <div class="kicker">BİR WEB SİTESİNDEN ÇOK DAHA FAZLASI</div>
+          <h2>Sadece site yapmıyoruz.</h2>
+          <p>İşletmenizin ihtiyacına göre parçaları birleştirir veya sıfırdan yeni bir sistem geliştiririz.</p>
+          <div class="wordCloud">
+            <span>Web Sitesi</span><span>CRM</span><span>Teklif Sistemi</span><span>Sipariş Sistemi</span><span>Bayi Portalı</span><span>Üretim Paneli</span>
+            <span>Barkod</span><span>Depo</span><span>Servis Sistemi</span><span>Randevu</span><span>Otomasyon</span><span>AI</span><span>Mobil</span><span>API</span>
+            <span>Dashboard</span><span>B2B</span><span>SaaS</span><span>Özel Yazılım</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="final">
+      <div class="wrap">
+        <div class="finalCta reveal">
+          <div class="kicker">PROJENİZİ KONUŞALIM</div>
+          <h2>Bir fikriniz mi var?</h2>
+          <p>Hazır bir ürüne uymak zorunda değilsiniz. İhtiyacınızı anlatın; birlikte çalışan bir sisteme dönüştürelim.</p>
+          <div class="finalActions">
+            <a class="btn btnPrimary" href="tel:05309112770">Projeyi Konuşalım →</a>
+            <a class="btn btnGhost" href="https://wa.me/905309112770?text=Merhaba%2C%20i%C5%9Fletmem%20i%C3%A7in%20%C3%B6zel%20bir%20dijital%20sistem%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyorum." target="_blank" rel="noopener">WhatsApp’tan Yaz</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footerInner">
+      <span>Yusuf Dijital • Yazılım, otomasyon ve dijital sistemler</span>
+      <div class="footerLinks"><a href="#cozumler">Çözümler</a><a href="#demolar">37 Demo</a><a href="#labs">Yusuf Labs</a><a href="tel:05309112770">0530 911 27 70</a></div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<div class="ticker" aria-hidden="true"><div class="track" id="ticker"></div></div>
+  <nav class="bottomDock" aria-label="Mobil hızlı erişim">
+    <a href="#cozumler">⌘ Çözümler</a>
+    <a href="#demolar">◉ Demolar</a>
+    <a class="hot" href="https://wa.me/905309112770?text=Merhaba%2C%20Yusuf%20Dijital%20ile%20bir%20proje%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyorum." target="_blank" rel="noopener">💬 WhatsApp</a>
+  </nav>
 
-<main>
-<section class="section" id="trust"><div class="wrap">
-  <div class="sectionHead reveal"><div><div class="kicker">NEDEN YUSUF DİJİTAL?</div><h2 class="title">Sadece site değil.<br>Çalışan sistem.</h2></div><p class="desc">Gösterişli tasarımın yanında satış, rezervasyon, teklif, müşteri yönetimi ve günlük operasyonu kolaylaştıran işlevler.</p></div>
-  <div class="stats">
-    <div class="stat reveal"><b data-count="37">0</b><span>Farklı sektör için canlı demo</span><i>✦</i></div>
-    <div class="stat reveal"><b data-count="100">0</b><span>Mobil öncelikli kullanıcı deneyimi</span><i>📱</i></div>
-    <div class="stat reveal"><b data-count="1">0</b><span>İşletmeye özel uyarlanan sistem</span><i>⚙️</i></div>
-    <div class="stat reveal"><b data-count="7">0</b><span>Satış sonrası teknik destek yaklaşımı</span><i>🛡️</i></div>
-  </div>
-</div></section>
+  <script>
+    const DEMOS=[
+      {icon:"☕",name:"Kafe & Pastane",desc:"Dijital menü, ürün kataloğu, sepet ve sipariş.",href:"demos/kafe/",group:"Yeme & İçme",tags:["Sipariş","Katalog","Sepet"],img:"https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=900&q=82"},
+      {icon:"💈",name:"Berber & Randevu",desc:"Hizmet, personel, tarih ve online randevu.",href:"demos/berber/",group:"Randevu & Rezervasyon",tags:["Randevu","Personel","WhatsApp"],img:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=82"},
+      {icon:"✨",name:"Güzellik Salonu",desc:"Uzman seçimi, hizmet ve randevu sistemi.",href:"demos/guzellik/",group:"Randevu & Rezervasyon",tags:["Randevu","Hizmet","Uzman"],img:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🍽️",name:"QR Menü & Sipariş",desc:"Mobil QR menü, gelişmiş sepet ve sipariş.",href:"demos/restoran/",group:"Yeme & İçme",tags:["Sipariş","QR Menü","Sepet"],img:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🛒",name:"Market & Sipariş",desc:"Katalog, stok, teslimat ve sipariş yönetimi.",href:"demos/market/",group:"Perakende",tags:["Sipariş","Stok","Teslimat"],img:"https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🏨",name:"Otel & Rezervasyon",desc:"Oda seçimi, tarih, misafir ve rezervasyon.",href:"demos/otel/",group:"Randevu & Rezervasyon",tags:["Rezervasyon","Oda","Takvim"],img:"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🦷",name:"Klinik & Randevu",desc:"Hizmet, uzman, tarih-saat ve randevu.",href:"demos/klinik/",group:"Randevu & Rezervasyon",tags:["Randevu","Uzman","Takvim"],img:"https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🌐",name:"Kurumsal Web",desc:"Profesyonel firma tanıtım ve teklif sistemi.",href:"demos/kurumsal/",group:"Web & Kurumsal",tags:["Kurumsal","Teklif","İletişim"],img:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🎨",name:"Logo Tasarım Stüdyosu",desc:"Marka adı, stil, renk paleti ve canlı logo konseptleri.",href:"demos/logo-tasarim/",group:"Profesyonel Hizmetler",tags:["Marka","Tasarım","Canlı Önizleme"],img:"https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🧶",name:"Halı & Kilim Mağazası",desc:"Premium koleksiyon, ölçü, kategori, ürün görselleri ve hızlı teklif.",href:"demos/hali-magazasi/",group:"Perakende",tags:["Katalog","Teklif","WhatsApp"],img:"https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=900&q=82"},
+      {icon:"⚙️",name:"İşletme Yönetimi",desc:"Müşteri, görev, talep ve yönetim paneli.",href:"demos/yonetim/",group:"Yönetim Sistemleri",tags:["Panel","Müşteri","Görev"],img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=82"},
+      {icon:"💎",name:"Kuyumcu & Mücevher",desc:"Koleksiyon, kategori, favori ve ürün danışmanlığı.",href:"demos/kuyumcu/",group:"Perakende",tags:["Katalog","Favori","WhatsApp"],img:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=82"},
+      {icon:"👰",name:"Gelinlik & Abiye",desc:"Koleksiyon vitrini, model seçimi ve prova randevusu.",href:"demos/gelinlik/",group:"Perakende",tags:["Koleksiyon","Randevu","Prova"],img:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🥮",name:"Baklava & Tatlıcı",desc:"Ürün kataloğu, kg siparişi, teslimat ve hediye paketi.",href:"demos/baklava/",group:"Yeme & İçme",tags:["Sipariş","Katalog","Teslimat"],img:"https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🥩",name:"Kasap & Şarküteri",desc:"Kg fiyatı, hazırlanış tercihi, sepet ve teslimat.",href:"demos/kasap/",group:"Yeme & İçme",tags:["Sipariş","Kg Fiyat","Teslimat"],img:"https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=900&q=82"},
+      {icon:"💍",name:"Düğün & Organizasyon",desc:"Salon, kapasite, etkinlik tarihi ve teklif talebi.",href:"demos/dugun-salonu/",group:"Randevu & Rezervasyon",tags:["Teklif","Takvim","Organizasyon"],img:"https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🛋️",name:"Mobilya & Dekorasyon",desc:"Koleksiyon, renk/kumaş seçenekleri ve teklif alma.",href:"demos/mobilya/",group:"Perakende",tags:["Katalog","Teklif","Varyant"],img:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=82"},
+      {icon:"👗",name:"Butik & Giyim",desc:"Koleksiyon, beden, favori ve WhatsApp sipariş.",href:"demos/butik/",group:"Perakende",tags:["Katalog","Beden","WhatsApp"],img:"https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=82"},
+      {icon:"📸",name:"Fotoğraf & Düğün Çekimi",desc:"Portföy, paketler, çekim tarihi ve teklif talebi.",href:"demos/fotografci/",group:"Profesyonel Hizmetler",tags:["Portföy","Teklif","Takvim"],img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🌸",name:"Çiçekçi & Hediye",desc:"Buket kataloğu, kart mesajı, teslim zamanı ve sipariş.",href:"demos/cicekci/",group:"Perakende",tags:["Sipariş","Teslimat","Katalog"],img:"https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🎂",name:"Özel Pasta",desc:"Kişiye özel tasarım, aroma ve sipariş talebi.",href:"demos/ozel-pasta/",group:"Yeme & İçme",tags:["Sipariş","Kişiselleştirme","Teklif"],img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🧼",name:"Halı Yıkama",desc:"m² fiyat hesabı, adres ve evden alım talebi.",href:"demos/hali-yikama/",group:"Profesyonel Hizmetler",tags:["Fiyat Hesabı","Adres","Talep"],img:"https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🚘",name:"Rent A Car",desc:"Araç segmenti, tarih, günlük fiyat ve rezervasyon talebi.",href:"demos/rent-a-car/",group:"Otomotiv",tags:["Rezervasyon","Araç","Takvim"],img:"https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🚿",name:"Oto Yıkama & Detailing",desc:"Bakım paketleri, araç sınıfı, fiyat ve randevu akışı.",href:"demos/detailing/",group:"Otomotiv",tags:["Randevu","Paket","Araç"],img:"https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🏭",name:"Fabrika / Üretici / İhracat",desc:"TR/EN katalog, üretim, kalite, ihracat ağı, RFQ teklif listesi ve satış paneli.",href:"demos/fabrika-b2b/",group:"Sanayi",tags:["B2B","RFQ","Panel"],img:"https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=900&q=82"},
+      {icon:"⚖️",name:"Avukatlık Bürosu",desc:"Uzmanlık alanları, kurumsal tanıtım ve güvenli ön görüşme talebi.",href:"demos/avukat/",group:"Profesyonel Hizmetler",tags:["Kurumsal","Talep","Uzmanlık"],img:"https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🧾",name:"Mali Müşavir & Muhasebe",desc:"Hizmet seçimi, şirket profili ve görüşme talebi.",href:"demos/mali-musavir/",group:"Profesyonel Hizmetler",tags:["Kurumsal","Talep","Hizmet"],img:"https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=82"},
+      {icon:"📦",name:"Toptancı & Bayi Sistemi",desc:"Bayi fiyatı, iskonto, koli bazlı sipariş, cari limit ve sevkiyat.",href:"demos/toptanci-bayi/",group:"B2B & Ticaret",tags:["B2B","Sipariş","Cari"],img:"https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🌐",name:"İhracatçı B2B Müşteri Portalı",desc:"Sipariş geçmişi, sevkiyat, proforma/doküman merkezi ve yeni RFQ.",href:"demos/ihracat-portali/",group:"B2B & Ticaret",tags:["B2B","Portal","RFQ"],img:"https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=900&q=82"},
+      {icon:"⌚",name:"Saat & Aksesuar",desc:"Koleksiyon, kategori filtreleri, favori ve mağazada ürün ayırtma.",href:"demos/saat-aksesuar/",group:"Perakende",tags:["Katalog","Favori","Ayırtma"],img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=82"},
+      {icon:"👓",name:"Optik & Gözlük",desc:"Çerçeve kataloğu, filtreleme, beğeni ve mağaza görüşme talebi.",href:"demos/optik/",group:"Perakende",tags:["Katalog","Filtre","Talep"],img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🚗",name:"Oto Ekspertiz",desc:"Ekspertiz paketleri, araç bilgileri, randevu ve örnek rapor akışı.",href:"demos/oto-ekspertiz/",group:"Otomotiv",tags:["Randevu","Rapor","Araç"],img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=82"},
+      {icon:"📱",name:"Telefon & GSM",desc:"Cihaz ve aksesuar kataloğu, ürün ayırtma ve teknik servis takibi.",href:"demos/gsm-telefon/",group:"Perakende",tags:["Katalog","Servis","Takip"],img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🌱",name:"Fide / Tohum / Tarım",desc:"Fide, tohum ve yetiştirme ürünleri kataloğu ile ürün talebi.",href:"demos/tarim-fide-tohum/",group:"Perakende",tags:["Katalog","Talep","Tarım"],img:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🧴",name:"Parfümeri",desc:"Koku koleksiyonu, filtreleme, favoriler ve mağazada ürün ayırtma.",href:"demos/parfumeri/",group:"Perakende",tags:["Katalog","Favori","Ayırtma"],img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=82"},
+      {icon:"👟",name:"Ayakkabı Mağazası",desc:"Model, kategori, numara seçimi, favori ve mağazada ürün ayırtma.",href:"demos/ayakkabi/",group:"Perakende",tags:["Katalog","Numara","Ayırtma"],img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=82"},
+      {icon:"🐾",name:"Petshop & Akvaryum",desc:"Kedi, köpek, kuş, balık, akvaryum, mama, kafes, tasma ve aksesuarlar.",href:"demos/petshop-akvaryum/",group:"Perakende",tags:["Katalog","Petshop","Akvaryum"],img:"https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=900&q=82"}
+    ];
 
-<section class="section" id="demos"><div class="wrap">
-  <div class="sectionHead reveal"><div><div class="kicker">CANLI SİSTEMLER</div><h2 class="title">Sektörünü bul.<br>Canlı sistemi aç.</h2></div><p class="desc">Arama yapın veya kategori seçin. Kartlarda sipariş, randevu, panel, WhatsApp ve B2B gibi temel yetenekleri görebilirsiniz.</p></div>
-  <div class="demoShell reveal">
-    <div class="tools">
-      <label class="search"><input id="search" autocomplete="off" placeholder="Berber, restoran, halı, oto, B2B ara..."><span>⌕</span></label>
-      <button class="matchBtn" id="matchBtn" type="button">✦ Bana Uygun Demoyu Bul</button>
-      <div class="filters" id="filters"></div>
-    </div>
-    <div class="resultMeta" id="resultMeta"></div>
-    <div class="demoGrid" id="demoGrid"></div>
-    <div class="empty" id="empty">Aramanıza uygun demo bulunamadı.</div>
-    <div class="moreWrap"><button class="more" id="more" type="button">Tüm Demoları Göster ↓</button></div>
-  </div>
-</div></section>
+    const FEATURED=[
+      "demos/fabrika-b2b/","demos/toptanci-bayi/","demos/yonetim/","demos/ihracat-portali/",
+      "demos/dugun-salonu/","demos/guzellik/","demos/oto-ekspertiz/","demos/restoran/"
+    ];
+    const FEATURED_IMPACT={
+      "demos/fabrika-b2b/":"Katalog, RFQ, satış paneli ve üretici/ihracat akışlarını tek yapıda gösterir.",
+      "demos/toptanci-bayi/":"Bayi fiyatı, iskonto, koli siparişi, cari limit ve sevkiyat mantığını örnekler.",
+      "demos/yonetim/":"Müşteri, görev, talep ve operasyon takibini yönetim panelinde birleştirir.",
+      "demos/ihracat-portali/":"Kurumsal müşterinin sipariş, sevkiyat, doküman ve RFQ süreçlerini portala taşır.",
+      "demos/dugun-salonu/":"Kapasite, tarih, organizasyon ihtiyacı ve teklif talebini dijital akışa dönüştürür.",
+      "demos/guzellik/":"Hizmet, uzman ve zaman seçimini düzenli bir randevu deneyimine çevirir.",
+      "demos/oto-ekspertiz/":"Paket, araç bilgisi, randevu ve örnek rapor akışını tek deneyimde birleştirir.",
+      "demos/restoran/":"QR menü, sepet ve sipariş deneyimini mobil öncelikli bir akışta gösterir."
+    };
+    const CATEGORIES=["Tümü","Web & Kurumsal","Randevu & Rezervasyon","Perakende","Yeme & İçme","Otomotiv","Profesyonel Hizmetler","B2B & Ticaret","Sanayi","Yönetim Sistemleri"];
+    const featuredGrid=document.getElementById("featuredGrid");
+    const demoGrid=document.getElementById("demoGrid");
+    const filters=document.getElementById("filters");
+    const search=document.getElementById("search");
+    const resultCount=document.getElementById("resultCount");
+    const activeFilter=document.getElementById("activeFilter");
+    const loadMore=document.getElementById("loadMore");
+    let selected="Tümü",expanded=false;
 
-<section class="section"><div class="wrap">
-  <div class="sectionHead reveal"><div><div class="kicker">NASIL ÇALIŞIYORUZ?</div><h2 class="title">3 adımda<br>işletmenize uyarlayalım.</h2></div><p class="desc">Demodaki sistemi birebir kopyalamak zorunda değilsiniz. İhtiyaca göre sadeleştirilir, büyütülür veya tamamen özelleştirilir.</p></div>
-  <div class="steps">
-    <div class="step reveal" data-n="01"><div class="stepIcon">👀</div><h3>Demoyu seç</h3><p>Sektörünüze en yakın örneği açın, sevdiğiniz akışları ve görünümü belirleyin.</p></div>
-    <div class="step reveal" data-n="02"><div class="stepIcon">🧩</div><h3>İşletmenize uyarlayalım</h3><p>Menü, ürün, randevu, panel, WhatsApp, teklif veya diğer özellikleri size göre düzenleyelim.</p></div>
-    <div class="step reveal" data-n="03"><div class="stepIcon">🚀</div><h3>Yayına alalım</h3><p>Mobil ve masaüstü kontrollerinden sonra sistemi canlıya çıkarıp teknik desteğini sürdürelim.</p></div>
-  </div>
-</div></section>
+    function createTag(text){
+      const s=document.createElement("span");s.textContent=text;return s;
+    }
+    function createFeaturedCard(d){
+      const a=document.createElement("a");a.className="featuredCard reveal";a.href=d.href;
+      const img=document.createElement("img");img.src=d.img;img.alt=d.name+" canlı demo görseli";img.loading="lazy";img.decoding="async";
+      const body=document.createElement("div");body.className="featuredBody";
+      const meta=document.createElement("div");meta.className="featuredMeta";meta.append(createTag(d.group));d.tags.slice(0,2).forEach(function(t){meta.append(createTag(t))});
+      const h=document.createElement("h3");h.textContent=d.icon+" "+d.name;
+      const p=document.createElement("p");p.textContent=FEATURED_IMPACT[d.href]||d.desc;
+      const go=document.createElement("div");go.className="featuredLink";const label=document.createElement("span");label.textContent="Canlı Demoyu Aç";const arrow=document.createElement("span");arrow.textContent="↗";go.append(label,arrow);
+      body.append(meta,h,p,go);a.append(img,body);return a;
+    }
+    function createDemoCard(d){
+      const a=document.createElement("a");a.className="demoCard";a.href=d.href;
+      const img=document.createElement("img");img.src=d.img;img.alt=d.name+" demo görseli";img.loading="lazy";img.decoding="async";
+      const copy=document.createElement("div");const h=document.createElement("h3");h.textContent=d.icon+" "+d.name;const p=document.createElement("p");p.textContent=d.desc;
+      const tags=document.createElement("div");tags.className="demoTags";d.tags.slice(0,3).forEach(function(t){tags.append(createTag(t))});copy.append(h,p,tags);
+      const go=document.createElement("span");go.className="demoGo";go.textContent="→";a.append(img,copy,go);return a;
+    }
+    function renderFeatured(){
+      featuredGrid.replaceChildren();
+      FEATURED.forEach(function(href){const d=DEMOS.find(function(x){return x.href===href});if(d)featuredGrid.append(createFeaturedCard(d))});
+    }
+    function renderFilters(){
+      filters.replaceChildren();
+      CATEGORIES.forEach(function(cat){const b=document.createElement("button");b.type="button";b.className="filter"+(cat===selected?" active":"");b.textContent=cat;b.setAttribute("aria-pressed",cat===selected?"true":"false");b.addEventListener("click",function(){selected=cat;expanded=false;renderFilters();renderDemos()});filters.append(b)});
+    }
+    function matchingDemos(){
+      const q=search.value.trim().toLocaleLowerCase("tr");
+      return DEMOS.filter(function(d){
+        const categoryOk=selected==="Tümü"||d.group===selected;
+        const hay=(d.name+" "+d.desc+" "+d.group+" "+d.tags.join(" ")).toLocaleLowerCase("tr");
+        return categoryOk&&(!q||hay.includes(q));
+      });
+    }
+    function renderDemos(){
+      const list=matchingDemos();const hasQuery=search.value.trim().length>0;const limit=(expanded||hasQuery||selected!=="Tümü")?list.length:12;
+      demoGrid.replaceChildren();list.slice(0,limit).forEach(function(d){demoGrid.append(createDemoCard(d))});
+      resultCount.textContent=list.length+" demo";activeFilter.textContent=selected+(hasQuery?" • Arama aktif":"");
+      loadMore.hidden=list.length<=12||hasQuery||selected!=="Tümü";
+      loadMore.textContent=expanded?"İlk 12 Demoya Dön ↑":"Tüm 37 Demoyu Göster ↓";
+    }
+    loadMore.addEventListener("click",function(){expanded=!expanded;renderDemos()});
+    search.addEventListener("input",renderDemos);
+    renderFeatured();renderFilters();renderDemos();
 
-<section class="section"><div class="wrap">
-  <div class="contact reveal"><div class="contactIn">
-    <div><div class="kicker">İŞLETMENİZ LİSTEDE YOK MU?</div><h2 class="title">Sizin sektörünüz için de özel demo hazırlayabiliriz.</h2><p class="desc">İşletmenizi kısaca anlatın. Size uygun sistem yapısını, gerekli özellikleri ve nasıl bir dijital deneyim kurulabileceğini birlikte netleştirelim.</p></div>
-    <div class="contactPanel"><span class="contactBadge">✦ ÖZEL DEMO TALEBİ</span><h3>“Benim sektörüm için demo istiyorum.”</h3><p>WhatsApp üzerinden sektörünüzü yazın; size uygun çözümü konuşalım.</p><a class="wa" id="contactWa" target="_blank" rel="noopener" href="https://wa.me/905309112770?text=Merhaba%2C%20benim%20sekt%C3%B6r%C3%BCm%20i%C3%A7in%20%C3%B6zel%20bir%20demo%20haz%C4%B1rlanmas%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."><span>💬 WhatsApp'tan Demo İste</span><span>→</span></a><a class="tel" href="tel:05309112770">Telefon: <strong>0530 911 27 70</strong></a></div>
-  </div></div>
-</div></section>
-</main>
+    const revealObserver=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add("in");revealObserver.unobserve(entry.target)}})
+    },{rootMargin:"80px 0px",threshold:.04});
+    document.querySelectorAll(".reveal").forEach(function(el){revealObserver.observe(el)});
+    const mutationObserver=new MutationObserver(function(){document.querySelectorAll(".reveal:not(.in)").forEach(function(el){revealObserver.observe(el)})});
+    mutationObserver.observe(featuredGrid,{childList:true});
 
-<div class="demoTransition" id="demoTransition" aria-hidden="true">
-  <div class="transitionCore"><div class="transitionLogo">Y</div><div class="transitionEyebrow">YUSUF DİJİTAL • CANLI DEMO</div><h3 class="transitionName" id="transitionName">Demo açılıyor</h3><div class="transitionCopy">Canlı sistem hazırlanıyor…</div><div class="transitionLine"><i></i></div></div>
-</div>
-
-<div class="finder" id="finder" hidden>
-  <div class="finderSheet" role="dialog" aria-modal="true" aria-labelledby="finderTitle">
-    <div class="finderHead"><div><small>AKILLI DEMO EŞLEŞTİRME</small><h3 id="finderTitle">Sana uygun demoyu bulalım.</h3></div><button class="finderClose" id="finderClose" type="button" aria-label="Kapat">×</button></div>
-    <div class="finderBody">
-      <div class="finderLabel">1. İşletme tipine en yakın alan</div><div class="finderChoices" id="finderCats"></div>
-      <div class="finderLabel">2. En önemli ihtiyacın</div><div class="finderChoices" id="finderNeeds"></div>
-      <button class="finderSuggest" id="finderSuggest" type="button" disabled>En Uygun 3 Demoyu Göster →</button>
-      <div class="finderResults" id="finderResults"></div>
-      <div class="finderNote">Sonuçlar mevcut canlı demolardaki kategori ve özelliklere göre eşleştirilir.</div>
-    </div>
-  </div>
-</div>
-
-<footer>Yusuf Dijital • Premium Canlı Demo Merkezi</footer>
-<nav class="mobilebar" aria-label="Hızlı erişim"><button class="demoHot" type="button" data-scroll="demos"><span class="navIcon">◉</span><span>Demolar</span></button><a href="tel:05309112770"><span class="navIcon">☎</span><span>Ara</span></a><a class="hot" id="mobileWa" target="_blank" rel="noopener" href="https://wa.me/905309112770?text=Merhaba%2C%20Demo%20Merkezini%20inceledim.%20Bilgi%20almak%20istiyorum."><span class="navIcon">💬</span><span>WhatsApp</span></a></nav>
-
-<script>
-const DEMOS=[
-{icon:"☕",name:"Kafe & Pastane",desc:"Dijital menü, ürün kataloğu, sepet ve sipariş.",href:"demos/kafe/",cat:"Yeme-İçme",tags:["Sipariş","Katalog","Sepet"],img:"https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=900&q=82"},
-{icon:"💈",name:"Berber & Randevu",desc:"Hizmet, personel, tarih ve online randevu.",href:"demos/berber/",cat:"Randevu",tags:["Randevu","Personel","WhatsApp"],img:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=82"},
-{icon:"✨",name:"Güzellik Salonu",desc:"Uzman seçimi, hizmet ve randevu sistemi.",href:"demos/guzellik/",cat:"Randevu",tags:["Randevu","Hizmet","Uzman"],img:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=82"},
-{icon:"🍽️",name:"QR Menü & Sipariş",desc:"Mobil QR menü, gelişmiş sepet ve sipariş.",href:"demos/restoran/",cat:"Yeme-İçme",tags:["Sipariş","QR Menü","Sepet"],img:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=82",featured:true},
-{icon:"🛒",name:"Market & Sipariş",desc:"Katalog, stok, teslimat ve sipariş yönetimi.",href:"demos/market/",cat:"Mağaza",tags:["Sipariş","Stok","Teslimat"],img:"https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=82"},
-{icon:"🏨",name:"Otel & Rezervasyon",desc:"Oda seçimi, tarih, misafir ve rezervasyon.",href:"demos/otel/",cat:"Randevu",tags:["Rezervasyon","Oda","Takvim"],img:"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=82"},
-{icon:"🦷",name:"Klinik & Randevu",desc:"Hizmet, uzman, tarih-saat ve randevu.",href:"demos/klinik/",cat:"Randevu",tags:["Randevu","Uzman","Takvim"],img:"https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=82"},
-{icon:"🌐",name:"Kurumsal Web",desc:"Profesyonel firma tanıtım ve teklif sistemi.",href:"demos/kurumsal/",cat:"Kurumsal",tags:["Kurumsal","Teklif","İletişim"],img:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=82"},
-{icon:"🎨",name:"Logo Tasarım Stüdyosu",desc:"Marka adı, stil, renk paleti ve canlı logo konseptleri.",href:"demos/logo-tasarim/",cat:"Kurumsal",tags:["Marka","Tasarım","Canlı Önizleme"],img:"https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=900&q=82"},
-{icon:"🧶",name:"Halı & Kilim Mağazası",desc:"Premium koleksiyon, ölçü, kategori, ürün görselleri ve hızlı teklif.",href:"demos/hali-magazasi/",cat:"Mağaza",tags:["Katalog","Teklif","WhatsApp"],img:"https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=900&q=82",featured:true},
-{icon:"⚙️",name:"İşletme Yönetimi",desc:"Müşteri, görev, talep ve yönetim paneli.",href:"demos/yonetim/",cat:"Kurumsal",tags:["Panel","Müşteri","Görev"],img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=82"},
-{icon:"💎",name:"Kuyumcu & Mücevher",desc:"Koleksiyon, kategori, favori ve ürün danışmanlığı.",href:"demos/kuyumcu/",cat:"Mağaza",tags:["Katalog","Favori","WhatsApp"],img:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=82",featured:true},
-{icon:"👰",name:"Gelinlik & Abiye",desc:"Koleksiyon vitrini, model seçimi ve prova randevusu.",href:"demos/gelinlik/",cat:"Mağaza",tags:["Koleksiyon","Randevu","Prova"],img:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=82"},
-{icon:"🥮",name:"Baklava & Tatlıcı",desc:"Ürün kataloğu, kg siparişi, teslimat ve hediye paketi.",href:"demos/baklava/",cat:"Yeme-İçme",tags:["Sipariş","Katalog","Teslimat"],img:"https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=900&q=82"},
-{icon:"🥩",name:"Kasap & Şarküteri",desc:"Kg fiyatı, hazırlanış tercihi, sepet ve teslimat.",href:"demos/kasap/",cat:"Yeme-İçme",tags:["Sipariş","Kg Fiyat","Teslimat"],img:"https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=900&q=82"},
-{icon:"💍",name:"Düğün & Organizasyon",desc:"Salon, kapasite, etkinlik tarihi ve teklif talebi.",href:"demos/dugun-salonu/",cat:"Kurumsal",tags:["Teklif","Takvim","Organizasyon"],img:"https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=82"},
-{icon:"🛋️",name:"Mobilya & Dekorasyon",desc:"Koleksiyon, renk/kumaş seçenekleri ve teklif alma.",href:"demos/mobilya/",cat:"Mağaza",tags:["Katalog","Teklif","Varyant"],img:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=82"},
-{icon:"👗",name:"Butik & Giyim",desc:"Koleksiyon, beden, favori ve WhatsApp sipariş.",href:"demos/butik/",cat:"Mağaza",tags:["Katalog","Beden","WhatsApp"],img:"https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=82"},
-{icon:"📸",name:"Fotoğraf & Düğün Çekimi",desc:"Portföy, paketler, çekim tarihi ve teklif talebi.",href:"demos/fotografci/",cat:"Kurumsal",tags:["Portföy","Teklif","Takvim"],img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=82"},
-{icon:"🌸",name:"Çiçekçi & Hediye",desc:"Buket kataloğu, kart mesajı, teslim zamanı ve sipariş.",href:"demos/cicekci/",cat:"Mağaza",tags:["Sipariş","Teslimat","Katalog"],img:"https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=82"},
-{icon:"🎂",name:"Özel Pasta",desc:"Kişiye özel tasarım, aroma ve sipariş talebi.",href:"demos/ozel-pasta/",cat:"Yeme-İçme",tags:["Sipariş","Kişiselleştirme","Teklif"],img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=82"},
-{icon:"🧼",name:"Halı Yıkama",desc:"m² fiyat hesabı, adres ve evden alım talebi.",href:"demos/hali-yikama/",cat:"Kurumsal",tags:["Fiyat Hesabı","Adres","Talep"],img:"https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=82"},
-{icon:"🚘",name:"Rent A Car",desc:"Araç segmenti, tarih, günlük fiyat ve rezervasyon talebi.",href:"demos/rent-a-car/",cat:"Otomotiv",tags:["Rezervasyon","Araç","Takvim"],img:"https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=900&q=82",featured:true},
-{icon:"🚿",name:"Oto Yıkama & Detailing",desc:"Bakım paketleri, araç sınıfı, fiyat ve randevu akışı.",href:"demos/detailing/",cat:"Otomotiv",tags:["Randevu","Paket","Araç"],img:"https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=900&q=82"},
-{icon:"🏭",name:"Fabrika / Üretici / İhracat",desc:"TR/EN katalog, üretim, kalite, ihracat ağı, RFQ teklif listesi ve satış paneli.",href:"demos/fabrika-b2b/",cat:"B2B",tags:["B2B","RFQ","Panel"],img:"https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=900&q=82",featured:true},
-{icon:"⚖️",name:"Avukatlık Bürosu",desc:"Uzmanlık alanları, kurumsal tanıtım ve güvenli ön görüşme talebi.",href:"demos/avukat/",cat:"Kurumsal",tags:["Kurumsal","Talep","Uzmanlık"],img:"https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=82"},
-{icon:"🧾",name:"Mali Müşavir & Muhasebe",desc:"Hizmet seçimi, şirket profili ve görüşme talebi.",href:"demos/mali-musavir/",cat:"Kurumsal",tags:["Kurumsal","Talep","Hizmet"],img:"https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=82"},
-{icon:"📦",name:"Toptancı & Bayi Sistemi",desc:"Bayi fiyatı, iskonto, koli bazlı sipariş, cari limit ve sevkiyat.",href:"demos/toptanci-bayi/",cat:"B2B",tags:["B2B","Sipariş","Cari"],img:"https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=82"},
-{icon:"🌐",name:"İhracatçı B2B Müşteri Portalı",desc:"Sipariş geçmişi, sevkiyat, proforma/doküman merkezi ve yeni RFQ.",href:"demos/ihracat-portali/",cat:"B2B",tags:["B2B","Portal","RFQ"],img:"https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=900&q=82"},
-{icon:"⌚",name:"Saat & Aksesuar",desc:"Koleksiyon, kategori filtreleri, favori ve mağazada ürün ayırtma.",href:"demos/saat-aksesuar/",cat:"Mağaza",tags:["Katalog","Favori","Ayırtma"],img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=82"},
-{icon:"👓",name:"Optik & Gözlük",desc:"Çerçeve kataloğu, filtreleme, beğeni ve mağaza görüşme talebi.",href:"demos/optik/",cat:"Mağaza",tags:["Katalog","Filtre","Talep"],img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=82"},
-{icon:"🚗",name:"Oto Ekspertiz",desc:"Ekspertiz paketleri, araç bilgileri, randevu ve örnek rapor akışı.",href:"demos/oto-ekspertiz/",cat:"Otomotiv",tags:["Randevu","Rapor","Araç"],img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=82"},
-{icon:"📱",name:"Telefon & GSM",desc:"Cihaz ve aksesuar kataloğu, ürün ayırtma ve teknik servis takibi.",href:"demos/gsm-telefon/",cat:"Mağaza",tags:["Katalog","Servis","Takip"],img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=82",featured:true},
-{icon:"🌱",name:"Fide / Tohum / Tarım",desc:"Fide, tohum ve yetiştirme ürünleri kataloğu ile ürün talebi.",href:"demos/tarim-fide-tohum/",cat:"Mağaza",tags:["Katalog","Talep","Tarım"],img:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=82"},
-{icon:"🧴",name:"Parfümeri",desc:"Koku koleksiyonu, filtreleme, favoriler ve mağazada ürün ayırtma.",href:"demos/parfumeri/",cat:"Mağaza",tags:["Katalog","Favori","Ayırtma"],img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=82"},
-{icon:"👟",name:"Ayakkabı Mağazası",desc:"Model, kategori, numara seçimi, favori ve mağazada ürün ayırtma.",href:"demos/ayakkabi/",cat:"Mağaza",tags:["Katalog","Numara","Ayırtma"],img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=82"},
-{icon:"🐾",name:"Petshop & Akvaryum",desc:"Kedi, köpek, kuş, balık, akvaryum, mama, kafes, tasma ve aksesuarlar.",href:"demos/petshop-akvaryum/",cat:"Mağaza",tags:["Katalog","Petshop","Akvaryum"],img:"https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=900&q=82"}
-];
-
-const heroSwipe=document.getElementById("heroSwipe"),swipeViewport=document.getElementById("swipeViewport"),swipeName=document.getElementById("swipeName"),swipeCat=document.getElementById("swipeCat"),swipeIcon=document.getElementById("swipeIcon"),swipeCount=document.getElementById("swipeCount"),swipeOpen=document.getElementById("swipeOpen"),swipeDots=document.getElementById("swipeDots"),swipeTags=document.getElementById("swipeTags"),swipeFlash=document.getElementById("swipeFlash");
-let swipeIndex=Math.max(0,DEMOS.findIndex(function(d){return d.href==="demos/restoran/"})),swipeStartX=0,swipeDrag=0,swipePointer=null,swipeResumeTimer=null,liveFrameTimer=null,heroVisible=true;
-const heroAccent={"Yeme-İçme":"#ff7b57","Mağaza":"#e0b765","Randevu":"#d783ff","Otomotiv":"#5c9dff","Kurumsal":"#64e7ff","B2B":"#8a7cff"};
-function demoWaUrl(name){return "https://wa.me/905309112770?text="+encodeURIComponent("Merhaba, Demo Merkezi'nde "+name+" demosunu inceliyorum. Bu sistemin işletmeme uyarlanması hakkında bilgi almak istiyorum.")}
-function updateWhatsAppContext(d){const u=demoWaUrl(d.name);const m=document.getElementById("mobileWa"),w=document.getElementById("contactWa");if(m)m.href=u;if(w)w.href=u}
-
-function wrapIndex(i){return(i+DEMOS.length)%DEMOS.length}
-function makeSwipeCard(index,pos){
-  const realIndex=wrapIndex(index),d=DEMOS[realIndex],card=document.createElement("div");card.className="swipeCard "+pos;card.dataset.pos=pos;card.dataset.demoIndex=String(realIndex);
-  const img=document.createElement("img");img.src=d.img;img.alt=d.name+" demo kapak görseli";img.loading=pos==="active"?"eager":"lazy";img.decoding="async";card.appendChild(img);
-  if(pos==="active"){
-    const live=document.createElement("span");live.className="livePill";live.textContent="● ÖNİZLEME";card.appendChild(live)
-  }else{
-    const shade=document.createElement("span");shade.className="sideShade";const name=document.createElement("span");name.className="sideName";name.textContent=d.icon+" "+d.name;card.append(shade,name)
-  }
-  return card
-}
-function unmountActivePreview(){
-  clearTimeout(liveFrameTimer);liveFrameTimer=null;
-  const card=swipeViewport.querySelector(".swipeCard.active");if(!card)return;
-  const frame=card.querySelector("iframe");if(frame)frame.remove();
-  const pill=card.querySelector(".livePill");if(pill)pill.textContent="● ÖNİZLEME"
-}
-function mountActivePreview(delay){
-  clearTimeout(liveFrameTimer);
-  if(!heroVisible||document.visibilityState!=="visible"||swipePointer!==null)return;
-  const expected=swipeIndex;
-  liveFrameTimer=setTimeout(function(){
-    if(!heroVisible||document.visibilityState!=="visible"||swipePointer!==null||swipeIndex!==expected)return;
-    const card=swipeViewport.querySelector('.swipeCard.active[data-demo-index="'+expected+'"]');if(!card||card.querySelector("iframe"))return;
-    const d=DEMOS[expected],frame=document.createElement("iframe");frame.title=d.name+" canlı demo önizlemesi";frame.src=d.href;frame.loading="eager";frame.setAttribute("tabindex","-1");frame.setAttribute("aria-hidden","true");
-    const pill=card.querySelector(".livePill");if(pill)pill.textContent="● YÜKLENİYOR";
-    frame.addEventListener("load",function(){if(frame.isConnected){frame.classList.add("ready");if(pill)pill.textContent="● LIVE"}},{once:true});
-    card.appendChild(frame)
-  },typeof delay==="number"?delay:520)
-}
-function renderSwipe(){
-  const d=DEMOS[swipeIndex],accent=heroAccent[d.cat]||"#68e9ff";heroSwipe.style.setProperty("--hero-accent",accent);heroSwipe.style.setProperty("--drag","0px");swipeDrag=0;
-  swipeViewport.replaceChildren(makeSwipeCard(swipeIndex-1,"prev"),makeSwipeCard(swipeIndex,"active"),makeSwipeCard(swipeIndex+1,"next"));
-  swipeName.textContent=d.name;swipeCat.textContent=d.cat.toLocaleUpperCase("tr")+" • CANLI ÖNİZLEME";swipeIcon.textContent=d.icon;swipeCount.textContent=String(swipeIndex+1).padStart(2,"0")+" / "+DEMOS.length;swipeOpen.href=d.href;updateWhatsAppContext(d);swipeTags.replaceChildren();d.tags.slice(0,3).forEach(function(t){const s=document.createElement("span");s.textContent=t;swipeTags.appendChild(s)});
-  swipeDots.replaceChildren();for(let n=-3;n<=3;n++){const dot=document.createElement("span");dot.className="swipeDot"+(n===0?" active":"");swipeDots.appendChild(dot)}
-  mountActivePreview(560)
-}
-function goSwipe(dir){
-  unmountActivePreview();swipeIndex=wrapIndex(swipeIndex+dir);renderSwipe();
-  heroSwipe.animate([{filter:"brightness(1)"},{filter:"brightness(1.13)"},{filter:"brightness(1)"}],{duration:430,easing:"ease-out"});
-  swipeFlash.classList.remove("fire");void swipeFlash.offsetWidth;swipeFlash.classList.add("fire");
-  const meta=heroSwipe.querySelector(".swipeMeta");meta.animate([{transform:"translateY(5px)",opacity:.78},{transform:"translateY(0)",opacity:1}],{duration:330,easing:"cubic-bezier(.2,.9,.25,1)"})
-}
-function pauseSwipe(){clearTimeout(swipeResumeTimer);swipeResumeTimer=setTimeout(function(){},8000)}
-heroSwipe.addEventListener("pointerdown",function(e){if(e.target.closest("a,button"))return;unmountActivePreview();swipePointer=e.pointerId;swipeStartX=e.clientX;swipeDrag=0;heroSwipe.setPointerCapture(e.pointerId);swipeViewport.querySelectorAll(".swipeCard").forEach(function(x){x.classList.add("dragging")});pauseSwipe()});
-heroSwipe.addEventListener("pointermove",function(e){if(e.pointerId!==swipePointer)return;swipeDrag=Math.max(-115,Math.min(115,e.clientX-swipeStartX));heroSwipe.style.setProperty("--drag",swipeDrag+"px")});
-function endSwipe(e){if(e.pointerId!==swipePointer)return;swipeViewport.querySelectorAll(".swipeCard").forEach(function(x){x.classList.remove("dragging")});const w=heroSwipe.clientWidth,threshold=Math.min(72,w*.14),dir=swipeDrag<-threshold?1:swipeDrag>threshold?-1:0;swipePointer=null;if(dir)goSwipe(dir);else{heroSwipe.style.setProperty("--drag","0px");swipeDrag=0;mountActivePreview(260)}}
-heroSwipe.addEventListener("pointerup",endSwipe);heroSwipe.addEventListener("pointercancel",endSwipe);
-document.getElementById("swipePrev").addEventListener("click",function(){goSwipe(-1);pauseSwipe()});document.getElementById("swipeNext").addEventListener("click",function(){goSwipe(1);pauseSwipe()});
-heroSwipe.addEventListener("wheel",function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Math.abs(e.deltaX)>16){e.preventDefault();goSwipe(e.deltaX>0?1:-1)}},{passive:false});
-const heroObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){heroVisible=entry.isIntersecting;document.querySelector(".hero").classList.toggle("is-visible",heroVisible);heroSwipe.classList.toggle("is-idle",!heroVisible);if(heroVisible)mountActivePreview(260);else unmountActivePreview()})},{rootMargin:"100px 0px 100px 0px",threshold:.02});
-heroObserver.observe(heroSwipe);
-document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"&&heroVisible)mountActivePreview(220);else unmountActivePreview()});
-renderSwipe();
-
-const tickerItems=["Web Sitesi","QR Menü","Sipariş","Randevu","Yönetim Paneli","Teklif","Müşteri Takip","B2B Portal","Katalog","WhatsApp"];
-document.getElementById("ticker").innerHTML=tickerItems.concat(tickerItems).map(function(x){return "<span><b>•</b> "+x+"</span>"}).join("");
-const tickerEl=document.querySelector(".ticker");new IntersectionObserver(function(entries){entries.forEach(function(e){tickerEl.classList.toggle("is-visible",e.isIntersecting)})},{rootMargin:"80px 0px"}).observe(tickerEl);
-
-const categories=["Tümü","Yeme-İçme","Mağaza","Randevu","Otomotiv","Kurumsal","B2B"];
-let activeCat="Tümü",expanded=false;
-const filters=document.getElementById("filters"),grid=document.getElementById("demoGrid"),search=document.getElementById("search"),empty=document.getElementById("empty"),more=document.getElementById("more"),resultMeta=document.getElementById("resultMeta");
-function renderFilters(){
-  filters.replaceChildren();
-  categories.forEach(function(c){const b=document.createElement("button");b.type="button";b.className="filter"+(activeCat===c?" active":"");b.textContent=c;b.addEventListener("click",function(){activeCat=c;renderFilters();renderDemos()});filters.appendChild(b)})
-}
-function renderDemos(){
-  const q=search.value.trim().toLocaleLowerCase("tr");
-  let list=DEMOS.filter(function(d){
-    const hay=(d.name+" "+d.desc+" "+d.cat+" "+d.tags.join(" ")).toLocaleLowerCase("tr");
-    return (activeCat==="Tümü"||d.cat===activeCat)&&(!q||hay.includes(q))
-  });
-  const visible=expanded?list:list.slice(0,12);
-  grid.replaceChildren();
-  visible.forEach(function(d){
-    const a=document.createElement("a");a.className="demoCard";a.href=d.href;
-    const img=document.createElement("img");img.src=d.img;img.alt=d.name+" örnek görsel";img.loading="lazy";img.decoding="async";
-    const go=document.createElement("span");go.className="cardGo";go.textContent="↗";
-    const inner=document.createElement("div");inner.className="inner";const ic=document.createElement("span");ic.className="icon";ic.textContent=d.icon;
-    const h=document.createElement("h3");h.textContent=d.name;const p=document.createElement("p");p.textContent=d.desc;const tags=document.createElement("div");tags.className="miniTags";
-    d.tags.slice(0,3).forEach(function(t){const s=document.createElement("span");s.textContent=t;tags.appendChild(s)});
-    inner.append(ic,h,p,tags);a.append(img,go,inner);grid.appendChild(a)
-  });
-  empty.style.display=list.length?"none":"block";
-  const totalText=list.length+" uygun demo";resultMeta.replaceChildren();const rb=document.createElement("b");rb.textContent=totalText;const rs=document.createElement("span");rs.textContent=(activeCat==="Tümü"?"Tüm kategoriler":activeCat)+(q?" • Arama aktif":"");resultMeta.append(rb,rs);
-  more.style.display=list.length>12?"inline-block":"none";
-  more.textContent=expanded?"Demoları Daralt ↑":"Tüm Demoları Göster ↓";
-  bindTilt()
-}
-renderFilters();renderDemos();search.addEventListener("input",renderDemos);more.addEventListener("click",function(){expanded=!expanded;renderDemos()});
-
-document.querySelectorAll("[data-scroll]").forEach(function(el){el.addEventListener("click",function(){document.getElementById(el.dataset.scroll).scrollIntoView({behavior:"smooth",block:"start"})})});
-const demoTransition=document.getElementById("demoTransition"),transitionName=document.getElementById("transitionName");
-function demoNameFromHref(href){try{const u=new URL(href,location.href),path=u.pathname.replace(/\/+$/,"/");const d=DEMOS.find(function(x){return new URL(x.href,location.href).pathname.replace(/\/+$/,"/")===path});return d?d.name:"Canlı Demo"}catch(_){return"Canlı Demo"}}
-function trackDemoEvent(type,data){
-  const payload={type:type,ts:Date.now(),page:location.pathname};
-  if(data)Object.keys(data).forEach(function(k){payload[k]=data[k]});
-  try{const key="yd_demo_events_v1",old=JSON.parse(localStorage.getItem(key)||"[]");old.push(payload);localStorage.setItem(key,JSON.stringify(old.slice(-120)))}catch(_){}
-  window.dispatchEvent(new CustomEvent("yd:analytics",{detail:payload}))
-}
-document.addEventListener("click",function(e){
-  const a=e.target.closest("a[href]");if(!a||e.defaultPrevented||e.button>0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
-  let u;try{u=new URL(a.href,location.href)}catch(_){return}
-  if(u.origin!==location.origin||!u.pathname.includes("/demos/"))return;
-  e.preventDefault();const name=demoNameFromHref(u.href);trackDemoEvent("demo_open",{demo:name,path:u.pathname});
-  transitionName.textContent=name;demoTransition.classList.add("show");demoTransition.setAttribute("aria-hidden","false");
-  setTimeout(function(){location.href=u.href},matchMedia("(prefers-reduced-motion:reduce)").matches?80:420)
-});
-document.addEventListener("click",function(e){const a=e.target.closest('a[href*="wa.me"]');if(a)trackDemoEvent("whatsapp_click",{context:swipeName?swipeName.textContent:"Demo Merkezi"})});
-document.getElementById("matchBtn").addEventListener("click",function(){trackDemoEvent("matcher_open")});
-
-const finder=document.getElementById("finder"),finderCats=document.getElementById("finderCats"),finderNeeds=document.getElementById("finderNeeds"),finderResults=document.getElementById("finderResults"),finderSuggest=document.getElementById("finderSuggest");
-const finderCatList=["Farketmez","Yeme-İçme","Mağaza","Randevu","Otomotiv","Kurumsal","B2B"];
-const finderNeedList=["Sipariş","Randevu","Katalog","Yönetim Paneli","Teklif","B2B"];
-let finderCat="",finderNeed="";
-function renderFinderChoices(){
-  finderCats.replaceChildren();finderNeeds.replaceChildren();
-  finderCatList.forEach(function(v){const b=document.createElement("button");b.type="button";b.className="finderChoice"+(finderCat===v?" active":"");b.textContent=v;b.addEventListener("click",function(){finderCat=v;renderFinderChoices();finderSuggest.disabled=!finderCat||!finderNeed});finderCats.appendChild(b)});
-  finderNeedList.forEach(function(v){const b=document.createElement("button");b.type="button";b.className="finderChoice"+(finderNeed===v?" active":"");b.textContent=v;b.addEventListener("click",function(){finderNeed=v;renderFinderChoices();finderSuggest.disabled=!finderCat||!finderNeed});finderNeeds.appendChild(b)})
-}
-function needScore(d,need){
-  const text=(d.name+" "+d.desc+" "+d.cat+" "+d.tags.join(" ")).toLocaleLowerCase("tr"),n=need.toLocaleLowerCase("tr");
-  let s=text.includes(n)?6:0;
-  const map={"Sipariş":["sipariş","sepet","teslimat"],"Randevu":["randevu","rezervasyon","takvim"],"Katalog":["katalog","koleksiyon","ürün"],"Yönetim Paneli":["panel","müşteri","görev","takip"],"Teklif":["teklif","rfq","talep"],"B2B":["b2b","bayi","rfq","portal"]};
-  (map[need]||[]).forEach(function(k){if(text.includes(k))s+=2});return s
-}
-function suggestDemos(){
-  const scored=DEMOS.map(function(d,i){let score=needScore(d,finderNeed);if(finderCat!=="Farketmez"&&d.cat===finderCat)score+=7;if(d.featured)score+=1;return{d:d,score:score,i:i}}).sort(function(a,b){return b.score-a.score||a.i-b.i}).slice(0,3);
-  finderResults.replaceChildren();
-  scored.forEach(function(x,rank){const a=document.createElement("a");a.className="finderResult";a.href=x.d.href;
-    const img=document.createElement("img");img.src=x.d.img;img.alt="";img.loading="lazy";img.decoding="async";
-    const copy=document.createElement("div");const strong=document.createElement("strong");strong.textContent=(rank+1)+". "+x.d.name;const small=document.createElement("small");small.textContent=x.d.cat+" • "+x.d.tags.slice(0,2).join(" • ");copy.append(strong,small);
-    const go=document.createElement("span");go.textContent="→";a.append(img,copy,go);finderResults.appendChild(a)
-  })
-}
-document.getElementById("matchBtn").addEventListener("click",function(){finder.hidden=false;document.body.style.overflow="hidden";renderFinderChoices()});
-document.getElementById("finderClose").addEventListener("click",function(){finder.hidden=true;document.body.style.overflow=""});
-finder.addEventListener("click",function(e){if(e.target===finder){finder.hidden=true;document.body.style.overflow=""}});
-finderSuggest.addEventListener("click",function(){trackDemoEvent("matcher_result",{category:finderCat,need:finderNeed});suggestDemos()});
-document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!finder.hidden){finder.hidden=true;document.body.style.overflow=""}});
-
-
-const observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");observer.unobserve(e.target)}})},{threshold:.08,rootMargin:"0px 0px -30px"});
-function watch(){document.querySelectorAll(".reveal:not(.watched)").forEach(function(el){el.classList.add("watched");observer.observe(el)})}watch();
-
-const counterObserver=new IntersectionObserver(function(entries){entries.forEach(function(e){if(!e.isIntersecting)return;const el=e.target,target=Number(el.dataset.count);let n=0;const step=Math.max(1,Math.ceil(target/35));const timer=setInterval(function(){n=Math.min(target,n+step);el.textContent=target===100?n+"%":target===7?"7/7":n;if(n>=target)clearInterval(timer)},30);counterObserver.unobserve(el)})},{threshold:.5});
-document.querySelectorAll("[data-count]").forEach(function(el){counterObserver.observe(el)});
-
-function bindTilt(){
-  if(!matchMedia("(pointer:fine)").matches)return;
-  document.querySelectorAll(".demoCard").forEach(function(card){
-    if(card.dataset.tilt)return;card.dataset.tilt="1";
-    card.addEventListener("pointermove",function(e){const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform="perspective(800px) rotateX("+(-y*7)+"deg) rotateY("+(x*8)+"deg) translateY(-4px)"});
-    card.addEventListener("pointerleave",function(){card.style.transform=""})
-  })
-}bindTilt();
-
-const root=document.documentElement,prog=document.getElementById("progress"),cursor=document.getElementById("cursorGlow");
-if(matchMedia("(pointer:fine)").matches){addEventListener("pointermove",function(e){root.style.setProperty("--mx",e.clientX+"px");root.style.setProperty("--my",e.clientY+"px");cursor.style.left=e.clientX+"px";cursor.style.top=e.clientY+"px"},{passive:true})}
-let scrollRAF=0;addEventListener("scroll",function(){if(scrollRAF)return;scrollRAF=requestAnimationFrame(function(){const d=document.documentElement,max=d.scrollHeight-d.clientHeight;prog.style.width=(max?Math.min(100,d.scrollTop/max*100):0)+"%";scrollRAF=0})},{passive:true});
-
-const canvas=document.getElementById("particles"),ctx=canvas.getContext("2d");let dots=[],particleRAF=0;
-function resize(){const dpr=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;canvas.style.width=innerWidth+"px";canvas.style.height=innerHeight+"px";ctx.setTransform(dpr,0,0,dpr,0,0);dots=Array.from({length:innerWidth<760?48:82},function(){return{x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.8+.4,vx:(Math.random()-.5)*.18,vy:Math.random()*.22+.05,a:Math.random()*.55+.15}})}
-function draw(){particleRAF=0;if(document.visibilityState!=="visible")return;ctx.clearRect(0,0,innerWidth,innerHeight);dots.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.y>innerHeight+4)p.y=-4;if(p.x<0)p.x=innerWidth;if(p.x>innerWidth)p.x=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(110,220,255,"+p.a+")";ctx.fill()});particleRAF=requestAnimationFrame(draw)}
-function startParticles(){if(!particleRAF&&document.visibilityState==="visible")particleRAF=requestAnimationFrame(draw)}function stopParticles(){if(particleRAF){cancelAnimationFrame(particleRAF);particleRAF=0}}
-resize();startParticles();addEventListener("resize",resize,{passive:true});document.addEventListener("visibilitychange",function(){document.visibilityState==="visible"?startParticles():stopParticles()});
-</script>
+    document.addEventListener("click",function(e){
+      const a=e.target.closest('a[href*="demos/"]');if(!a)return;
+      try{localStorage.setItem("yd_last_demo",a.getAttribute("href")||"")}catch(_){}
+    });
+  </script>
 </body>
 </html>
